@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		body,div,ul,table,thead,tbody,span,th,tr,td{padding: 0;margin: 0;}
+		li{list-style: none;display: inline-block;}
+		.heade-list{
+			padding: 10px 10px;
+		}
+		.table-show{
+			width: 80%;
+			margin: 10% auto;
+		}
+		.add{
+			padding: 4px 8px;
+			background-color: #f1ab4c;
+			border-radius: 4px;
+			color: #fff;
+		}
+		.allRemove{
+			padding: 4px 8px;
+			background-color: #d9504c;
+			border-radius: 4px;
+			color: #fff;
+		}
+		table{
+			border: 1px solid #cdcdcd;
+		    border-collapse: 0;
+		    border-spacing: 0;
+		}
+		.thead th{
+			width: 100px;
+			height: 30px;
+			border-bottom: 1px solid #cdcdcd;	
+			border-left: 1px solid #cdcdcd;
+			padding: 2px 4px;
+		}
+		.thead th:first-child{
+			border-left: 0;
+		}
+		.tbody{
+			background-color: #f9f9f9;
+		}
+		.tbody tr td{
+			width: 100px;
+			height: 30px;
+			border-left: 1px solid #cdcdcd;
+			border-bottom: 1px solid #cdcdcd;	
+			text-align: center;
+		}	
+		.tbody tr td:first-child{
+			border-left: 0;
+		}
+		.tbody tr td:last-child span:first-child{
+			background-color: #60cfe9;
+			border-radius: 4px;
+			color: #fff;
+		}
+		.tbody tr:last-child td{
+			border-bottom: 0;
+		}
+		.putbtn{
+			display: inline-block;
+			width: 100%;
+			background-color: inherit;
+			border: 0;
+		}
+		.tbody tr td:last-child span:last-child{
+			background-color: #f1ab4c;
+			border-radius: 4px;
+			color: #fff;
+		}
+	</style>
+	<body>
+		<div class="table-show">
+			<div class="heade-list">
+				<ul>
+					<li class="add" id="add">添加</li>
+					<li class="allRemove" id="allRemove">全部删除</li>
+				</ul>			
+			</div>
+			<table >
+				<thead class="thead">
+					<tr>
+						<th>姓名</th>
+						<th>性别</th>
+						<th>年龄</th>
+						<th>爱好</th>
+						<th>操作</th>
+					</tr>	
+				</thead>
+				<tbody class="tbody" id="tbody">
+				</tbody>
+			</table>	
+		</div>
+	</body>
+	<script>
+		//给添加按钮绑定点击事件
+		document.getElementById("add").addEventListener('click',fAdd);
+		//点击执行的方法
+		function fAdd(){
+			var oTr = document.createElement('tr');
+			oTr.innerHTML = '<td id="put"><input type="text" class="putbtn" id="putbtn" placeholder="请输入姓名"/></td>'+
+							'<td id="put"><input type="text" class="putbtn" id="putbtn" placeholder="请输入性别"/></td>'+
+							'<td id="put"><input type="text" class="putbtn" id="putbtn" placeholder="请输入年龄"/></td>'+
+							'<td id="put"><input type="text" class="putbtn" id="putbtn" placeholder="请输入爱好"/></td>'+
+							'<td><span id="alter">修改</span><span id="rowRemove">删除</span></td>';
+			document.getElementById('tbody').appendChild(oTr);
+			fAddBlurEvent();
+			fAddAlterEvent();
+			fAddRemoveEvent();
+		}
+		fAdd();
+		//输入框失去焦点的执行方法
+		function fAddBlurEvent(){
+			var aPutbtn = document.querySelectorAll("#putbtn");
+			for (var i = 0;i < aPutbtn.length; i++) {
+				aPutbtn[i].addEventListener('blur',fChuange);
+			}	
+		}
+		fAddBlurEvent();
+		function fChuange(){
+			var val = this.value;
+			console.log(val)
+			this.parentNode.innerHTML = val;
+		}
+		/*
+		 * 修改按钮点击
+		 */
+		function fAddAlterEvent(){
+			var aAlert = document.querySelectorAll("#alter");
+			for (var i = 0; i < aAlert.length;i++) {
+				aAlert[i].parentNode.parentNode.index = i;
+				aAlert[i].addEventListener('click',fAlter);
+			}
+		}
+		fAddAlterEvent();
+		function fAlter(){
+			var index = this.parentNode.parentNode.index;
+			var oTr = document.getElementById("tbody").children;
+			var sInput = '<input type="text" class="putbtn" id="putbtn" placeholder="请输入修改内容"/>';
+			var aPut = oTr[index].querySelectorAll("#put");
+			for (var i = 0;i < aPut.length; i++) {
+				aPut[i].innerHTML = sInput; 
+			}
+			fAddBlurEvent();
+		}
+		/*
+		 * 删除按钮被点击
+		 */
+		function fAddRemoveEvent(){
+			var aRowRemove = document.querySelectorAll("#rowRemove");
+			for (var i = 0; i < aRowRemove.length;i++) {
+				aRowRemove[i].parentNode.parentNode.index = i;
+				aRowRemove[i].addEventListener('click',fRemove);
+			}
+		}
+		fAddRemoveEvent();
+		function fRemove(){
+			var oTr = this.parentNode.parentNode;
+			document.getElementById("tbody").removeChild(oTr);	
+		}
+		/*
+		 * 全部删除
+		 */
+		function removeAll(){
+			var aRemoveAll = document.querySelector('#allRemove');
+				aRemoveAll.addEventListener('click',function(){
+					document.getElementById("tbody").innerHTML = '';
+			})
+		}
+		removeAll();
+		
+	</script>
+</html>

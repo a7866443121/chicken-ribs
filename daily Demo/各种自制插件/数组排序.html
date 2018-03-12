@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script>
+		//快速排序
+		;(function() {
+			var dataAry = [5, 4, 3, 7, 1, 2, 8, 6, 9]; // 测试数组
+			function quickSort(arr, left, right) {
+				if(left > right) return;
+				var temp,
+					i = left,
+					j = right;
+				// 设基准值
+				var pivot = arr[left];
+				while(i != j) {
+					// 先从右侧开始(找到小于基值的第一个数据)
+					while(i < j && arr[j] >= pivot) {
+						j--;
+					}
+					// 然后从左侧开始(找到大于基值的第一个数据)
+					while(i < j && arr[i] <= pivot) {
+						i++;
+					}
+					// 交换数据上述两个元素，继续查找，直到i和j相遇
+					if(i < j) {
+						temp = arr[i];
+						arr[i] = arr[j];
+						arr[j] = temp;
+					}
+				}
+				// 将基值与相遇数据进行交换<确保了基值位于元素中央位置>
+				temp = arr[i];
+				arr[i] = arr[left];
+				arr[left] = temp;
+				// 基值左侧数组按上述方式递归执行
+				quickSort(arr, left, i - 1);
+				// 基值右侧数组按上述方式递归执行
+				quickSort(arr, i + 1, right);
+				return arr;
+			}
+			// 测试
+			console.log(quickSort(dataAry, 0, dataAry.length - 1)); // [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+		})();
+	</script>
+
+</html>

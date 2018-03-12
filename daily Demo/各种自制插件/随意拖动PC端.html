@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+				<style>
+			#notice {
+				position: absolute;
+				left: 100%;
+				top: 100%;
+				z-index: 10;
+				min-width: 320px;
+				min-height: 165px;
+				margin-left: -330px;
+				margin-top: -175px;
+				background-color: #fdfdfd;
+				color: #333;
+				border: 1px #e0e0e0 solid;
+				line-height: 25px;
+				box-shadow: 0 0 17px 3px #9c9e9c;
+				cursor: default;
+				border-radius: 6px;
+				-webkit-border-radius: 6px;
+				-moz-border-radius: 6px;
+				font-family: "微软雅黑";
+			}
+			
+			.wrap {
+				background: #dfcdb1;
+				padding: 8px 20px 8px 20px;
+				border-top-left-radius: 6px;
+				border-top-right-radius: 6px;
+				-webkit-border-top-left-radius: 6px;
+				-moz-border-top-left-radius: 6px;
+				-webkit-border-top-right-radius: 6px;
+				-moz-border-top-right-radius: 6px;
+				
+			}
+			
+			.cbtn {
+				color: #fff;
+				font-size: 24px;
+				font-weight: bold;
+				cursor: pointer;
+				padding-right: 5px;
+				float: right;
+				position: relative;
+			}
+			
+			.notice_content {
+				font-size: 18px;
+				padding: 30px 20px 30px 20px;
+				border-bottom: 1px solid #dfdfdf;
+			}
+			
+			.no_warm {
+				padding: 6px 40px 6px 20px;
+				text-align: right;
+			}
+			
+			.a_warm {
+				text-decoration: none;
+				color: #60b3f8;
+				font-size: 15px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id='notice'>
+			<div class="wrap">
+				<span class='notice_title' id="cur_title"> 温馨提示：</span>
+				<span class='cbtn'>×</span>
+			</div>
+			<div class='notice_content' id="cur_con">您的帐号已到期，请您及时续费</div>
+			<div class="no_warm">
+				<a href="javascript:;" class="a_warm">不再提醒</a>
+			</div>
+		</div>
+	</body>
+	<script>
+		function oNotice(){}
+		oNotice.prototype = {
+			initId:function(id){
+				//获取对象
+				var oNotice = document.getElementById(id);
+				//注册两个事件,绑定对应的方法,(false禁止冒泡);
+				oNotice.addEventListener("mousedown",fnMouseDown,false);
+				oNotice.addEventListener("mouseup",fnMouseUp,false);
+				//申明两个变量,(点击事件发生在对象内的坐标位置)
+				var nX;
+				var nY;
+				//鼠标按下去时驱动的方法
+				function fnMouseDown(e){
+					//赋值(获取事件发生时所在对象内的位置)
+					nX = e.clientX - oNotice.offsetLeft;
+					nY = e.clientY - oNotice.offsetTop;
+					//申明两个变量并赋值(对象在页面中的最右端与最底端位置)
+					var nNoticeX = oNotice.offsetLeft+oNotice.offsetWidth;
+					var nNoticeY = oNotice.offsetTop+oNotice.offsetHeight;
+					//判断事件发生的坐标是否在对象的最右端与最底端之外,
+					if(e.clientX > oNotice.offsetLeft && e.clientY > oNotice.offsetTop){
+					//是否在对象的最左端与最上端之内(如果两个都为true则是在对象范围内发生的)
+						if(e.clientX < nNoticeX && e.clientY < nNoticeY){
+							//既然是在对象范围内发生的事件,就给对象注册两个事件侦听,一个鼠标移动事件,一个鼠标移出事件,并绑定对应的方法
+							oNotice.addEventListener('mousemove',fnMouseMove,false);
+							oNotice.addEventListener('mouseout',fnMouseOut,false);
+						}
+					}
+				}
+				//鼠标移动事件的方法,		(eve是事件对象,clientX,clientY属性返回事件发生的坐标x轴与y轴)
+				function fnMouseMove(eve){
+					//申明两个变量并赋值(事件发生的坐标减去鼠标按下时所在对象内的位置);
+					var nNoticeX = eve.clientX - nX;
+					var nNoticeY = eve.clientY - nY;
+					//赋值给对象的left和top,同时去掉margin属性(为了方便计算与代码可读改变定位方式)
+					oNotice.style.cssText+="position:absolute; left:"+nNoticeX+"px;"+"top:"+nNoticeY+"px; margin-left: 0;margin-top: 0;";
+				}
+				//删除事件				
+				function fnMouseUp(){			
+				    oNotice.removeEventListener('mousemove',fnMouseMove,false);
+	    		}
+				//删除事件
+				function fnMouseOut(){			
+					oNotice.removeEventListener('mousemove',fnMouseMove,false);
+				}
+			
+			},
+		}
+		//调用方式
+		var a = new oNotice()
+		//传调用对象的id
+		a.initId("notice");
+	</script>
+</html>

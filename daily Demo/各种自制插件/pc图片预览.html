@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>	    
+<meta name="x5-orientation" content="portrait">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<title>知时后台管理系统</title>
+<link href="favicon.ico" rdel="icon" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="css/common.css"/>
+<link rel="stylesheet" type="text/css" href="css/modal.css"/>
+<link rel="stylesheet" type="text/css" href="css/pictureView.css"/>
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/bootstrap.js"></script>
+<style>
+		.preview-box{
+			position: fixed;
+			top: 0;
+			left: 0;
+			display: none;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,0.6);
+		}
+		.preview{
+			position: relative;
+			width: 100%;
+			height: 100%;			
+			margin: auto;
+		}
+		.preview-ul{
+			width: 100%;
+			height: 100%;			
+			font-size: 0;
+			overflow: hidden;
+			white-space: nowrap;
+		}
+		.preview-ul li{
+			display: inline-block;			
+			width: 100%;
+			height: 100%;
+			background-color: #000;
+			overflow: auto;
+			text-align: center;
+		}
+		.preview-ul li span{
+			display: inline-block;	
+			width: 0;
+			height: 50%;
+		}
+		.preview-ul li img{
+			vertical-align: middle;
+			width: 50%;
+			transform: rotate(0);
+		}
+		.btn-or{
+			position: absolute;
+			top: 50%;
+			left: 5%;
+			height: 100px;
+			line-height: 90px;
+			margin:-50px auto 0;
+			font-size: 50px;
+		}
+		.btn-so{
+			position: absolute;
+			top: 50%;
+			right: 5%;
+			height: 100px;
+			line-height: 90px;
+			margin:-50px auto 0;
+			font-size: 50px;
+		}
+		.add-subtract{
+			position: absolute;
+			bottom: 5%;
+			width: 100%;
+			text-align: center;
+			font-size: 40px;
+		}
+		.add-subtract span{
+			display: inline-block;
+			border: 4px solid #797979;
+			width: 50px;
+			height: 50px;
+			line-height: 35px;
+			font-weight: bold;
+			border-radius: 50%;
+			margin-left: 20px;
+		}
+		.preview-chi{
+			position: absolute;
+			top: 0;
+			right: 0;
+			margin: 20px 20px 0 0;
+			width: 50px;
+			height: 50px;
+			border: 4px solid #797979;
+			font-size: 30px;
+			text-align: center;
+			line-height: 35px;
+			font-weight: bold;
+			border-radius: 50%;
+			z-index: 188;
+		}
+	</style>
+<body>
+	<div class="clearfix aline previewGroup">
+		<div class="col-md-12 column imglist">
+			<div class="imgbox uploading">
+				<a class="imglink" href="javascript:"><img src="img/1.jpg" class="preview" /></a>
+				<a class="del" data-toggle="modal" data-target="#deleteImg" href="javascript:"><i>&times;</i></a>
+				<p>图片标题</p>
+			</div>
+			<div class="imgbox videobox">
+				<a class="imglink" href="javascript:"><img src="img/3.jpg" class="preview" /></a>
+				<a class="del" data-toggle="modal" data-target="#deleteImg"  href="javascript:"><i>&times;</i></a>
+			</div>
+			<div class="imgbox">
+				<a class="imglink" href="javascript:"><img src="img/2.jpg" class="preview" /></a>
+				<a class="del" data-toggle="modal" data-target="#deleteImg" href="javascript:"><i>&times;</i></a>
+			</div>
+			<div class="imgbox">
+				<a class="imglink" href="javascript:"><img src="img/1.jpg" class="preview" /></a>
+				<a class="del" data-toggle="modal" data-target="#deleteImg" href="javascript:"><i>&times;</i></a>
+			</div>
+			<div class="addimg ma05"><i></i>添加图片<input class="upload" type="file" name=""></div>
+		</div>
+	</div>
+	
+	<div class="preview-box" id="preview_box">
+		<div class="preview">
+			<ul class="preview-ul" id="preview_ul">
+				
+			</ul>
+			<a id="thePiece" class="left carousel-control" href="#carousel-example-generic2" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+			<a id="theNext" class="right carousel-control" href="#carousel-example-generic2" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+			<div class="add-subtract">
+				<span id="btn_amplification">
+					+
+				</span>
+				<span id="btn_narrow">
+					-
+				</span>
+				<span id="btn_rota">
+					=
+				</span>
+			</div>
+		</div>
+			<div class="preview-chi" id="preview_chi">
+				x
+			</div>
+	</div>
+<script src="js/common.js"></script>
+<script>
+	$(function(){
+		$("img.preview").click(function(e){
+			//调用时传一个dom对象数组,e.target是当前点击的对象(主要作用是默认显示的位置)
+			fImgPreview($("img.preview"),e.target);
+		});
+	})
+	
+	
+	var fImgPreview = function (objArr,obj){
+		//预览图UL
+		var	oPreviewUl = document.getElementById('preview_ul');
+		var	oPreviewBox = document.getElementById('preview_box');
+		//缩略图集合
+		var aImgCollection = objArr.toArray();
+		//初始化图片路径集合
+		var	aSrcCollection = [];
+		//初始化点击的位置下标
+		var	index = 0;
+		//点击,预览遮罩层显示
+		fShowPreview();
+		//创建预览图层,获取点击位置
+		fCreatPreview(aImgCollection);
+		//第一张预览图
+		var oFirstList;
+		//第一个预览图盒子的绝对宽度
+		var nFirstListWidth; 
+		//创建预览图层,获取点击位置
+		function fCreatPreview(aImgArr){
+			if(oPreviewUl.children.length == 0){
+			 	fCreate();
+			}else{
+			 	oPreviewUl.innerHTML = '';
+			 	fCreate();
+			}
+			//添加预览图	
+			function fCreate(){
+				aImgArr.forEach(function(val,i){
+					objArr[i].parentElement.parentElement.index = i;
+				})
+			 	aImgArr.forEach(function(val,i){
+			 		var oLi = document.createElement('li');	
+			 		var aImgSrc = [];
+			 		aImgSrc[i] = val.getAttribute('data-src');
+			 		var oSpan = document.createElement('span');
+			 		oLi.appendChild(oSpan);
+			 		var oImg = document.createElement('img');
+			 		oImg.src = aImgSrc[i];
+			 		oLi.appendChild(oImg);
+			 		oPreviewUl.appendChild(oLi);
+			 	});
+			 	index = obj.parentElement.parentElement.index		
+			}
+			oFirstList= oPreviewUl.firstElementChild;
+			nFirstListWidth= oFirstList.offsetWidth;
+			PreviewListShow(oFirstList,nFirstListWidth,index);	
+		}
+		//点击,预览遮罩层显示
+		function fShowPreview(){
+			oPreviewBox.style.display = 'block';
+		}
+		//点击X,预览遮罩层隐藏
+		document.getElementById('preview_chi').addEventListener('click',function(){
+			oPreviewBox.style.display = 'none';
+		});
+		//根据点击默认展现哪一张预览图
+		function PreviewListShow(obj,objWidth,i){
+			i == 0 ? i = 0 : i = -(objWidth*i);
+			obj.style.marginLeft = i+'px';	
+		}
+		fPreview0peration(oPreviewUl,oFirstList,nFirstListWidth);		
+	}
+	//预览图的操作动画
+	function fPreview0peration(oUl,obj,objWidth){
+		var aListLength = oUl.children.length;
+		var oFirstList = oUl.firstElementChild;
+		var bWHControl = 0;
+		obj.style.transition = 'margin-left 0';
+		obj.style.setProperty('-webkit-transition','margin-left 0');
+		//点击下一张
+		document.getElementById('theNext').onclick = function(e){
+			var nFirstListMargin = marleftOperation();
+			Math.abs(nFirstListMargin) < objWidth*(aListLength-1) ? nFirstListMargin = -(Math.abs(nFirstListMargin)+objWidth) : nFirstListMargin =  -(objWidth*(aListLength-1));
+			obj.style.marginLeft = nFirstListMargin+'px';
+			e.stopPropagation(); e.preventDefault(); 
+		};
+		//点击上一张
+		document.getElementById('thePiece').onclick = function(e){
+			var nFirstListMargin = marleftOperation();
+			Math.abs(nFirstListMargin) <= 0 ? nFirstListMargin = 0 : nFirstListMargin = -(Math.abs(nFirstListMargin)-objWidth);
+			obj.style.marginLeft = nFirstListMargin+'px';
+			e.stopPropagation(); e.preventDefault(); 
+		};
+		//marginLeft的操作
+		function marleftOperation(){
+			obj.style.transition = 'margin-left 0.3s';
+			obj.style.setProperty('-webkit-transition','margin-left 0.3s');
+			var nFirstListMargin = obj.style.marginLeft.split('px')[0];
+			return nFirstListMargin;
+		}
+		//点击放大
+		document.getElementById('btn_amplification').onclick =function(e){
+			var nFirstListMargin = obj.style.marginLeft.split('px')[0];
+			var nCurrentIndex = Math.abs(nFirstListMargin)/objWidth;
+			var oImg = oUl.children[nCurrentIndex].lastElementChild;
+			var nImgWidth,nImgHeight;
+			if (bWHControl == 1) {
+				nImgHeight = oImg.offsetHeight;
+				nImgWidth= oImg.offsetWidth;
+				nImgWidth*(nImgHeight/nImgWidth) >= window.innerWidth ? nImgWidth = nImgWidth : nImgWidth = nImgWidth*1.2;
+				console.log(nImgHeight+'------'+window.innerWidth)
+				oImg.style.width = nImgWidth+'px';
+			} else{
+				nImgWidth= oImg.offsetWidth;
+				nImgWidth >= window.innerWidth ? nImgWidth = nImgWidth : nImgWidth = nImgWidth*1.2;
+				oImg.style.width = nImgWidth+'px';	
+			}
+			e.stopPropagation(); e.preventDefault(); 
+		};	
+		//点击缩小
+		document.getElementById('btn_narrow').onclick =function(e){
+			var nFirstListMargin = obj.style.marginLeft.split('px')[0];
+			var nCurrentIndex = Math.abs(nFirstListMargin)/objWidth;
+			var oImg = oUl.children[nCurrentIndex].lastElementChild;
+			var nImgWidth = oImg.offsetWidth;
+			nImgWidth <= (objWidth/4) ? nImgWidth = nImgWidth : nImgWidth = nImgWidth/1.2;
+			oImg.style.width = nImgWidth+'px';
+			e.stopPropagation(); e.preventDefault(); 
+		};
+		//点击旋转90度
+		document.getElementById('btn_rota').onclick =function(e){
+			var nFirstListMargin = obj.style.marginLeft.split('px')[0];
+			var nCurrentIndex = Math.abs(nFirstListMargin)/objWidth;
+			var oImg = oUl.children[nCurrentIndex].lastElementChild;
+			var nImgDeg = oImg.style.transform.match(/\d+/g);
+			nImgDeg >= 360 ? nImgDeg = 90 : nImgDeg= (nImgDeg-0)+90;
+			oImg.style.transform = 'rotate('+nImgDeg+'deg)';	
+			e.stopPropagation(); e.preventDefault(); 
+			if(nImgDeg == 90 || nImgDeg == 270 ){
+				var nImgWidth = oImg.offsetWidth;
+				var nImgHeight = oImg.offsetHeight;
+				nImgWidth > nImgHeight ? bWHControl = 1: bWHControl = 0;
+			}
+		};		
+	}
+</script>
+</body>
+</html>

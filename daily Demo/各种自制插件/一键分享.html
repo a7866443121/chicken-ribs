@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .content{
+            width: 600px;
+            margin: 50px auto;
+            text-indent: 40px;
+            line-height: 1.5;
+            font-family: "Microsoft Yahei";
+            font-size: 18px;
+            border: 2px solid #0066ff;
+            text-shadow: -1px -1px 1px yellow;
+
+        }
+        .share{
+            width: 245px;
+            height: 25px;
+            border: 1px solid #00ffff;
+            position: absolute;
+            background-color: #fff;
+            border-radius: 3px;
+            display: none;
+        }
+        em{
+            width: 10px;
+            height: 5px;
+            background: url("images/arrow.gif");
+            position: absolute;
+            top: -5px;
+            left: 45px;
+        }
+    </style>
+</head>
+<body>
+<div class="content" id="content">
+    美人不是母胎生， 应是桃花树长成 已恨桃花容易落， 落花比汝尚多情 静时修止动修观，
+    历历情人挂目前 若将此心以学道， 即生成佛有何难？ 结尽同心缔尽缘， 此生虽短意缠绵
+    与卿再世相逢日， 玉树临风一少年 不观生灭与无常， 但逐轮回向死亡 绝顶聪明矜世智，
+    叹他于此总茫茫 山头野马性难驯， 机陷犹堪制彼身 自叹神通空具足， 不能调伏枕边人
+    欲倚绿窗伴卿卿， 颇悔今生误道行 有心持钵丛林去， 又负美人一片情 静坐修观法眼开，
+    祈求三宝降灵台 观中诸圣何曾见？ 不请情人却自来 入山投谒得道僧， 求教上师说因明
+    争奈相思无拘检， 意马心猿到卿卿 曾虑多情损梵行， 入山又恐别倾城 世间安得双全法，
+    不负如来不负卿 --仓央嘉措 《不负如来不负卿》
+</div>
+<div class="share" id="share">
+    <em></em>
+    <div class="bshare-custom icon-medium">
+        <a title="分享到QQ空間" class="bshare-qzone"></a>
+        <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+        <a title="分享到人人網" class="bshare-renren"></a>
+        <a title="分享到騰訊微博" class="bshare-qqmb"></a>
+        <a title="分享到網易微博" class="bshare-neteasemb"></a>
+        <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+        <span class="BSHARE_COUNT bshare-share-count">0</span></div>
+    <script type="text/javascript" charset="utf-8" src="http://static.bshare.com/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh_TW"></script>
+    <script type="text/javascript" charset="utf-8" src="http://static.bshare.com/b/bshareC0.js"></script>
+</div>
+<script>
+    //获取操作对象
+    var content = document.getElementById("content");
+    var share = document.getElementById("share");;
+    //鼠标抬起时选中文字，并获取鼠标在文字盒子的位置
+    content.onmouseup = function(e){
+        //事件兼容处理
+        var e = e||window.event;
+        var x = e.pageX;
+        var y = e.pageY;
+        //当获取到文字之后，显示分享盒子
+        var text;
+        //获取选中文字时做兼容处理
+        if(window.getSelection){
+            text = window.getSelection().toString();
+        }else{
+            //ie678支持的方法
+            text = document.selection.createRange().text();
+        }
+        if(text){
+            showBox(share,x,y);
+        }
+    }
+
+    document.onclick = function(e){
+        var e = e||window.event;
+        var targetId = e.target? e.target.id: e.srcElement.id;
+        if(targetId!="share"){
+            share.style.display = "none";
+        }
+    }
+    //动态显示分享盒子封装在函数中
+    function showBox(obj,x,y){
+        setTimeout(function(){
+            obj.style.display = "block";
+            obj.style.left = x + "px";
+            obj.style.top = y + "px";
+        },200);
+    }
+
+</script>
+</body>
+</html>

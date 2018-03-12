@@ -1,0 +1,99 @@
+/* CSS Document */
+@charset "utf-8";
+.formModel .form-group {
+    color: rgba(53,53,53,1);
+}
+.formModel.modal label.control-label:after {
+	content: none;
+}
+.formModel.modal.m800 .modal-body,
+.formModel.modal.m1000 .modal-body {
+    padding-top: 20px;
+}
+.formModel.modal.m800 .modal-dialog {
+	width: 800px;
+}
+.formModel.modal.m1000 .modal-dialog {
+	width: 1000px;
+}
+.formModel.modal.m800 .form-horizontal label,
+.formModel.modal.m1000 .form-horizontal label {
+	padding-right: 0;
+    margin-right: 0;
+    padding-left: 5px;
+}
+.formModel.modal.m800 .form-horizontal .col-sm-6 {
+	float: left;
+}
+.formModel .modal-body {
+    padding: 40px 20px 10px ;
+}
+.formModel .control-label {
+	margin-right: 10px;
+	color: rgba(120,120,120,1);
+}
+.formModel .modal-footer {
+    padding: 0 20px 40px 20px;
+}
+.formModel .form-group .col-sm-8 {
+	min-height: 32px;
+}
+.formModel input.form-control[type=text] {
+    height: 32px;
+}
+.formModel .btn.dropdown-toggle {
+	padding: 5px 13px 6px 10px;
+}
+.alertModel .modal-body,
+.confirmModel .modal-body {
+	line-height: 24px;
+}
+.alertModel .modal-body {
+    padding: 30px 20px 0;
+}
+.confirmModel .modal-body {
+    padding: 50px 20px 20px;
+}
+.alertModel .modal-footer,
+.confirmModel .modal-footer {
+	padding: 20px 20px 44px;
+}
+.alertModel .modal-dialog {
+    width: 400px;
+}
+.confirmModel .modal-dialog {
+    width: 480px;
+}
+.confirmModel,.alertModel {
+    z-index: 99999;
+}
+.modal textarea.form-control {
+	height: 72px;
+}
+.modal .col-text {
+    padding-top: 7px;
+}
+.modal .form-horizontal .control-label {
+    text-align: left;
+}
+.modal .intro .fl {
+	width: 100%;
+}
+.modal .intro {
+	margin: 30px 0 0;
+	padding-top: 15px;
+	border-top: 1px #DCDCDC dashed;
+}
+
+.modal.formModel .form-horizontal .form-group {
+	margin-bottom: 15px;
+}
+.tableModal .modal-body {
+	padding: 0!important;
+}
+.tableModal .table > thead > tr > th:first-child {
+	border-radius: 0;
+}
+.tableModal .table > thead > tr > th:last-child {
+    border-radius: 0;
+}

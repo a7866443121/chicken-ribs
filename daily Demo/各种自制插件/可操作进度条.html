@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>	    
+<meta name="x5-orientation" content="portrait">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<title>知时后台管理系统</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="css/common.css"/>
+<style>
+/*
+ * 地图进度条
+ */
+.player-box{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 14px 30px;
+	overflow: hidden;
+	background-color: rgba(0,0,0,0.2);
+	white-space:nowrap;
+}
+
+.player-btn{
+	display:inline-block;
+	width: 170px;
+}
+.progre-box{
+	display:inline-block;
+	width: calc(100% - 230px);
+}
+.btn .glyphicon{
+	margin-right:0;
+}
+.player-btn a{
+	display:inline-block;
+	width: 48px;
+	height: 48px;
+	text-align:center;
+	line-height: 48px;
+	color: #fff;
+	background-color:#309af0;
+	border-radius:50%;
+}
+.player-btn a:first-child, .player-btn a:last-child{
+	width: 36px;
+	height: 36px;
+	line-height: 36px;
+}
+.player-btn a:hover,
+.player-btn a:active,
+.player-btn a:focus {
+	transition: all 0.3s;
+	color: #fff;
+	background-color: #007AFF;
+	border-color: #379AEB;
+}
+.date-title{
+	text-align: center;
+	color: #309AF0;
+}
+.progre{
+	display: inline-block;
+    width:100%;
+    height: 6px;
+    background-color:#fff;
+    color: #0064B4; /*IE10*/
+   	border-radius:10px;
+}
+progress::-moz-progress-bar { background: #309AF0; }
+progress::-webkit-progress-bar { background: #D8D8D8; }
+progress::-webkit-progress-value  { background: #309AF0 ; }
+.progre-p{
+	position: relative;
+}
+.spot{
+	position: absolute;
+	top: 50%;
+	left: 0%;
+	margin-top: -8px;
+	padding: 8px;
+	border-radius: 50%;
+	background-color: #fff;
+}
+.progre-minMax{
+	color: #fff;
+}
+</style>
+	<body>	
+		<div class='player-box'>
+			<div class="player-btn">
+				<a href="javascript:" id="backward" title="上一个点">
+				    <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+				</a>
+				<a href="javascript:" id="play" title="播放">
+				    <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+				</a>
+				<a href="javascript:" id="forward" title="下一个点">
+				    <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+				</a>
+				
+			</div>
+			<div class="progre-box">
+				<p class="date-title" id="date_title"></p>
+				<p class="progre-p">
+					<progress class="progre" id="prog" value="10" max="100">
+					</progress> 
+					<span class="spot" id="spot"></span>					
+				</p>
+				<p class="progre-minMax">
+					<span class="fl" id="progre_min"></span>
+					<span class="fr" id="progre_max"></span>
+				</p>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery-1.9.1.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script>
+		(function(){
+			var aa = [
+				{tid:0,param_one_1_date :'2017/00/01',param_one_2_time:'19:00:00'},
+				{tid:0,param_one_1_date :'2017/01/01',param_one_2_time:'17:00:00'},
+				{tid:1,param_one_1_date :'2017/02/01',param_one_2_time:'3:00:00'},
+				{tid:2,param_one_1_date :'2017/03/01',param_one_2_time:'4:00:00'},
+				{tid:3,param_one_1_date :'2017/04/01',param_one_2_time:'5:00:00'},
+				{tid:0,param_one_1_date :'2017/05/01',param_one_2_time:'13:00:00'},
+				{tid:1,param_one_1_date :'2017/06/01',param_one_2_time:'3:00:00'},
+				{tid:2,param_one_1_date :'2017/07/01',param_one_2_time:'4:00:00'},
+				{tid:3,param_one_1_date :'2017/08/01',param_one_2_time:'5:00:00'},
+				{tid:0,param_one_1_date :'2017/09/01',param_one_2_time:'15:00:00'},
+				{tid:1,param_one_1_date :'2017/10/01',param_one_2_time:'3:00:00'},
+				{tid:2,param_one_1_date :'2017/11/01',param_one_2_time:'4:00:00'},
+				{tid:3,param_one_1_date :'2017/12/01',param_one_2_time:'5:00:00'}
+			];
+			//调用方法(接收一个数组对象);
+			function getGPS(gps){
+				console.log(gps.param_one_1_date+'----'+gps.param_one_2_time);
+			}
+			fProgress(aa,getGPS,1000);
+			
+			function fProgress(arr,getGPS,times){
+				arr = arr || [];
+				arr.reverse();
+				var oProgreMin = document.getElementById('progre_min'),
+					oProgremax = document.getElementById('progre_max'),
+					oProgreTitle = document.getElementById('date_title');
+				if(arr.length == 0 || arr == undefined){
+					var myDate = new Date(),
+						toYear = myDate.getFullYear();
+						toMonth = (myDate.getMonth()+1) > 9 ? (myDate.getMonth()+1) : ('0' + (myDate.getMonth()+1)) ;
+						toyday = myDate.getDate() > 9 ?  myDate.getDate() : ('0' + myDate.getDate());
+					oProgreMin.textContent = toYear+'/'+toMonth+'/'+(toyday-5)+'/ '+'00:00:00';
+					oProgreTitle.textContent = toYear+'/'+toMonth+'/'+(toyday-5)+'/ '+'00:00:00';
+					oProgremax.textContent = toYear+'/'+toMonth+'/'+toyday+'/ '+'23:59:59';
+				}else{
+					//返回值,定时器,当前显示的字符串,开始的字符串,结束的字符串
+					var controller = 1,stv;
+					//进度条对象,进度点,进度条最小文案,进度条最大文案,进度条title文案,播放,下一个点,上一个点;
+					var oProgress = document.getElementById('prog'),
+					    oSpot =  document.getElementById('spot'),
+						oPlay = document.getElementById('play'),
+						oSpan = oPlay.firstElementChild,
+						oForward =  document.getElementById('forward'),
+						oBackward = document.getElementById('backward');
+					//进度条等分
+					oProgress.max = arr.length-1;
+					oProgreTitle.textContent = arr[0].param_one_1_date +' '+arr[0].param_one_2_time;
+					oProgreMin.textContent = arr[0].param_one_1_date +' '+arr[0].param_one_2_time;
+					oProgremax.textContent = arr[arr.length-1].param_one_1_date +' '+arr[arr.length-1].param_one_2_time;
+					//点对象
+					oProgress.value = 0;
+					oSpot.style.left = 0;
+					//设置定时器
+					function setStv(){
+						stv = setInterval(function(){
+							if(controller){
+								oProgress.value = oProgress.value >= oProgress.max ? oProgress.max : oProgress.value+1;
+								oProgreTitle.textContent = arr[oProgress.value > oProgress.max ? oProgress.max : oProgress.value].param_one_1_date +' '+ arr[oProgress.value > oProgress.max ? oProgress.max : oProgress.value].param_one_2_time;
+								oSpot.style.left = (oProgress.value/oProgress.max)*100+'%';
+								getGPS(arr[oProgress.value]);
+							}
+						},times)
+						if(oProgress.value%oProgress.max > 0)clearInterval(stv);
+					}
+					//上一个点按钮被点击
+					oBackward.addEventListener('click',function(){
+						if(oSpan.classList.contains('glyphicon-pause')){
+							fSpotRun(0);
+							controller = 1;
+						}else{
+							fSpotRun(0);
+						}
+					});
+					//下一个点按钮被点击
+					oForward.addEventListener('click',function(){
+						if (oSpan.classList.contains('glyphicon-pause')) {
+							fSpotRun(1);
+							controller = 1;
+						} else{
+							fSpotRun(1);
+						}
+					});
+					//spot运动
+					function fSpotRun(operator){
+						if (operator) {
+							controller = null;
+							oSpot.style.left = ((oSpot.style.left.split('%')[0]-0) + (100/oProgress.max-0)) > 100 ? 100 + '%' : ((oSpot.style.left.split('%')[0]-0) + (100/oProgress.max-0))+'%';
+							oProgress.value += 1;
+							oProgreTitle.textContent = arr[oProgress.value < 0 ? 0 : oProgress.value].param_one_1_date +' '+ arr[oProgress.value < 0 ? 0 : oProgress.value].param_one_2_time;
+						} else{
+							controller = null;
+							oSpot.style.left = (oSpot.style.left.split('%')[0] - 100/oProgress.max) < 0 ? 0 + '%' : (oSpot.style.left.split('%')[0] - 100/oProgress.max)+'%';
+							oProgress.value-=1;
+							oProgreTitle.textContent = arr[oProgress.value < 0 ? 0 :oProgress.value].param_one_1_date +' '+ arr[oProgress.value < 0 ? 0 :oProgress.value].param_one_2_time;
+						}
+					}
+					//暂停按钮被点击
+					oPlay.addEventListener('click',function(){
+						if (oSpan.classList.contains('glyphicon-pause')) {
+							controller = null;
+							oSpan.classList.remove('glyphicon-pause');
+							oSpan.classList.add('glyphicon-play');
+						} else{
+							controller = 1;
+							setStv();
+							oSpan.classList.remove('glyphicon-play');
+							oSpan.classList.add('glyphicon-pause');
+						}			
+					});			
+				}
+			}
+		})()
+	</script>
+</html>

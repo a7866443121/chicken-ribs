@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				/*box-sizing: border-box;*/
+			}
+			#box {
+				position: relative;
+				width: 800px;
+				height: 800px;
+				margin: 50px auto;
+				border: 1px solid #000;
+			}
+			#box div {
+				position: absolute;
+				width: 20px;
+				height: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script type="text/javascript">
+			var box = document.getElementById('box');
+			var str = '';
+			for (var i = 0; i < 1600; i++) {
+				str += '<div style="left:' + i%40*20 + 'px;top:' + Math.floor(i/40)*20 + 'px;"></div>';
+			}
+			box.innerHTML = str;
+			var divs = box.getElementsByTagName('div');
+			
+			var snake = {
+				init: function() {
+					this.random();
+					this.create();
+				},
+				d: 0,
+				r: 0,
+				go: function(direction) {
+					if(!this.d && direction == 'L') {
+						return;
+					}
+					
+					if((this.d == 'U' || this.d == 'D') && (direction == 'U' || direction == 'D')) return;
+					if((this.d == 'L' || this.d == 'R') && (direction == 'L' || direction == 'R')) return;
+
+					this.d = direction;
+					clearInterval(this.timer);
+					this.timer = setInterval(function() {
+						snake.run();
+						snake.create();
+					},'100');
+				},
+				die: function(n) {
+					var b = false;
+					for (var i = 0; i < this.snake.length; i++) {
+						if(this.snake[i] == n) b = true;
+					}
+					if(b || n < 0 || n > 1600 || (this.d == 'L' && n%40 == 39) || (this.d == 'R' && n%40 == 0)) {
+						alert('游戏结束！');
+					
+						clearInterval(this.timer);
+						this.snake = [0, 1, 2];
+						this.d = 0;
+						this.create();
+						return true;
+					}
+				},
+				run: function() {
+					var n = this.snake[this.snake.length-1];
+					switch(this.d) {
+						case 'U':
+							n -= 40;
+							break;
+						case 'D':
+							n += 40;
+							break;
+						case 'L':
+							n -= 1;
+							break;
+						case 'R':
+							n += 1;
+							break;
+					}
+					if(this.die(n)) return;
+					this.snake.push(n);
+					if(n != this.r) {
+						this.snake.shift();
+					}else {
+						this.random();
+					}
+				},
+				snake: [0, 1, 2],
+				create: function() {
+					for (var i = 0; i < divs.length; i++) {
+						divs[i].style.background = '';
+					}
+					divs[this.r].style.background = '#f0f';
+					for (var i = 0; i < this.snake.length; i++) {
+						if(this.snake[i] == this.snake[this.snake.length-1]) {
+							divs[this.snake[i]].style.background = '#f00';
+						}else {
+							divs[this.snake[i]].style.background = '#333';
+						}
+					}
+				},
+				random: function() {
+					var b = false;
+					var r = Math.floor(Math.random()*1600);
+					for (var i = 0; i < this.snake.length; i++) {
+						if(this.snake[i] == r) b = true;
+					}
+					if(!b) {
+						this.r = r;
+					}else {
+						this.random();
+					}
+				}
+			}
+			snake.init();
+			document.onkeydown = function(e) {
+				switch(e.keyCode) {
+					case 87:
+						snake.go('U');//'Up';
+						break;
+					case 83:
+						snake.go('D');//'Down';
+						break;
+					case 65:
+						snake.go('L');//'Left';
+						break;
+					case 68:
+						snake.go('R');//'Right';
+						break;
+				}
+			}
+		</script>
+	</body>
+</html>

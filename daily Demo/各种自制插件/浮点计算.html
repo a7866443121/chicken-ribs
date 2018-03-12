@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<button id="btn">点我</button>
+		<script>
+			console.log(div(3.36, 0.3))
+			function aa() {
+				var a = 3.1415;
+				var b = 5.832;
+				return add(a, b);
+			}
+			aa();
+
+			function add(a, b) {
+				//aLength = a小数点后有几位数
+				//bLength = b小数点后有几位数
+				//longest = aLength和bLength的最大值
+				var aLength, bLength, longest;
+				try {
+					aLength = a.toString().split(".")[1].length;
+				} catch(f) {
+					aLength = 0;
+				}
+				try {
+					bLength = b.toString().split(".")[1].length;
+				} catch(f) {
+					bLength = 0;
+				}
+				//取两个小数中小数点位数最长的
+				longest = Math.pow(10, Math.max(aLength, bLength));
+				//调用乘法运算，用升级为整数的(a+b)/longest小数位数，并返回运算厚的值；
+				return(mul(a, longest) + mul(b, longest)) / longest;
+			}
+
+			function sub(a, b) {
+				//aLength = a小数点后有几位数
+				//bLength = b小数点后有几位数
+				//longest = aLength和bLength的最大值
+				var aLength, bLength, longest;
+				try {
+					aLength = a.toString().split(".")[1].length;
+				} catch(f) {
+					aLength = 0;
+				}
+				try {
+					bLength = b.toString().split(".")[1].length;
+				} catch(f) {
+					bLength = 0;
+				}
+				//取两个小数中小数点位数最长的
+				longest = Math.pow(10, Math.max(aLength, bLength));
+				//调用乘法运算，用升级为整数的(a-b)/longest小数位数，并返回运算厚的值；
+				return(mul(a, longest) - mul(b, longest)) / longest;
+			}
+			
+			/*
+			 * 1:首先一个运算必须接受两个值 function mul(a, b){}
+			 * 2:两个小数相乘有个特点0.3 * 0.4 = 0.12;0.1 * 0.2 = 0.20;0.5 * 0.5 = 0.25;
+			 * 就是积的小数点后的位数  = 两个小数后面位数相加,既然有这么个原理那就好办了,
+			 * 我们先把两个小数的小数点去掉Number(0.3.toString().replace(".", ""))这样就可以得到一个去嗲了小数点的整数
+			 * 为了使代码看上去通俗易懂
+			 * function mul(a, b){
+			 	* //a,b转字符串方便取小数点后的位数,以及去小数点转整数
+			 * 	var astr = a.toString(),
+			 * 		bstr = b.toString(),
+			 * 		abLength = astr.split(".")[1].length + bstr.split(".")[1].length;
+			 * //现在只剩最后一步运算了
+			 * 	return Number(astr.replace(".", ""))*Number(bstr.replace(".", ""))// Math.pow(10,abLength);
+			 * 到这里已经算大功告成了,不过假如用户传了整数进来的话程序就报错了,所以为了程序足够健壮,咱得对错误进行试错和捕获完整代码如下
+			 * }
+			 */
+			function mul(a, b) {
+				var astr = a.toString(),
+					bstr = b.toString(),
+					abLength = 0;
+				try {
+					abLength += astr.split(".")[1].length;
+				} catch(f) {}
+				try {
+					abLength += bstr.split(".")[1].length;
+				} catch(f) {}
+				return Number(astr.replace(".", "")) * Number(bstr.replace(".", "")) / Math.pow(10,abLength);
+			}
+
+			function div(a, b) {
+				//inta = 整数a
+				//intb = 整数b
+				//alength = a的小数点后位数
+				//blength = b的小数点后的位数
+				var inta, 
+					intb, 
+					alength = 0,
+					blength = 0;
+				try {
+					alength = a.toString().split(".")[1].length;
+				} catch(g) {}
+				try {
+					blength = b.toString().split(".")[1].length;
+				} catch(g) {}
+				//a取整
+				inta = Number(a.toString().replace(".", ""));
+				//b取整
+				intb = Number(b.toString().replace(".", ""));
+				//调用乘法运算，用升级为整数的(a/b)*(alength - blength)小数位数，并返回运算厚的值；
+				//假如是0.18/0.3到这一步就是mul(18/3,0.1)
+				return mul(inta / intb, Math.pow(10, blength- alength));
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  	<title>javascript弹幕</title>
+  	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+ 
+    <style>
+    	*{
+    		margin: 0;
+    		padding: 0;
+    	}
+    	html,body{
+    		width:100%;
+            height:100%;
+    	}
+        #body{
+            width:100%;
+            height:100%;
+            background-color:#fff;
+        }
+         
+        #tangmu{
+            width:100%;
+            height:100%;
+            background-color:#fff;
+            z-index:9999;
+            background-color: rgba(000, 1, 000, 0.1);
+        }
+        #tangmu font{
+        	display: inline-block;
+        	width: 100%;
+        	white-space: nowrap;
+        	position: absolute;
+        }
+        #textStyle{
+            position:absolute;
+            font-size:24px;
+            color:#000;
+        }
+        .barrage0{
+        	left: 100%;
+        	top: 5%;
+        	animation: barage 7000ms ease ;
+        	-webkit-animation: barage 7000ms ease ;
+        }
+        .barrage1{
+        	left: 100%;
+        	top: 10%;
+        	animation: barage 8000ms ease ;
+        	-webkit-animation: barage 8000ms ease ;
+        }
+        .barrage2{
+        	left: 100%;
+        	top: 20%;
+        	animation: barage 6000ms ease ;
+        	-webkit-animation: barage 6000ms ease ;
+        }
+        .barrage3{
+        	left: 100%;
+        	top: 30%;
+        	animation: barage 7500ms ease ;
+        	-webkit-animation: barage 7500ms ease ;
+        }
+        .barrage4{
+        	left: 100%;
+        	top: 40%;
+        	animation: barage 9500ms ease ;
+        	-webkit-animation: barage 9500ms ease ;
+        }
+        .barrage5{
+        	left: 100%;
+        	top: 50%;
+        	animation: barage 6000ms linear ;
+        	-webkit-animation: barage 6000ms linear ;
+        }
+        .barrage6{
+        	left: 100%;
+        	top: 55%;
+        	animation: barage 6000ms ease-in ;
+        	-webkit-animation: barage 6000ms ease-in ;
+        }
+        .barrage7{
+        	left: 100%;
+        	top: 60%;
+        	animation: barage 6000ms ease-in-out ;
+        	-webkit-animation: barage 6000ms ease-in-out ;
+        }
+        .barrage8{
+        	left: 100%;
+        	top: 70%;
+        	animation: barage 6000ms ease-out ;
+        	-webkit-animation: barage 6000ms ease-out ;
+        }
+        .barrage9{
+        	left: 100%;
+        	top: 85%;
+        	animation: barage 3500ms linear;
+        	-webkit-animation: barage 3500ms linear ;
+        }
+        .barrage10{
+        	left: 100%;
+        	top: 90%;
+        	animation: barage 4500ms linear;
+        	-webkit-animation: barage 4500ms linear ;
+        }
+        @keyframes barage{
+        	0% {left:100%;}
+			100% {left:-100%;}
+
+        }
+        @-webkit-keyframes barage{
+        	0% {left:100%;}
+			100% {left:-100%;}
+
+        }
+    </style>
+     
+ </head>
+ 
+ <body>
+    <div id="body">
+        <div id="tangmu">
+             
+        </div>
+    </div>
+     
+    <script>
+    	var barrageArr = ['西红柿炒蛋','辣椒炒肉','剁椒鱼头','紫苏黄瓜','北京','上海','广州','深圳','嵩山','华山','泰山','恒山','衡山','长江','黄河','珠江','淮河']
+       	function barrage(arr){
+       		var bodyHeight = document.getElementById('body').innerHeight;
+       		var tangmu = document.getElementById('tangmu');
+       		//创建弹幕盒子,并添加弹幕
+       		var controller = 0;
+       		var createEL = function(){
+       			//创建随机类名
+       			var classArr = ['barrage1','barrage2','barrage3','barrage4','barrage5','barrage6','barrage7','barrage8','barrage9'];
+       			var randArr = [];
+   				var i = 0;
+   				while (i<8){
+	       			//取随机数
+					var rdm = (Math.random()*10).toFixed(0);
+					(randArr.indexOf(rdm) === -1) ? randArr.push(rdm):removeRepeat(randArr);
+   					//创建弹幕
+   					var oFont = document.createElement('font');
+   					oFont.classList.add("barrage"+randArr[i]+"");
+   					oFont.innerHTML = arr[controller];
+   					tangmu.appendChild(oFont);
+   					i++;
+   					//控制重复去弹幕内容
+   					controller++;
+   					controller = (controller >= arr.length)?0:controller;
+   				}
+   				//去除数组内重复的随机数,
+   				function removeRepeat(ar){
+   					var rdm = (Math.random()*10).toFixed(0);
+   					if (ar.indexOf(rdm) === -1) {
+						ar.push(rdm);
+						return ar;
+					} else{
+						removeRepeat(ar)
+					}
+   				}
+   				//删除多余节点,避免节点过于臃肿
+				if(tangmu.childNodes.length >= 50){
+					var j = 0;
+	   				while (j<8){
+	   					tangmu.removeChild(tangmu.childNodes[j])
+	   					j++
+	   				}
+				}
+       		}
+       		createEL();
+       		setInterval(createEL,1000);
+       }
+        barrage(barrageArr);
+      	
+    </script>
+     
+ </body>
+</html>

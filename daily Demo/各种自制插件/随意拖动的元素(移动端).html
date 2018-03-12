@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>磁力吸边,弹性过渡</title>
+	</head>
+	<style>
+		*{margin: 0;padding: 0;}
+		html{font-size: 10px;}
+		body{margin: auto;font-size: 12px;}
+		.container{width: 100%;}
+		.list{width: 100%;}
+		li{width: 100%;padding: 4rem 0;background-color: #F1F2F3;text-align: center;}
+		li:nth-child(2n){
+			background-color: #CDCDCD;
+		}
+		img{width: 100%;}
+		.retru{
+			position: fixed;
+			bottom: 1em;
+			right: 0;
+			width: 4em;
+			height: 4em;
+			transition: all;
+			transition-duration: 0s;
+			-webkit-transition: all;
+			-webkit-transition-duration: 0s;
+		}
+		.retru img{width: 100%;}
+	</style>
+	<body>
+		<div class="container">
+		    <ul class="list">
+		        <li>1</li>
+		        <li>2</li>
+		        <li>3</li>
+		        <li>4</li>
+		        <li>5</li>
+		        <li>6</li>
+		        <li>7</li>
+		        <li>8</li>
+		        <li>9</li>
+		        <li>q</li>
+		        <li>w</li>
+		        <li>e</li>
+		        <li>r</li>
+		        <li>t</li>
+		        <li>y</li>
+		        <li>u</li>
+		        <li>i</li>
+		        <li>o</li>
+		        <li>p</li>
+		        <li>a</li>
+		        <li>s</li>
+		        <li>d</li>
+		        <li>f</li>
+		        <li>g</li>
+		        <li>h</li>
+		        <li>j</li>
+		        <li>k</li>
+		        <li>l</li>
+		        <li>z</li>
+		        <li>x</li>
+		        <li>c</li>
+		        <li>v</li>
+		       
+		    </ul>
+		</div>
+		<div class="retru" id="retru">
+			<img src="img/fanHuiDingBu.png"/>
+		</div>
+	</body>
+	<script>
+		//调用方式
+		new fMagnetic("retru");
+		//主方法
+		function fMagnetic(id){
+			var oRetru = document.getElementById(id);
+			oRetru.addEventListener('touchstart',function(e){
+				oRetru.addEventListener('touchmove',fDocMove)
+			})		
+			function fDocMove(ev){
+				oRetru.style.cssText = ' ';
+				nMoveX = ev.changedTouches[0].clientX;
+				nMoveY = ev.changedTouches[0].clientY;
+				oRetru.style.right = innerWidth-nMoveX-oRetru.offsetWidth/2+'px';
+				oRetru.style.bottom = innerHeight-nMoveY-oRetru.offsetHeight/2+'px';
+				ev.preventDefault();						
+			}
+			oRetru.addEventListener('touchend',function(touchendEv){
+				var touchendEvX = touchendEv.changedTouches[0].clientX;
+				var touchendEvY = touchendEv.changedTouches[0].clientY;
+				if((touchendEvY-oRetru.offsetHeight/2) >= document.documentElement.clientHeight){
+					oRetru.style.bottom = 0+'px';
+				}
+				console.log(touchendEv.changedTouches[0].clientY)
+				fExecute(touchendEvX);
+			})
+			function fExecute(elmentX){
+				var el = oRetru;
+				var direction;
+				var elmentLeft = el.offsetLeft;
+				var elmentRiht = innerWidth - elmentLeft-el.offsetWidth;
+				var elmentBottom = innerHeight - el.offsetTop-el.offsetHeight;
+					elmentBottom = elmentBottom < 0 ? 0:elmentBottom;
+					elmentBottom = (elmentBottom+oRetru.offsetHeight) > document.documentElement.clientHeight ? (elmentBottom-oRetru.offsetHeight/2):elmentBottom;
+				if(elmentX < innerWidth/2){
+					direction = 'left';
+					viscous();
+				}else{
+					direction = 'right';
+					viscous()
+				}
+				function viscous(){
+					if(direction == 'left'){
+						el.style.cssText = ' ';
+						el.style.bottom = elmentBottom+'px';
+						elmentLeft =elmentLeft - elmentLeft/2;
+						el.style.left = elmentLeft + 'px';
+						if(elmentLeft < 1){
+							el.style.left = 0;
+							return;
+						}
+					}else if(direction == 'right'){
+						el.style.cssText = ' ';
+						el.style.bottom = elmentBottom+'px';
+						elmentRiht = elmentRiht-elmentRiht/2;
+						el.style.right = elmentRiht+'px';
+						if(elmentRiht < 1){
+							el.style.right = 0;
+							return;
+						}
+					} 
+					if(direction == 'left'){
+						el.style.left = elmentLeft+'px';
+					}else if(direction == 'right'){
+						el.style.right = elmentRiht+'px';
+					}
+					setTimeout(viscous,30);
+				}
+			}		
+			oRetru.addEventListener('click',function(){ 
+				var doc =  document.body || document.documentElement;
+				var nScrollTop = doc.scrollTop;
+				var top = function(){
+					nScrollTop = nScrollTop - nScrollTop / 2;
+					if(nScrollTop < 1){
+						doc.scrollTop = 0;
+						return;
+					}
+					doc.scrollTop = nScrollTop;
+					setTimeout(top,30);
+				}
+				top();
+			});	
+		}
+		
+	</script>
+</html>
