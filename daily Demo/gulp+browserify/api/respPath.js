@@ -1,1 +1,0 @@
-module.exports = {"path":"https://loan.moneytocar.com/yuedianqian-wap"}
