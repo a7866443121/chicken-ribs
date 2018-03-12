@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <meta name="apple-mobile-web-app-capable" content="no">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <meta name="format-detection" content="telephone=no" />
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>	    
+	    <meta name="x5-orientation" content="portrait">
+	    <meta http-equiv="pragma" content="no-cache">
+	    <meta http-equiv="cache-control" content="no-cache">
+		<title>绑定手机号</title>
+		<script>
+			(function(){					
+				window.onresize = function(){
+					scaleBody();
+				}
+				function scaleBody(){
+					var stand = 60;
+					var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+					isiOS ? stand = 30 : stand = 60;
+					document.documentElement.style.cssText = 'zoom:'+window.innerWidth/750+';font-size:'+stand*(window.innerWidth/750)+'px;';	
+				}
+				scaleBody();
+			})();
+		</script>
+		<link rel="stylesheet" href="../css/login.css" />
+	</head>
+	<body>
+		<div class="intro bg-orange f-white f-12 mb10">请输入您的真实姓名和手机号，作为认定推荐人身份和佣金提现信息的唯一识别方式，保存后不可修改。</div>
+		<div class="content">
+			<div class="rows">
+				<input class="data-realName" placeholder="请输入您真实姓名"/>
+			</div>
+			<div class="rows">
+				<input class="data-phoneNum" placeholder="请输入手机号"/>
+				<span class="getcode f-theme separator">获取验证码</span>
+			</div>
+			<div class="rows">
+				<input class="data-code" placeholder="请输入您收到的验证码"/>
+			</div>
+		</div>
+		<div class="btn sure-btn bg-grey">确认</div>
+		<div class="tost mui-hidden" id="tost_"></div>
+	</body>
+	<script type="text/javascript" src="../js/jquery-2.1.0.js" ></script>
+	<script type="text/javascript" src="../js/login.js" ></script>
+</html>

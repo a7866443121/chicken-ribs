@@ -1,0 +1,118 @@
+@import url("./initialize.css");
+@charset "utf-8";
+body{	
+	width: 750px;
+	background-color: #F1F4F8;
+}
+.rows{
+	border-bottom: 1px solid #E6E6E6;
+	border-top: 1px solid #E6E6E6;
+}
+.header-prompt{
+	position: relative;
+	background-color: #FF9000;
+	color: #fff;
+	padding: 14px 30px;
+}
+.tel-name{
+	border-bottom: 1px solid #E6E6E6;
+	border-top: 1px solid #E6E6E6;
+	background-color: #fff;
+	padding: 0 30px;
+}
+.tel-name .input-rows:first-child{
+	border-bottom: 1px solid #E6E6E6;
+}
+.input-rows{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.input-rows label{
+	flex: 2;
+}
+.input-rows input{
+	flex: 5;
+	border: 0;
+	height: 87px;
+}
+.input-rows input::-webkit-input-placeholder{
+	text-align: right;
+}
+/*图片上传*/
+.img-upload{
+	border-bottom: 1px solid #E6E6E6;
+	border-top: 1px solid #E6E6E6;
+	padding: 0 30px;
+	background-color: #fff;
+}
+.img-upload-content{
+	padding: 30px 0;
+}
+.img-upload-content p{
+	color: #66605C;
+}
+.img-ul{
+	width: 100%;
+	position: relative;
+	font-size: 0;
+	padding: 0 0 30px;
+	overflow: hidden;
+	clear: both;
+}
+.img-ul .upload-btn{
+	position: relative;
+	display: inline-block;
+	width: 50%;
+}
+.img-ul .upload-btn img{
+	width: 100%;
+	height: 220px;
+}
+.file-btn{
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+.img-ul li{
+	position: relative;
+	width: 49%;
+	height:220px;
+	overflow: hidden;
+}
+.img-ul li:nth-child(even){
+	float: right;
+}
+.img-ul li:nth-child(odd){
+	float: left;
+}
+.img-ul li img{
+	width: 100%;
+}
+.img-ul li .icon{
+	position: absolute;
+	right: 0;
+	font-size: 1.066666rem;
+	padding: 2.5px 4px;
+	background-color: rgba(0,0,0,0.6);
+	color: #fff;
+}
+.submit-box{
+	width: 100%;
+	text-align: center;
+}
+.submit-btn{
+	display: inline-block;
+	width: 690px;
+	padding: 24px 0;
+	background-color: #2E59FF;
+	box-shadow: 0 2px 8px 0 rgba(46,89,255,0.40);
+	border-radius: 6px;	
+	color: #fff;
+	text-align: center;
+	margin: 40px auto;
+}

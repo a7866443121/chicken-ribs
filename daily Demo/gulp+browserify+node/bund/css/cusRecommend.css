@@ -1,0 +1,56 @@
+@import url("./initialize.css");
+
+.content{
+	background: #FFF;
+	font-size: 1em;
+}
+.top-img{
+	width: 100%;
+	height: auto;
+	margin-bottom: -10px;
+}
+.rows{
+	padding: 29px 30px 29px 0 ;
+	border-bottom: 1px solid #E6E6E6;
+	margin-left: 30px;
+}
+.rows:last-child{
+	border-bottom: none;
+}
+.data-carinfo{
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis
+}
+::-webkit-input-placeholder
+{
+    text-align: right;
+}
+:-ms-input-placeholder
+{
+   text-align: right;
+}
+:-moz-placeholder
+{
+  text-align: right;
+}
+::-moz-placeholder
+{
+  text-align: right;
+}
+.f-999{
+	color: #999999;
+}
+input{
+	width: 50%;
+	border: none;
+	text-align: right;
+	font-size: 1em;
+	color: #999999;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis
+}
+.iconfont.arrow{
+	line-height: 1.4em;
+}

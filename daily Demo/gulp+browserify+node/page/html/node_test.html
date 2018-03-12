@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <meta name="format-detection" content="telephone=no" />
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>	    
+	    <meta name="x5-orientation" content="portrait">
+	    <meta http-equiv="pragma" content="no-cache">
+	    <meta http-equiv="cache-control" content="no-cache">
+		<title>在线申请</title>
+		<script>
+			(function(){					
+				window.onresize = scaleBody;
+				function scaleBody(){
+					var standard = 60;
+					var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+					isiOS ? standard = 30 : standard = 60;
+					document.documentElement.style.cssText = 'zoom:'+window.innerWidth/750+';font-size:'+standard*(window.innerWidth/750)+'px;';
+				}
+				scaleBody();
+			})();
+		</script>
+		<link rel="stylesheet" type="text/css" href="../css/infoUpload.css"/>
+	</head>
+	<body>
+		<div id="body" class="body">
+		<div class="header-prompt f-12">目前仅支持在湖南省办理业务，其他地区暂未开放</div>
+		<form id="form_obj" enctype="multipart/form-data">
+			<div class="rows mt10" id="city">
+				业务办理城市
+				<span class="fr" id=""><span id="data_city">长沙</span><i class="iconfont">&#xe676;</i></span>
+			</div>
+			<!--信息-->
+			<div class="tel-name mt10">
+				<div class="input-rows">
+					<label class="f-15">姓名</label>
+					<input class="f-15 text-right" id="name_btn" type="text"  placeholder="请输入姓名"/>
+				</div>
+				<div class="input-rows">
+					<label class="f-15">手机号码</label>
+					<input class="f-15 text-right" id="tel_btn" type="tel"  placeholder="请输入手机号码"/>
+				</div>
+			</div>
+			<!--图片上传-->
+			<div class="img-upload mt10">
+				<div class="img-upload-content f-15">
+					行驶证照片
+					<p class="mt10 f-12">拍摄行驶证照片，方便业务经理为您初步评估</p>
+				</div>
+				<ul class="img-ul" id="img_ul">
+					<div class="upload-btn" id="upload_btn">
+						<img id="upload_btn_img" src="../img/driving_permit_image.png" />
+						<input id="file_btn" type="file" class="file-btn" accept="image/*" value="" />
+					</div>
+					<!--<li><i class="icon iconfont">&#xe617;</i><img src="../../buildPage/img/driving_permit.png"/></li>
+					<li></li>-->
+				</ul>
+			</div>
+		</form>
+		<div class="submit-box"><a class="submit-btn f-15" id="submit_btn">提交</a></div>
+		<div id="tost_" class="tost mui-hidden"></div>
+		</div>
+	</body>
+	<script src="../js/node_test.js"></script>	
+</html>

@@ -1,0 +1,19 @@
+@import url("./initialize.css");
+html,body{
+	background: #FFF;
+}
+img{
+	width: 280px;
+	height: 280px;
+	margin-bottom: 60px;
+}
+p{
+	margin-bottom: 30px;
+	padding: 0 30px;
+}
+.prombox {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	margin-top: -16em;
+}

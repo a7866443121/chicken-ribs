@@ -1,0 +1,42 @@
+@import url("./initialize.css");
+
+.content{
+	background: #FFF;
+	font-size: 1em;
+}
+.intro{
+	padding: 13px 30px;
+}
+.rows{
+	padding: 29px 0 30px ;
+	border-bottom: 1px solid #E6E6E6;
+	margin-left: 30px;
+}
+input{
+	border: none;
+	width: 100%;
+	font-size: 1em;
+}
+input.data-phoneNum{
+	width: 65%;
+}
+.getcode{
+	position: relative;
+	width: 33%;
+	display: inline-block;
+	text-align: center;
+}
+/*分隔线*/
+.separator:before{
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 2px;
+	height: 40px;
+	border: none;
+	border-left:1px solid #E6E6E6!important;
+}
+.rows:last-child{
+	border-bottom: none;
+}

@@ -1,0 +1,20 @@
+{
+  "addBankcard.css": "addBankcard.css?v=707d2cc4ad",
+  "carChose.css": "carChose.css?v=0b4ead6af7",
+  "cityChose.css": "cityChose.css?v=bf7ac60a34",
+  "commissionPage.css": "commissionPage.css?v=93e04b49ee",
+  "cusRecommend.css": "cusRecommend.css?v=6077936d62",
+  "infoUpload.css": "infoUpload.css?v=f06910af84",
+  "initialize.css": "initialize.css?v=d18d028c2f",
+  "loanCalculate.css": "loanCalculate.css?v=66dcaaec7b",
+  "loanScheme.css": "loanScheme.css?v=d52b67a4ab",
+  "login.css": "login.css?v=ac3170a6f1",
+  "mui.indexedlist.css": "mui.indexedlist.css?v=7c1e80acd1",
+  "myBorrow.css": "myBorrow.css?v=67cea18f70",
+  "myBorrowDetail.css": "myBorrowDetail.css?v=d2155cc392",
+  "myRecommend.css": "myRecommend.css?v=3a5f91033e",
+  "myRecommendDetail.css": "myRecommendDetail.css?v=60c4017b97",
+  "personalCenter.css": "personalCenter.css?v=41422a4ae4",
+  "promptPage.css": "promptPage.css?v=ead7cda6a3",
+  "withdrawal.css": "withdrawal.css?v=79de2d92d6"
+}
