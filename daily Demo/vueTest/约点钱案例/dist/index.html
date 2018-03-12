@@ -1,0 +1,12 @@
+<!DOCTYPE html><html><head><meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><meta name=apple-mobile-web-app-capable content=no><meta name=apple-mobile-web-app-status-bar-style content=black><meta name=format-detection content="telephone=no"><meta http-equiv=Content-Type content="text/html; charset=UTF-8"><meta name=x5-orientation content=portrait><meta http-equiv=pragma content=no-cache><meta http-equiv=cache-control content=no-cache><script>(function(){					
+				window.onresize = function(){
+					scaleBody();
+				}
+				function scaleBody(){
+					var stand = 60;
+					var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+					isiOS ? stand = 30 : stand = 60;
+					document.documentElement.style.cssText = 'zoom:'+window.innerWidth/750+';font-size:'+stand*(window.innerWidth/750)+'px;';	
+				}
+				scaleBody();
+			})();</script><title>曰点钱</title><link href=/static/css/app.8ee4d819ee580c861748930052597c5d.css rel=stylesheet></head><body><div id=index></div><div id=tost_ class=tost></div><script type=text/javascript src=/static/js/manifest.c068bb55328af774de10.js></script><script type=text/javascript src=/static/js/vendor.bb0d103781d60305b87f.js></script><script type=text/javascript src=/static/js/app.988a5a265be58ff60e82.js></script></body></html>

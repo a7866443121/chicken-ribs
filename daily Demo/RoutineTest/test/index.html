@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	    <meta http-equiv="pragma" content="no-cache">
+	    <meta http-equiv="cache-control" content="no-cache">
+	    <meta http-equiv="expires" content="0">
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script>
+		
+		(function(){
+			function person(name,age){
+				this.name = name;
+				this.age = age;
+				this.say = function(){
+					console.log('姓名是:'+this.name+';年龄是:'+this.age);
+				}
+			}
+			
+			function zhangSan(name,age){
+				person.call(this,name,age);
+				
+			}
+			new zhangSan('张三',23).say();
+		})()
+		
+	</script>
+</html>

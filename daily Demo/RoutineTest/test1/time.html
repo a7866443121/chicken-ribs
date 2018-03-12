@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+		    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>		   
+		<title></title>
+<style>
+html,body,div,span,p,a{   
+    margin: 0;   
+    padding: 0;   
+    border: 0;   
+    outline: 0;   
+    vertical-align: baseline;     
+}   
+.header{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 6rem;
+	color: #fff;
+	overflow: hidden;	
+	font-size: 1.2rem;	
+	text-align: left;
+}
+.header-div{
+	width: 100%;
+	height: 100%;
+	overflow-x: scroll;
+	overflow-y: hidden;	
+	white-space: nowrap;
+	background-color: #333;
+}
+::-webkit-scrollbar{
+	width: 0;
+	height: 0;
+}
+.header-list{
+	width: 33%;
+	height: 4.4rem;
+	display: inline-block;
+	padding: 0.8rem 0;
+	text-align: center;
+}
+.time{
+	width: 100%;
+	padding: 1rem 0;
+	margin-top: 6rem;
+	font-size: 20px;
+	text-align: center;
+}
+</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="header clear" >
+				<div class="header-div" id="header">
+					<div class="header-list">
+						<p>11月16</p>
+						<p>12:00</p>
+						<p>进行中~</p>
+					</div>
+					<div class="header-list">
+						<p>11月16</p>
+						<p>12:00</p>
+						<p>即将开始</p>
+					</div>
+					<div class="header-list">
+						<p>11月16</p>
+						<p>12:00</p>
+						<p>进行中~</p>
+					</div>
+					<div class="header-list">
+						<p>11月16</p>
+						<p>12:00</p>
+						<p>即将开始</p>
+					</div>
+					<div class="header-list">
+						<p>11月16</p>
+						<p>12:00</p>
+						<p>进行中~</p>
+					</div>
+					<div class="header-list">
+						<p>11月16</p>
+						<p>12:00</p>
+						<p>即将开始</p>
+					</div>
+				</div>	
+			</div>			
+			<div class="time clear">
+				<span id="timeInner">距结束:</span><span id="time"></span>
+			</div>		
+		</div>		
+	</body>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
+<script>
+	Object.prototype.reciprocalTime = function(settings){
+		var stvl = [];
+		var timeSet = {};		
+		if(settings){
+			timeSet = settings;
+		}else{
+			return
+		}
+		for (var i = 0;i < $(timeSet.reciprocalId).children.length; i++) {
+			$(timeSet.reciprocalId).children[i].index = i;	
+			$(timeSet.reciprocalId).children[i].addEventListener("click",function(){							
+				clickFn(this.index);
+			});
+		}
+		$(timeSet.reciprocalId).children[0].style.color = timeSet.fontColor;
+		$(timeSet.reciprocalId).children[0].style.backgroundColor = timeSet.bgColor;
+		function clickFn(ind){
+			for (var i =0 ;i < $(timeSet.reciprocalId).children.length;i++) {
+				$(timeSet.reciprocalId).children[i].style.color = timeSet.initFontcolor;
+				$(timeSet.reciprocalId).children[i].style.backgroundColor = timeSet.initbgColor;
+				clearInterval(stvl[i])
+				if (i!=ind) {
+					clearInterval(stvl[i])
+				} else{															
+					timeSet.clickAfter(ind);
+					timeSet.betTime = timeSet.clickTime(ind);
+					int(ind);					
+				}
+			}
+		}
+		function len(){
+			for (var i =0 ;i < $(timeSet.reciprocalId).length;i++) {
+				var stv = "stv"+i;
+				stvl.push(stv)				
+			}
+		}
+		len();		
+		function int(index){
+			var day = 0;
+			index = undefined || 0;
+			stvl[index] = setInterval(function(){
+				if(timeSet.betTime > 0){
+					hour = Math.floor(timeSet.betTime / (60 * 60));
+					minute = Math.floor(timeSet.betTime / 60) - (day * 24 * 60) - (hour * 60);
+					second = Math.floor(timeSet.betTime) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+				}
+				if (minute <= 9) minute = '0' + minute;
+				if (second <= 9) second = '0' + second;	
+				$(timeSet.showTimeId).innerHTML = hour+":"+minute+":"+second;
+				timeSet.betTime--;
+			},1000);
+		};
+		int();
+		function $(id){
+			return document.getElementById(id);
+		}
+	}
+	
+	//调用方式
+	new reciprocalTime({
+		reciprocalId : "header",//
+		showTimeId:"time",//展示时间的节点id
+		betTime : 10000,//默认倒计时间
+		initFontcolor:"#fff",//默认字体颜色
+		fontColor:"#ffcccc",//点击后的字体颜色
+		initbgColor:"#333",//默认背景色
+		bgColor:"#ff3366",//点击后的背景色
+		clickTime: function(index){
+			//index为点击事件发生的下标
+			//此处该自己写点击后的时间变化(可以写jq也可以写原生,你开心就好);
+			var inner = "";
+			if(index==0){
+				inner = "距结束 : ";
+			}else{
+				inner = "距开始 : ";
+			}
+			document.getElementById("timeInner").innerHTML = inner;
+			var time = 10000*(index+1);
+			return time;//该行不能变
+		},//点击后倒计时间变化
+		clickAfter:function(index){
+			//index为点击事件发生的下标
+			//此处该自己写点击后的样式变化(可以写jq也可以写原生,你开心就好)
+			$("#header div").eq(index).css({
+				"background-color":"#ff3366",
+				"color":"#ffcccc"
+			});			
+		}
+	});
+</script>
+</html>

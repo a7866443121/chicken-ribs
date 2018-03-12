@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		div{
+			width: 50%;
+			margin: auto;
+			border: 1px solid #cdcdcd;
+			padding: 4px 10px;
+		}
+		div span{
+			background-color: #cdcdcd;
+			padding: 2px 6px;
+			border-radius: 4px;
+			margin-left: 5px;
+		}
+	</style>
+	<body>
+		<div id="put">
+		</div>
+		<select name="" id="chek">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+		</select>
+	</body>
+	<script type="text/javascript" src="js/SmallFrame.js" ></script>
+	<script>
+	function bindEvent(){
+		var page = 0;
+		document.getElementById("chek").addEventListener('change',function(){	
+			if (page <2 ){
+				var val = document.getElementById("chek").value;
+				var span = '<span>'+val+'</span>';
+				span.innerHTML = val;
+				document.getElementById("put").innerHTML+=span;
+				page++;		
+			}
+		});
+	}
+	bindEvent();
+	
+//	function ajax(){}
+//	ajax.prototype.getJson = function(url,data,success,error){
+//		var ajaxData = {
+//			url: url || "",
+//			data: data || 'data',
+//			dataType: arguments[0].dataType || "json",
+//			success: success || function() {},
+//			error: error || function() {}
+//		}
+//		//获取ajax对象
+//		var xmlhttp = new XMLHttpRequest()|| new ActiveXObject("Microsoft.XMLHTTP");
+//		//发送请求
+//		xmlhttp.open("GET",ajaxData.url,true);
+//		if(ajaxData.data!='data'){
+//			xmlhttp.send(ajaxData.data);
+//		}
+//		xmlhttp.onreadystatechange = function(){
+//			if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+//				ajaxData.success(xmlhttp.response);	
+//			}else{
+//				ajaxData.error();
+//			}
+//		}
+//	}
+
+	
+	</script>
+</html>

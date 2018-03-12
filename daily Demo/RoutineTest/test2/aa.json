@@ -1,0 +1,321 @@
+[
+	{
+		"fId": 3,
+		"sName": "HTTP协议",
+		"childs": [
+			{
+				"fId": 3,
+				"sName": "在线视频",
+				"childs": [
+					{
+						"fId": 3,
+						"sName": "风行视频",
+						"childs": [],
+						"nPid": 3,
+						"nID": 1156
+					}
+				],
+				"nPid": 2,
+				"nID": 3
+			}, {
+				"fId": 3,
+				"sName": "HTTP下载",
+				"childs": [
+					{
+						"fId": 3,
+						"sName": "HTTP 分片下载",
+						"childs": [],
+						"nPid": 4,
+						"nID": 587
+					}, {
+						"fId": 3,
+						"sName": "WINDOWS更新",
+						"childs": [],
+						"nPid": 4,
+						"nID": 1050
+					}, {
+						"fId": 3,
+						"sName": "WEB下载",
+						"childs": [],
+						"nPid": 4,
+						"nID": 1067
+					}, {
+						"fId": 3,
+						"sName": "迅雷离线",
+						"childs": [],
+						"nPid": 4,
+						"nID": 1074
+					}, {
+						"fId": 3,
+						"sName": "WIN10应用下载",
+						"childs": [],
+						"nPid": 4,
+						"nID": 1110
+					}, {
+						"fId": 3,
+						"sName": "华为下载",
+						"childs": [],
+						"nPid": 4,
+						"nID": 1111
+					}, {
+						"fId": 3,
+						"sName": "百度下载",
+						"childs": [],
+						"nPid": 4,
+						"nID": 1994
+					}, {
+						"fId": 3,
+						"sName": "快吧下载",
+						"childs": [],
+						"nPid": 4,
+						"nID": 2020
+					}
+				],
+				"nPid": 2,
+				"nID": 4
+			}, {
+				"fId": 3,
+				"sName": "云网盘",
+				"childs": [
+					{
+						"fId": 3,
+						"sName": "百度云盘(下载)",
+						"childs": [],
+						"nPid": 7,
+						"nID": 1003
+					}, {
+						"fId": 3,
+						"sName": "百度云盘(上传)",
+						"childs": [],
+						"nPid": 7,
+						"nID": 1087
+					}, {
+						"fId": 3,
+						"sName": "百度云盘",
+						"childs": [],
+						"nPid": 7,
+						"nID": 1108
+					}, {
+						"fId": 3,
+						"sName": "天翼云盘",
+						"childs": [],
+						"nPid": 7,
+						"nID": 1163
+					}, {
+						"fId": 3,
+						"sName": "115网盘",
+						"childs": [],
+						"nPid": 7,
+						"nID": 1180
+					}, {
+						"fId": 3,
+						"sName": "360云盘",
+						"childs": [],
+						"nPid": 7,
+						"nID": 1181
+					}, {
+						"fId": 3,
+						"sName": "乐视云盘",
+						"childs": [],
+						"nPid": 7,
+						"nID": 1184
+					}
+				],
+				"nPid": 2,
+				"nID": 7
+			}
+		],
+		"nPid": 1,
+		"nID": 2
+	}, {
+		"fId": 3,
+		"sName": "P2P下载",
+		"childs": [
+			{
+				"fId": 3,
+				"sName": "BitTorrent",
+				"childs": [],
+				"nPid": 26,
+				"nID": 540
+			}, {
+				"fId": 3,
+				"sName": "电驴",
+				"childs": [],
+				"nPid": 26,
+				"nID": 541
+			}, {
+				"fId": 3,
+				"sName": "电骡",
+				"childs": [],
+				"nPid": 26,
+				"nID": 542
+			}, {
+				"fId": 3,
+				"sName": "迅雷",
+				"childs": [],
+				"nPid": 26,
+				"nID": 543
+			}, {
+				"fId": 3,
+				"sName": "360急速下载",
+				"childs": [],
+				"nPid": 26,
+				"nID": 572
+			}, {
+				"fId": 3,
+				"sName": "360软件管家P2P",
+				"childs": [],
+				"nPid": 26,
+				"nID": 1034
+			}, {
+				"fId": 3,
+				"sName": "百度云P2P",
+				"childs": [],
+				"nPid": 26,
+				"nID": 1070
+			}
+		],
+		"nPid": 1,
+		"nID": 26
+	}, {
+		"fId": 3,
+		"sName": "其他视频",
+		"childs": [
+			{
+				"fId": 3,
+				"sName": "酷狗音乐p2p",
+				"childs": [],
+				"nPid": 37,
+				"nID": 573
+			}, {
+				"fId": 3,
+				"sName": "暴风影音",
+				"childs": [],
+				"nPid": 37,
+				"nID": 574
+			}, {
+				"fId": 3,
+				"sName": "风行视频p2p",
+				"childs": [],
+				"nPid": 37,
+				"nID": 578
+			}, {
+				"fId": 3,
+				"sName": "奇艺视频P2P",
+				"childs": [],
+				"nPid": 37,
+				"nID": 1000
+			}, {
+				"fId": 3,
+				"sName": "优酷视频P2P",
+				"childs": [],
+				"nPid": 37,
+				"nID": 1009
+			}, {
+				"fId": 3,
+				"sName": "腾讯视频P2P",
+				"childs": [],
+				"nPid": 37,
+				"nID": 1028
+			}, {
+				"fId": 3,
+				"sName": "芒果TVP2P",
+				"childs": [],
+				"nPid": 37,
+				"nID": 1030
+			}, {
+				"fId": 3,
+				"sName": "搜狐视频P2P",
+				"childs": [],
+				"nPid": 37,
+				"nID": 1031
+			}, {
+				"fId": 3,
+				"sName": "聚力视频P2P",
+				"childs": [],
+				"nPid": 37,
+				"nID": 1032
+			}, {
+				"fId": 3,
+				"sName": "百度音乐P2P",
+				"childs": [],
+				"nPid": 37,
+				"nID": 1120
+			}, {
+				"fId": 3,
+				"sName": "非凡影音",
+				"childs": [],
+				"nPid": 37,
+				"nID": 1155
+			}, {
+				"fId": 3,
+				"sName": "CIBNP2P",
+				"childs": [],
+				"nPid": 37,
+				"nID": 1159
+			}, {
+				"fId": 3,
+				"sName": "西瓜影音",
+				"childs": [],
+				"nPid": 37,
+				"nID": 1195
+			}, {
+				"fId": 3,
+				"sName": "吉吉影音",
+				"childs": [],
+				"nPid": 37,
+				"nID": 1196
+			}
+		],
+		"nPid": 1,
+		"nID": 37
+	}, {
+		"fId": 3,
+		"sName": "网络游戏",
+		"childs": [
+			{
+				"fId": 3,
+				"sName": "巨人网络",
+				"childs": [
+					{
+						"fId": 3,
+						"sName": "征途2",
+						"childs": [],
+						"nPid": 42,
+						"nID": 1222
+					}, {
+						"fId": 3,
+						"sName": "仙侠世界",
+						"childs": [],
+						"nPid": 42,
+						"nID": 1294
+					}
+				],
+				"nPid": 39,
+				"nID": 42
+			}
+		],
+		"nPid": 1,
+		"nID": 39
+	}, {
+		"fId": 3,
+		"sName": "移动应用",
+		"childs": [
+			{
+				"fId": 3,
+				"sName": "安卓app",
+				"childs": [],
+				"nPid": 56,
+				"nID": 1102
+			}, {
+				"fId": 3,
+				"sName": "苹果app",
+				"childs": [],
+				"nPid": 56,
+				"nID": 1103
+			}
+		],
+		"nPid": 1,
+		"nID": 56
+	}
+]

@@ -1,0 +1,8 @@
+{
+  "dev": {
+    "path": "http://192.168.1.104:18192/yuedianqian-wap"
+  },
+  "build": {
+    "path": "https://loan.moneytocar.com/yuedianqian-wap"
+  }
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="css/initialize.css"/>
+	<style type="text/css">
+	</style>
+	<body>
+		<div class="binner-box">
+			<div class="binner" id="binner">
+			    <ul>
+			    	<li><a href="javascript:;"><img src="img/binner1.jpg"/></a></li>
+			    	<li><a href="javascript:;"><img src="img/binner2.jpg"/></a></li>
+			    	<li><a href="javascript:;"><img src="img/binner3.jpg"/></a></li>
+			    	<li><a href="javascript:;"><img src="img/binner4.jpg"/></a></li>
+			    </ul>
+			</div>
+		</div>
+		
+	</body>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js" ></script>
+<script type="text/javascript" src="js/touchwipe.js" ></script>
+<script type="text/javascript">
+	 Object.prototype.carousel = function(settings){
+	 	var binner = {
+	 		carouselObj : "binner",
+	 		stv : stv,
+	 		run : function(){}
+	 	}
+	
+	 	
+	}
+	
+</script>
+
+<script>			
+//$(function(){
+//	var overall = 0;
+//	var wid;
+//	function run(){			
+//		wid = $(window).width()+3;
+//		var scr = $("#shad-binner").scrollWidth;
+//		console.log(scr);
+//		stv = setInterval(function(){		
+//			$("#shad-binner").animate({scrollLeft: wid*overall}, 300);
+//			overall++;
+//			if(overall==4){
+//				overall=0;
+//			}
+//		},3000);		
+//	}
+//	run();
+//	$("#shad-binner").touchwipe({
+//	//手指左滑
+//	     wipeLeft: function() {
+//	     	clearInterval(stv);
+//	     	if (overall==3) {
+//	     		overall = 0;
+//	     	} else{
+//	     		overall++;
+//	     	}		     	
+//	     	$("#shad-binner").animate({scrollLeft: wid*overall}, 300);
+//	     	setTimeout(run(),5000);
+//	     },
+//	//手指右滑     
+//	     wipeRight: function() { 
+//	     	clearInterval(stv);
+//	     	if (overall==0) {
+//	     		overall = 3;
+//	     	} else{
+//	     		overall--;
+//	     	}	     	
+//	     	$("#shad-binner").animate({scrollLeft: wid*overall}, 300);   	
+//	     	setTimeout(run(),5000);
+//	     },
+//	     min_move_x: 20,
+//	     min_move_y: 20,
+//	     preventDefaultEvents: true
+//	});
+//});
+	</script>
+	
+</html>

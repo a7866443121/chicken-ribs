@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="demo" style="width:100%;height:375px;border:1px solid #FF0000;"></div>   
+	</body>
+	<script src="js/touchuWipe.js" type="text/javascript" charset="utf-8"></script>
+	<script>	
+//调用方式
+	new touchWipe({
+	    wipeObj:"demo",//调用对象的ID,必传
+	    minWipeDistance: 30, //最小滑动距离
+	    wipeLeft: function() { 
+	     	alert("此处写左滑后的执行代码 left"); 
+     	},
+	    wipeRight: function(){ 
+     		alert("此处写右滑后的执行代码right");
+     	},
+	    wipeUp: function() {
+     		alert("此处写上滑后的执行代码up"); 
+     	},
+	    wipeDown: function() { 
+     		alert("此处写下滑后的执行代码down"); 
+     	},
+     	control: function(){
+     		alert("此处写按压的执行代码down"); 
+     	},
+	    preventEvents: true //阻止事件冒泡和默认事件
+	});
+	
+	</script>
+</html>

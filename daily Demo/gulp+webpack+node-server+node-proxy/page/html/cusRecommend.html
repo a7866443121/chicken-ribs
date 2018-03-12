@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <meta name="apple-mobile-web-app-capable" content="no">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <meta name="format-detection" content="telephone=no" />
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>	    
+	    <meta name="x5-orientation" content="portrait">
+	    <meta http-equiv="pragma" content="no-cache">
+	    <meta http-equiv="cache-control" content="no-cache">
+		<title>推荐客户</title>
+		<script>
+			(function(){					
+				window.onresize = function(){
+					scaleBody();
+				}
+				function scaleBody(){
+					var stand = 60;
+					var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+					isiOS ? stand = 30 : stand = 60;
+					document.documentElement.style.cssText = 'zoom:'+window.innerWidth/750+';font-size:'+stand*(window.innerWidth/750)+'px;';	
+				}
+				scaleBody();
+			})();
+		</script>
+		<link rel="stylesheet" href="../css/cusRecommend.css" />
+	</head>
+	<body>
+		<div class="body" id="body">
+			<img class="top-img" src="../img/1.png" />
+			<div class="content">
+				<div class="rows">
+					<label>朋友姓名<i class="f-red">*</i></label><input class="fr data-name" placeholder="请输入姓名" />
+				</div>
+				<div class="rows">
+					<label>朋友手机号<i class="f-red">*</i></label><input type="tel" class="fr data-phoneNum" placeholder="请输入号码"/>
+				</div>
+				<div class="rows" id="carinfo">
+					<label>朋友的车辆<i class="f-red">*</i></label>
+					<span class="iconfont fr f-999 arrow">&#xe676;</span>
+					<span class="fr f-999 data-carinfo">请选择</span>
+				</div>
+			</div>
+			<div class="btn bg-grey sure-btn">提交推荐信息</div>
+			<div class="tost mui-hidden" id="tost_"></div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/jquery-2.1.0.js" ></script>
+	<script type="text/javascript" src="../js/wx/wx.js" ></script>
+	<script type="text/javascript" src="../js/cusRecommend.js" ></script>	
+</html>

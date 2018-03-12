@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="demo" style="width:100%;height:375px;border:1px solid #FF0000;"></div>
+	</body>
+	<!--<script type="text/javascript" src="js/touchuWipe.js" ></script>-->
+	<script>
+	
+
+
+
+
+//				function touchWipe() {}
+//				touchWipe.prototype = {
+//					callobj: function(setting) {
+//						this.wipeObj = setting.wipeObj || 'demo';
+//						this.Events = setting.Events || false;
+//						this.wipeLft = setting.wipeLeft;
+//						this.wipeRight = setting.wipeRight;
+//						this.wipeUp = setting.wipeUp;
+//						this.wipeDown = setting.wipeDown;
+//					},
+//					run: function() {
+//						var obj = document.getElementById(this.wipeObj);
+//						var startX, startY, endX, endY;
+//						//获取滑动开始时的坐标位置
+//						obj.addEventListener("touchstart", function(e) {
+//							startX = e.targetTouches[0].pageX;
+//							startY = e.targetTouches[0].pageY;
+//							//阻止默认事件和事件冒泡
+//							if(this.Events) {
+//								e.preventDefault();
+//								e.stopPropagation();
+//							}
+//						});
+//						//阻止滑动中的事件冒泡
+//						obj.addEventListener("touchmove", function(e) {
+//							if(this.Events) {
+//								e.stopPropagation();
+//							}
+//						});
+//		
+//						//获取滑动结束时候的坐标
+//						obj.addEventListener("touchend", function(e) {
+//							endX = e.changedTouches[0].pageX;
+//							endY = e.changedTouches[0].pageY;
+//							//取X轴与Y轴的绝对值,哪个值大就是在哪个轴移动
+//							if(Math.abs(endX - startX) > Math.abs(endY - startY)) {
+//								//结束的值大于开始的值(右移动),并且绝对值大于30,     
+//								if(endX - startX > 0 && Math.abs(endX - startX) > 30) {
+//									this.wipeRight();
+//								}
+//								//结束的值小于开始的值(左移动),并且绝对值大于30,
+//								if(endX - startX < 0 && Math.abs(endX - startX) > 30) {
+//									this.wipeLeft();
+//								}
+//							} else {
+//								if(endY - startY > 0 && Math.abs(endY - startY) > 30) {
+//									this.wipeDown();
+//								}
+//								if(endY - startY < 0 && Math.abs(endY - startY) > 30) {
+//									this.wipeUp();
+//								}
+//							}
+//							//按压事件
+//							if((Math.abs(endX - startX) == 0) && (Math.abs(endY - startY) == 0)) {
+//								
+//		
+//								function times() {
+//									a++;
+//									if(a < 10) {
+//										setTimeout(times(), 100);
+//									}
+//									console.log(a);
+//								}
+//								this.control();
+//							}
+//							if(this.preventEvents) {
+//								e.preventDefault();
+//								e.stopPropagation();
+//							}
+//						});
+//					}
+//		
+//				}
+//		
+//				var touch = new touchWipe();
+//				touch.callobj({
+//					wipeObj: 'demo',
+//					Events: true,
+//					wipeLeft: function() {
+//						alert(1)
+//					},
+//					wipeRight: function() {},
+//					wipeUp: function() {},
+//					wipeDown: function() {},
+//				})
+//				touch.run();
+
+		Object.prototype.touchWipe = function(settings) {
+				//创建事件
+				function isTouchDevice() {
+					try {
+						document.createEvent("TouchEvent");
+					} catch(e) {
+						return;
+					}
+				}
+				isTouchDevice();
+				//申明变量    
+				var config = {
+					wipeObj: null,
+					minWipeDistance: 30,
+					wipeLeft: function() {},
+					wipeRight: function() {},
+					wipeUp: function() {},
+					wipeDown: function() {},
+					preventDefaultEvents: true
+				};
+				//重新赋值
+				if(settings) {
+					config = settings;
+				}
+				//获取调用对象
+				var obj = document.getElementById(config.wipeObj);
+				var startX, startY, endX, endY;
+				var times = 0;
+				var sto;
+				//获取滑动开始时的坐标位置
+				obj.addEventListener("touchstart", function(e) {
+					startX = e.targetTouches[0].pageX;
+					startY = e.targetTouches[0].pageY;
+					//阻止默认事件和事件冒泡
+					if(config.preventEvents) {
+						e.preventDefault();
+						e.stopPropagation();
+					}
+					sto = setInterval(function() {
+						times++
+					}, 100)
+				});
+				//阻止滑动中的事件冒泡
+				obj.addEventListener("touchmove", function(e) {
+					if(config.preventEvents) {
+						e.stopPropagation();
+					}
+				});
+				//获取滑动结束时候的坐标
+				obj.addEventListener("touchend", function(e) {
+					endX = e.changedTouches[0].pageX;
+					endY = e.changedTouches[0].pageY;
+					//取X轴与Y轴的绝对值,哪个值大就是在哪个轴移动
+					if(Math.abs(endX - startX) > Math.abs(endY - startY)) {
+						//结束的值大于开始的值(右移动),并且绝对值大于30,     
+						if(endX - startX > 0 && Math.abs(endX - startX) > config.minWipeDistance) {
+							config.wipeRight();
+						}
+						//结束的值小于开始的值(左移动),并且绝对值大于30,
+						if(endX - startX < 0 && Math.abs(endX - startX) > config.minWipeDistance) {
+							config.wipeLeft();
+						}
+					} else {
+						if(endY - startY > 0 && Math.abs(endY - startY) > config.minWipeDistance) {
+							config.wipeDown();
+						}
+						if(endY - startY < 0 && Math.abs(endY - startY) > config.minWipeDistance) {
+							config.wipeUp();
+						}
+					}
+					//按压事件
+					if((Math.abs(endX - startX) == 0) && (Math.abs(endY - startY) == 0)) {
+						clearTimeout(sto);
+						console.log(times)
+						if(times >= 10){
+							config.control();
+							times = 0;
+						}
+
+					}
+					if(config.preventEvents) {
+						e.preventDefault();
+						e.stopPropagation();
+					}
+				});
+			}
+			//调用方式
+		new touchWipe({
+			wipeObj: "demo", //调用对象的ID,必传
+			minWipeDistance: 30, //最小滑动距离
+			touchTimes:10,
+			wipeLeft: function() {
+				alert("此处写左滑后的执行代码 left");
+			},
+			wipeRight: function() {
+				alert("此处写右滑后的执行代码right");
+			},
+			wipeUp: function() {
+				alert("此处写上滑后的执行代码up");
+			},
+			wipeDown: function() {
+				alert("此处写下滑后的执行代码down");
+			},
+			control: function() {
+				alert("此处写按压的执行代码down");
+			},
+			preventEvents: true //阻止事件冒泡和默认事件
+		});
+	</script>
+
+</html>

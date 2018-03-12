@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<head>
+		<title> 测试主页面 </title>
+		<style>
+			ul,
+			li {
+				list-style: none;
+			}
+			
+			.container {
+				width: px;
+				border: px solid #ccc;
+				overflow: hidden;
+			}
+			
+			.container ul {
+				float: left;
+				width: px;
+			}
+			
+			.container li {
+				width: px;
+				height: px;
+				line-height: px;
+				overflow: hidden;
+			}
+			
+			.container li a {
+				text-decoration: none;
+			}
+			
+			.container li.current a {
+				color: red;
+			}
+			
+			.all-content {
+				width: px;
+				float: left;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<ul class="list" id="ul">
+				<li><a hrefData="demo3.html" id="aa">测试1</a></li>
+				<li><a href="demo.html">测试2</a></li>
+				<li><a href="demo2.html">测试3</a></li>
+			</ul>
+			<div class="all-content">
+				<ul class="content">
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script>
+		var oAa = document.getElementById('aa');
+		var sUrl = oAa.getAttribute('hrefData');
+		var hist = history.length;
+		oAa.addEventListener('click',function(){
+			if(history.state == null){
+				history.pushState("aaaa", 'demo3.html', sUrl);
+				history.replaceState(1,'demo3.html',sUrl)
+				getJson('json/a1.json','none',function(resp){
+					var res = JSON.parse(resp);
+					var str = 
+						'<li><a hrefData="demo3.html" id="aa">'+res.name+'</a></li>'+
+						'<li><a href="demo.html">'+res.age+'</a></li>'+
+						'<li><a href="demo2.html">'+res.sex+'</a></li>';
+						document.getElementById("ul").innerHTML=str;
+				})
+			}
+		})
+		
+		
+		
+		
+		
+		/*
+		 * rem
+		 */
+		function selfAdaption(){
+		    var oDocEl = document.documentElement;
+		    var resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+		    var recalc = function () {
+		        var nClientWidth = oDocEl.clientWidth;
+		        if (!nClientWidth) {
+		        	return
+		        };
+		        if(nClientWidth>=640){
+		            oDocEl.style.fontSize = '100px';
+		        }else{
+		            oDocEl.style.fontSize = 100 * (nClientWidth / 640) + 'px';
+		        }
+		    };
+		    if (!document.addEventListener) {
+		    	return ;
+		    };
+		    window.addEventListener(resizeEvt, recalc, false);
+		    document.addEventListener('DOMContentLoaded', recalc, false);	
+		}
+		selfAdaption();
+		/*
+		 * getJson()
+		 */
+		function getJson(url,data,sucecss,error){
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET',url,'true');
+			xhr.send(data);
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState == 4){
+					if(xhr.status == 200){
+						sucecss(xhr.response);
+					}else{
+						error();
+					}
+				}
+			}			
+		}
+	</script>
+
+</html>

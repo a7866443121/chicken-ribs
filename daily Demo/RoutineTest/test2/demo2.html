@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		ul{list-style: none; margin: 0;padding: 0;}
+		li{
+			padding: 10px 0;
+			
+		}
+		.Box{
+			
+			width: 200px;
+			height: 300px;
+			margin-left: 40px;
+			background-color: #fff;
+			padding: 20px;
+		}
+		.firstChilds{
+			background-color: #fff;
+		}
+		.firstBox_1{
+			margin-left: 40px;
+			display: block;
+		}
+		.firstBox_2{
+			margin-left: 40px;
+			display: block;
+		}
+	</style>
+	<body>
+		
+		<ul id="firstBox" class="Box" draggable="true">
+			<li  id="firstChilds" class="firstChilds">
+				<div>http协议</div>
+				<!--<ul id="firstBox_1" class="firstBox_1">
+					<li id="twoChilds"  class="twoChilds">
+						<div>在线视频</div>
+						<ul id="firstBox_2" class="firstBox_2">
+							<li id="threeChilds"  class="threeChilds">
+								<div>
+									风行视频
+								</div>
+							</li>
+						</ul>
+					</li>
+				</ul>-->
+			</li>
+			<li  id="firstChilds" class="firstChilds">
+				<div>http协议</div>
+				<!--<ul id="firstBox_1" class="firstBox_1">
+					<li id="twoChilds"  class="twoChilds">
+						<div>在线视频</div>
+						<ul id="firstBox_2" class="firstBox_2">
+							<li id="threeChilds"  class="threeChilds">
+								<div>
+									风行视频
+								</div>
+							</li>
+						</ul>
+					</li>
+				</ul>-->
+			</li>
+		</ul>
+		<ul id="twoBox" class="Box"></ul>
+		
+<script type="text/javascript">	
+(function(){
+
+	window.addEventListener('DOMContentLoaded',function(){
+		
+		getJson('aa.json','none',function(res){
+			var jRes = JSON.parse(res);
+			var twoChilds = [];
+			var threeChilds = [];
+			//第一层所有数据,可以解除注释查看
+			var box = document.getElementById("firstBox");
+			box.innerHTML ='';
+			console.log(jRes[0])
+			jRes.forEach(function(val,index){
+				var str = '<li id="firstChilds" class="firstChilds"><div>'+val.sName+'</div></li>';
+				box.innerHTML += str;
+				twoChilds[index] = val.childs;
+			});
+			//第二层数据
+			var page = 0;
+			twoChilds.forEach(function(val,index){
+				//创建ul
+				var oTwoBox = document.createElement('Ul');
+				//什么空字符串
+				var sTwoStr = '';
+				//给ul添加类名和id
+				oTwoBox.className = 'firstBox_1';
+				oTwoBox.id = 'firstBox_1';
+				//获取所有的第一级的li
+				var firstChild = document.querySelectorAll('#firstChilds');
+				val.forEach(function(va,ind){
+//					给字符串拼接赋值
+					sTwoStr += '<li id="twoChilds" class="twoChilds"><div>'+va.sName+'</div></li>';
+					threeChilds[page] = va.childs;
+					page++;
+				});
+				//只要字符串不为空就追加
+				if(sTwoStr != undefined){
+					oTwoBox.innerHTML = sTwoStr;
+					firstChild[index].appendChild(oTwoBox)
+				}
+				
+			});
+			//第三层数据
+			threeChilds.forEach(function(val,index){
+				var oThreeBox = document.createElement('Ul');
+				var sThreeStr = '';
+				oThreeBox.className = 'firstBox_2';
+				oThreeBox.id = 'firstBox_2';
+				var oTwoChild = document.querySelectorAll('#twoChilds');
+				val.forEach(function(va,ind){	
+					sThreeStr += '<li id="threeChilds"class="threeChilds"><div>'+va.sName+'</div></li>';	
+				});	
+				if(sThreeStr != undefined){
+					oThreeBox.innerHTML = sThreeStr;
+					oTwoChild[index].appendChild(oThreeBox)
+				}
+			});
+		},function(){
+			console.log(111);
+		});
+		
+		//
+		
+		
+	});
+
+	//封装getJson
+	function getJson(url,data,sucecss,error){
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET',url,'true');
+		xhr.send(data);
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4){
+				if(xhr.status == 200){
+					sucecss(xhr.response);
+				}else{
+					error();
+				}
+			}
+		}			
+	}
+})()
+</script>
+	</body>
+</html>

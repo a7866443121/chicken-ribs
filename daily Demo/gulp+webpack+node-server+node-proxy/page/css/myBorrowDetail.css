@@ -1,0 +1,119 @@
+@import url("./initialize.css");
+@charset "utf-8";
+/*头部*/
+.body{
+	overflow: auto;
+}
+header{
+	position:relative;
+	padding: 30px;
+	background-color: #fff;
+	text-align: center;
+}
+header .icon{
+	color: #2E59FF;
+	font-size: 3.2rem;
+}
+header .record{
+	position:absolute;
+	top: 30px;
+	right:30px;
+	color: #2E59FF;
+}
+/*详情列表*/
+.list-box{
+	background-color: #fff;
+	margin-top: 20px;
+	padding: 0 30px;
+}
+.list-box .list-head{
+	position: relative;
+	padding: 24px 0 24px 20px;
+	border-bottom: 1px solid #E6E6E6;
+}
+.list-box .list-head:before{
+	position: absolute;
+	top: 28px;
+	left: -10px;
+	content: '';
+	width: 8px;
+	height: 30px;
+	border-radius: 8px;
+	background-color: #2E59FF;
+}
+.list-box li{
+	padding: 24px 0;
+	border-bottom: 1px solid #E6E6E6;
+}
+.list-box li .fr{
+	display: inline-block;
+	text-align: right;
+	max-width: 80%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.list-box li:last-child{
+	border-bottom: 0;
+}
+
+/*审批进度弹窗*/
+.layer{
+	position: absolute;
+}
+.layer .layer-body{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: #fff;
+}
+.layer-body{
+	height: 60%;
+}
+.layer .layer-body .progress-title{
+	text-align: center;
+	padding: 22px 30px;
+	font-weight: bold;
+}
+.layer .layer-body .progress-title .icon{
+	font-weight: normal;
+}
+.layer .examines-progress ul{
+	position: relative;
+}
+.layer .examines-progress ul:before{
+	content: '';
+	position: absolute;
+	top: 36px;
+	left: 36px;
+	width: 2px;
+	height: calc(100% - 86px);
+	background-color: #2E59FF;
+}
+.layer .layer-body ul li{
+	position: relative;
+	padding: 24px 30px;
+}
+.layer .examines-progress ul li{
+	position: relative;
+	padding: 24px 30px 24px 76px;
+}
+.layer .examines-progress ul li .point{
+	position: absolute;
+	top: 35px;
+	left: 30px;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background-color: #2E59FF;
+}
+.layer .back-plan ul .border-bottom{
+	padding: 10px 0;
+}
+.examines-progress-content,.backPlan-content{
+	height: calc(100% - 83px);
+	overflow-y: auto;
+	overflow-x: hidden;
+}

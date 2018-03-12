@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body onload="init()">
+		<div id="container" style="width:500px; height:300px"></div>
+	</body>
+	<script charset="utf-8" src="http://map.qq.com/api/js"></script>
+	<script type="text/javascript" charset="UTF-8" src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js "></script>
+	<script>
+		var citylocation, map, marker = null;
+		var init = function() {
+			var center = new qq.maps.LatLng(39.916527, 116.397128);
+			var city = document.getElementById("city");
+			map = new qq.maps.Map(document.getElementById('container'), {
+				center: center,
+				zoom: 13
+			});
+			//调用城市服务信息
+			citylocation = new qq.maps.CityService({
+				complete: function(results) {
+					map.setCenter(results.detail.latLng);
+					city.style.display = 'inline';
+					city.innerHTML = '所在位置: ' + results.detail.name;
+					if(marker != null) {
+						marker.setMap(null);
+					}
+					//设置marker标记
+					marker = new qq.maps.Marker({
+						map: map,
+						position: results.detail.latLng
+					});
+				}
+			});
+		}
+		//定位实例
+		function geolocation_latlng() {
+			var geolocation = new qq.maps.Geolocation('ZVIBZ-57PH6-GNSS7-MAWUX-NXW2O-O5FHU', 'mymap');
+			var options = { timeout: 8000 };
+			geolocation.getLocation(showPosition, showErr, options);
+			//定位成功,并展示
+			function showPosition(position) {
+				//设置经纬度信息
+				var latLng = new qq.maps.LatLng(position.lat, position.lng);
+				//调用城市经纬度查询接口实现经纬查询
+				citylocation.searchCityByLatLng(latLng);
+			}
+			//定位失败的回调
+			function showErr() {
+
+			}
+		}
+		var center = new qq.maps.LatLng(39.914850, 116.403765);
+		var map = new qq.maps.Map(
+			document.getElementById("container"), {
+				center: center,
+				zoom: 13
+			}
+		);
+		var marker = new qq.maps.Marker({
+			position: center,
+			map: map
+		});
+		geolocation_latlng();
+	</script>
+
+</html>

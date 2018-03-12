@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <meta name="format-detection" content="telephone=no" />
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>	    
+	    <meta name="x5-orientation" content="portrait">
+	    <meta http-equiv="pragma" content="no-cache">
+	    <meta http-equiv="cache-control" content="no-cache">
+		<title>我的借款</title>
+		<script>
+			(function(){					
+				window.onresize = scaleBody;
+				function scaleBody(){
+					var standard = 60;
+					var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+					isiOS ? standard = 30 : standard = 60;
+					document.documentElement.style.cssText = 'zoom:'+window.innerWidth/750+';font-size:'+standard*(window.innerWidth/750)+'px;';
+				}
+				scaleBody();
+			})();
+		</script>
+		<link rel="stylesheet" type="text/css" href="../css/myBorrowDetail.css"/>
+	</head>
+	<body>
+		<div class="body" id="body">
+			<header id="header">
+				<i class="icon iconfont">&#xe604;</i>
+				<p class="f-14">&nbsp;</p>
+				<span class="record f-14" id="record">审批记录</span>
+			</header>
+			<!--列表-->
+			<ul class="list-box" id="user_info">
+				<div class="list-head">意向信息</div>
+				<li>申请时间<span class="fr">&nbsp;</span></li>
+				<li>姓名<span class="fr">&nbsp;</span></li>
+				<li>手机号<span class="fr">&nbsp;</span></li>
+			</ul>
+			<ul class="list-box" id="car_info">
+				<!--<li>标题名<span class="fr">标题内容</span></li>
+				<li>标题名<span class="fr">标题内容</span></li>
+				<li>标题名<span class="fr">标题内容</span></li>
+				<li>标题名<span class="fr">标题内容</span></li>
+				<li>标题名<span class="fr">标题内容</span></li>-->
+			</ul>
+			<ul class="list-box" id="business_info">
+				<div class="list-head">业务信息</div>
+				<li>订单流水号<span class="fr">&nbsp;</span></li>
+				<li>业务员<span class="fr">&nbsp;</span></li>
+				<li>实际放款金额(元)<span class="fr">&nbsp;</span></li>
+				<li>贷款期数(期)<span class="fr">&nbsp;</span></li>
+				<li>执行利率<span class="fr">&nbsp;</span></li>
+				<li>还款计划<span class="fr f-grey" id="toView">&nbsp;<i class="icon iconfont">&#xe676;</i></span></li>
+			</ul>
+		</div>
+		<!--进度弹窗-->
+		<div class="layer hidden" id="recordLayer">
+			<div class="layer-body examines-progress">
+				<div class="progress-title">审批记录<i class="icon iconfont fr f-18" id="close_recordLayer">&#xe685;</i></div>
+				<div class="examines-progress-content"><ul id="examines_progress"></ul></div>
+			</div>
+		</div>
+		<!--还款计划弹窗-->
+		<div class="layer" id="backPlan">
+			<div class="layer-body back-plan">
+				<div class="progress-title">还款计划<i class="icon iconfont fr f-18" id="close_backPlan">&#xe685;</i></div>
+				<ul class="backPlan-content" id="backPlan_content"></ul>
+			</div>
+		</div>
+		<div id="tost_" class="tost mui-hidden"></div>
+	</body>
+	<script type="text/javascript" src="../js/wx/wx.js" ></script>
+	<script type="text/javascript" src="../js/myBorrowDetail.js"></script>
+</html>

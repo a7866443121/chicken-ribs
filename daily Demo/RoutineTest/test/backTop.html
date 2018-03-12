@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+	</head>
+	<style>
+		*{margin: 0;padding: 0;}
+		html{font-size: 10px;}
+		
+		body{margin: auto;font-size: 12px;}
+		.container{width: 100%;}
+		.list{width: 100%;}
+		li{width: 100%;}
+		img{width: 100%;}
+		.retru{position: fixed;bottom: 1em;right: 1em;width: 3em;height: 3em;}
+		.retru img{width: 100%;}
+	</style>
+	<body>
+		<div class="container">
+		    <ul class="list">
+		        <li>
+		            <img src="img/binner3.jpg"/>
+		        </li>
+		        <li>
+		            <img src="../test1/img/binner1.jpg"/>
+		        </li>
+		        <li>
+		           <img src="../test1/img/binner2.jpg"/>
+		        </li>
+		        <li>
+		           <img src="img/binner4.jpg"/>
+		        </li>
+		        <li>
+		           <img src="img/binner3.jpg"/>
+		        </li>
+		        <li>
+		           <img src="../test1/img/binner2.jpg"/>
+		        </li>
+		        <li>
+		            <img src="img/binner3.jpg"/>
+		        </li>
+		        <li>
+		            <img src="../test1/img/binner1.jpg"/>
+		        </li>
+		        <li>
+		           <img src="../test1/img/binner2.jpg"/>
+		        </li>
+		        <li>
+		           <img src="img/binner4.jpg"/>
+		        </li>
+		        <li>
+		           <img src="img/binner3.jpg"/>
+		        </li>
+		        <li>
+		           <img src="../test1/img/binner2.jpg"/>
+		        </li>
+		        <li>
+		            <img src="img/binner3.jpg"/>
+		        </li>
+		        <li>
+		            <img src="../test1/img/binner1.jpg"/>
+		        </li>
+		        <li>
+		           <img src="../test1/img/binner2.jpg"/>
+		        </li>
+		        <li>
+		           <img src="img/binner4.jpg"/>
+		        </li>
+		        <li>
+		           <img src="img/binner3.jpg"/>
+		        </li>
+		        <li>
+		           <img src="../test1/img/binner2.jpg"/>
+		        </li>
+		        <li>
+		            <img src="img/binner3.jpg"/>
+		        </li>
+		        <li>
+		            <img src="../test1/img/binner1.jpg"/>
+		        </li>
+		        <li>
+		           <img src="../test1/img/binner2.jpg"/>
+		        </li>
+		        <li>
+		           <img src="img/binner4.jpg"/>
+		        </li>
+		        <li>
+		           <img src="img/binner3.jpg"/>
+		        </li>
+		        <li>
+		           <img src="../test1/img/binner2.jpg"/>
+		        </li>
+		    </ul>
+		</div>
+		<div class="retru" id="retru">
+			<img src="img/fanHuiDingBu.png"/>
+		</div>
+	</body>
+	<script>
+		function fBackTop(el){
+			var oRetru = document.getElementById(el);
+			oRetru.addEventListener('click',function(){ 
+				var doc = document.body.scrollTop ? document.body : document.documentElement;
+				var nScrollTop = doc.scrollTop;
+				var top = function(){
+					nScrollTop = nScrollTop - nScrollTop / 2;
+					if(nScrollTop < 1){
+						doc.scrollTop = 0;
+						return;
+					}
+					doc.scrollTop = nScrollTop;
+					setTimeout(top,30);
+				}
+				top();
+			});
+		}
+		new fBackTop("retru");
+	</script>
+</html>

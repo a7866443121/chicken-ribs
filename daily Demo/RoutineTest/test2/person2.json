@@ -1,0 +1,127 @@
+{
+	"respCode": 1,
+	"respMsg": "成功！",
+	"respData": {},
+	"respMap": {
+		"loanInfo": [
+			{
+				"surplus_amount": 6711,
+				"the_limit": 3,
+				"repay_date": "2017-03-10",
+				"repay_amount": 3372.25,
+				"current_fee_type": 0,
+				"fee_type": 0,
+				"isArrears": 0,
+				"clmWxPayRecords": [
+					{
+						"repay_YM": "201701",
+						"pay_real_date": "2017-01-11",
+						"pay_status": 3,
+						"overdays": 1,
+						"pay_amount": 3356,
+						"over_pay_amount": 301,
+						"over_Repay_date": "2017-01-10",
+						"createDateStr": "",
+						"tidWithPrefix": "",
+						"updateDateStr": ""
+					}, {
+						"repay_YM": "201702",
+						"pay_real_date": "2017-02-11",
+						"pay_status": 3,
+						"overdays": 1,
+						"pay_amount": 3355,
+						"over_pay_amount": 300,
+						"over_Repay_date": "2017-02-10",
+						"createDateStr": "",
+						"tidWithPrefix": "",
+						"updateDateStr": ""
+					}
+				],
+				"clmWxCreditInfoVo": {
+					"product_name": "弘高1月18诸暨农商测试",
+					"loan_limit": 24,
+					"loan_amount": 70000,
+					"month_payment": 3355,
+					"loan_status": 0,
+					"createDateStr": "",
+					"tidWithPrefix": "",
+					"updateDateStr": ""
+				},
+				"createDateStr": "",
+				"tidWithPrefix": "",
+				"updateDateStr": ""
+			}, {
+				"surplus_amount": 12884.06,
+				"the_limit": 4,
+				"repay_date": "2017-03-20",
+				"repay_amount": 2217.12,
+				"current_fee_type": 0,
+				"fee_type": 0,
+				"isArrears": 1,
+				"clmWxPayRecords": [
+					{
+						"repay_YM": "201703",
+						"pay_status": 0,
+						"overdays": 0,
+						"pay_amount": 2217.12,
+						"over_pay_amount": 0.01,
+						"over_Repay_date": "2017-03-10",
+						"createDateStr": "",
+						"tidWithPrefix": "",
+						"updateDateStr": ""
+					}, {
+						"repay_YM": "201703",
+						"pay_status": 0,
+						"overdays": 0,
+						"pay_amount": 1.56,
+						"over_pay_amount": 0.01,
+						"over_Repay_date": "2017-03-10",
+						"createDateStr": "",
+						"tidWithPrefix": "",
+						"updateDateStr": ""
+					}, {
+						"repay_YM": "201704",
+						"pay_status": 0,
+						"pay_amount": 5575.82,
+						"createDateStr": "",
+						"tidWithPrefix": "",
+						"updateDateStr": ""
+					}, {
+						"repay_YM": "201702",
+						"pay_real_date": "2017-02-14",
+						"pay_status": 1,
+						"pay_amount": 2217,
+						"createDateStr": "",
+						"tidWithPrefix": "",
+						"updateDateStr": ""
+					}, {
+						"repay_YM": "201701",
+						"pay_real_date": "2017-01-09",
+						"pay_status": 0,
+						"overdays": 0,
+						"pay_amount": 10667.06,
+						"over_pay_amount": 70.41,
+						"over_Repay_date": "2017-01-10",
+						"createDateStr": "",
+						"tidWithPrefix": "",
+						"updateDateStr": ""
+					}
+				],
+				"clmWxCreditInfoVo": {
+					"product_name": "精英贷",
+					"loan_limit": 36,
+					"loan_amount": 75000,
+					"month_payment": 2219,
+					"loan_status": 0,
+					"createDateStr": "",
+					"tidWithPrefix": "",
+					"updateDateStr": ""
+				},
+				"createDateStr": "",
+				"tidWithPrefix": "",
+				"updateDateStr": ""
+			}
+		]
+	},
+	"deviceType": "wx"
+}

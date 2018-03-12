@@ -1,0 +1,98 @@
+html,
+body {
+	-webkit-text-size-adjust: 100%;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+html,
+body,
+div,
+span,
+p,
+a,
+img,
+ul,
+li,
+label {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	vertical-align: baseline baseline;
+	background: transparent;
+}
+
+input {
+	outline: none;
+	padding: 0;
+	margin: 0;
+}
+button{-webkit-appearance: none; border-radius:0;}
+input,
+textarea {
+	-webkit-appearance: @none;
+}
+
+a {
+	-webkit-tap-highlight-color: transparent;
+	text-decoration: none;
+	color: #323232;
+}
+i{
+	font-style: inherit;
+}
+.body {
+	width: 100%;
+	max-width: 1024px;
+	min-width: 280px;
+	height: 100%;
+	margin: auto;
+	font-size: 1.4rem;
+}
+
+.fn-clear::after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+.fn-clear {
+	zoom: 1;
+}
+::-webkit-scrollbar{
+	width: 0;
+	height: 0;
+}
+::-webkit-scrollbar-thumb{
+	width: 0;
+	height: 0;
+} 
+::-webkit-scrollbar-track{
+	width: 0;
+	height: 0;
+} 
+::-webkit-scrollbar-button{
+	width: 0;
+	height: 0;
+}
+::-webkit-scrollbar-track-piece{
+	width: 0;
+	height: 0;
+}
+::-webkit-scrollbar-corner{
+	width: 0;
+	height: 0;
+}
+::-webkit-resizer{
+	width: 0;
+	height: 0;
+}
+.font-red .iconfont{
+	color: #FF0000;
+}
+.font-red .mui-media-body{
+	color: #FF0000 !important;
+}

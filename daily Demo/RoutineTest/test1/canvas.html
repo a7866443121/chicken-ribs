@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>多列等宽布局</title>
+    <style type="text/css">
+    html{
+    	margin: 0;padding: 0;
+    }
+    body{
+    	font-size: 12px;
+    	margin: 0 auto;padding: 0;
+    }
+    .canvas{
+    	width: 100%;
+    	max-width: 750px;
+	   	padding: 10px 0;
+    	margin: auto;
+    	background-color: #f1f2f3;
+    }
+   canvas{
+   	}
+    </style>
+</head>
+<body>
+    <div class="canvas">
+        <canvas id="canvas">
+        	您的设备不支持canvas~
+        </canvas>
+    </div>
+</body>
+<script>
+	(function(){
+		
+		function draw() {
+		    var canvas = document.getElementById('canvas');
+		    canvas.width = window.innerWidth > 750 ? 750 : window.innerWidth;
+		    canvas.height = 200;
+		    
+	 		if (canvas.getContext){
+	    		var ctx = canvas.getContext('2d');
+	    		var width = canvas.width,height=canvas.height;
+	    		var nDevicePR = window.devicePixelRatio;
+				if (nDevicePR) {
+					canvas.style.width = width + "px";
+					canvas.style.height = height + "px";
+					canvas.height = height * nDevicePR;
+					canvas.width = width * nDevicePR;
+					ctx.scale(1/ nDevicePR, 1/ nDevicePR);
+				}
+	    		//环占比	
+	    		var bluePi = 24/18;
+	    		var percentage = parseInt((1 - bluePi/2)*100);
+
+	    		var sRemain = '剩余应还';
+	    		var sMoney = '￥' + (100- percentage) + '%';
+	    		var sNper = '18期';
+	    		//绘制蓝色
+		        ctx.beginPath();
+		        ctx.lineWidth = 40*nDevicePR;
+		        ctx.lineCap = 'round';
+		        ctx.strokeStyle = '#0066ff';
+		        ctx.arc(canvas.width*nDevicePR/2, canvas.height*nDevicePR/2, canvas.height*nDevicePR/2-ctx.lineWidth, 0, Math.PI*2, false);
+			    ctx.fillStyle = 'rgba(0,0,0,0)';
+	            ctx.stroke();
+	            ctx.closePath();            
+	            //绘制绿色环
+	            ctx.beginPath();	
+		        ctx.lineWidth = 40*nDevicePR;
+		        ctx.strokeStyle = '#008000';
+		        ctx.arc(canvas.width*nDevicePR/2, canvas.height*nDevicePR/2, canvas.height*nDevicePR/2-ctx.lineWidth, 0,Math.PI*bluePi, false);
+			    ctx.fillStyle = 'rgba(0,0,0,0)';
+	            ctx.stroke();
+	            ctx.closePath();            
+	            //文字
+	            ctx.beginPath();
+	            var sFontSize,nLineHeight;
+	            if(nDevicePR <=2.1){
+		            nLineHeight = 40*nDevicePR;
+		            sFontSize = ""+2*nDevicePR+"em 微软雅黑"; 
+	            }else{
+	            	nLineHeight = 60*nDevicePR;
+	            	sFontSize = ""+4*nDevicePR+"em 微软雅黑"; 
+	            }
+				console.log(nDevicePR+'-'+sFontSize);
+	            ctx.font = sFontSize;    
+	            ctx.textAlign = 'center';
+	            ctx.fillStyle = '#8a8a8a';
+	            ctx.fillText(sRemain,canvas.width*nDevicePR/2, canvas.height*nDevicePR/2-nLineHeight);
+	            ctx.fillStyle = '#000';
+	            ctx.fillText(sMoney,canvas.width*nDevicePR/2, canvas.height*nDevicePR/2);
+	            ctx.fillStyle = '#0066FF';
+	            ctx.fillText(sNper,canvas.width*nDevicePR/2, canvas.height*nDevicePR/2+nLineHeight);
+	            ctx.closePath();  
+	    	}
+		}
+		draw();
+		window.onresize = function(){
+			 var canvas = document.getElementById('canvas');
+			 var ctx = canvas.getContext('2d');
+			 ctx.clearRect(0,0,canvas.width,canvas.height);
+			 draw();
+		}
+	})()
+	
+	function rem(){
+	    if (!document.addEventListener)return ; 
+	    var oDocEl = document.documentElement;
+	    var resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+	    var recalc = function () {
+	        if (!oDocEl.clientWidth) return ;
+	        if(oDocEl.clientWidth >= 750){
+	            oDocEl.style.fontSize = '100px';
+	        }else{
+	            oDocEl.style.fontSize = 100 * (oDocEl.clientWidth / 750) + 'px';
+	        }
+	    };
+	    window.addEventListener(resizeEvt, recalc, false);
+	    document.addEventListener('DOMContentLoaded', recalc, false);		
+	}
+	rem();
+</script>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		body,div{margin: 0;padding: 0;}
+		.body{margin: 0 auto;font-size: 0;}
+		.map{
+			position: relative;
+			width: 300px;
+			height: 400px;
+			display: inline-block;
+			border: 1px solid #000;
+		}
+		.hint{
+			width: 200px;
+			height: 400px;
+			display: inline-block;
+			border: 1px solid #000;
+			border-left: 0;
+		}
+		.brick{
+			position: absolute;
+			width: 10px;
+			height: 10px;
+			background-color: rgba(100,100,255,0.5);
+			border-radius: 30%;
+			clear: both;
+		}
+		.spot{
+			position: absolute;
+			width: 10px;
+			height: 10px;
+			background-color: rgba(255,100,100,0.5);
+			border-radius: 30%;
+			clear: both;
+		}
+	</style>
+	<body>
+		<div class="body">
+			<div class="map">
+				<div class="snake" id="snakeBox">
+					<div class="brick" id="brick" style="left: 10px;top: 0px;"></div>
+					<div class="brick" id="brick" style="left: 20px;top: 0px;"></div>
+					<div class="brick" id="brick" style="left: 30px;top: 0px;"></div>				
+					<div class="brick" id="brick" style="left: 40px; top: 0px; background-color: rgba(230,12,12,0.5);"></div>
+				</div>
+				<div class="spot" id="spot" style="left: 60px;top: 0px;">
+					
+				</div>
+			</div>
+	
+		</div>
+	</body>
+	<script>
+		function snake(){}
+		snake.prototype = {
+			setting:function(setting){
+				this.sSnakeId = setting.sSnakeId;
+				this.sSpotId = setting.sSpotId;
+				this.sSnakeBoxId = setting.sSnakeBoxId;
+				
+			},
+			//list()
+			list:function(){
+				this.sSnakeBox = document.getElementById(this.sSnakeBoxId);
+				this.oSpot = document.getElementById(this.sSpotId);
+				return this;
+			},
+			//go()
+			go:function(direction){
+				var aList = snake.list().sSnakeBox.children;
+				var oSpot = snake.list().oSpot;
+				var page = aList.length-1;
+				var aListLeft = [];
+				var aListTop = [];
+				
+				var stv;
+				
+				console.log(page)
+				while(page--){
+					switch (direction){
+						case 'L':
+							snake.snakeShift()
+							aListLeft[i] -= 10;
+							break;
+						case 'R':
+							aListLeft[i] += 10;
+							break;
+						case 'U':
+							aListTop[i] -= 10;a
+							break;
+						case 'D':
+							aListTop[i] += 10;
+							break;
+						default:
+							break;
+					}
+				}
+				
+						
+			},
+			snakeShift:function(){
+				var aList = snake.list().sSnakeBox.children;
+				var oSpot = snake.list().oSpot;
+				var aListLeft = [];
+				var aListTop = [];
+				var page = aList.length;
+				stv = setInterval(function(){
+					snake.eat();
+					for(var i = 0; i < aList.length;i++){
+						//蛇身的位置
+						aListLeft[i] = parseInt(aList[i].style.left.split('px'));
+						
+						aListTop[i] = parseInt(aList[i].style.top.split('px'));
+						//蛇头					
+						aListLeft[i] += 10;
+						aList[i].style.left = aListLeft[i]+'px';
+					}
+					page--;
+				},1000)
+			},
+			//蛇吃
+			eat:function(){
+				var aList = snake.list().sSnakeBox.children;
+				var oSpot = snake.list().oSpot;
+				//获取蛇头和点的坐标位置
+				var spotPlaceX = parseInt(oSpot.style.left.split('px'));
+				var spotPlaceY = parseInt(oSpot.style.top.split('px'));
+				var snakePlaceX = parseInt(aList[aList.length-1].style.left.split('px'));
+				var snakePlaceY = parseInt(aList[aList.length-1].style.top.split('px'));
+				//判断是否相等
+				if(spotPlaceX==snakePlaceX&&spotPlaceY==snakePlaceY){
+					snake.grow();					
+				}
+			},
+			//蛇生长
+			grow:function(){
+				var sSnakeBox = snake.list().sSnakeBox;
+				var aList = snake.list().sSnakeBox.children;
+				var oSpot = snake.list().oSpot;
+				var newChild = aList[0];
+				var newSnake = newChild.cloneNode(true);
+				sSnakeBox.insertBefore(newSnake,aList[0]);
+				var a = parseInt(aList[0].style.left.split('px'))-10+'px';
+				aList[0].style.left = a;
+			},
+			keyDwon:function(){
+				window.onkeydown = function(e){			
+					switch (e.keyCode){
+						case 65:
+							snake.go('L') ;
+							break;
+						case 68:
+							snake.go('R') ;
+							break;
+						case 87:
+							snake.go('U') ;
+							break;
+						case 83:
+							snake.go('D') ;
+							break;
+						default:
+							break;
+					}
+				}
+			}
+			
+		}
+		
+		
+	
+		var snake = new snake();
+		snake.setting({
+			sSnakeId:'brick',
+			sSnakeBoxId:'snakeBox',
+			sSpotId:'spot'
+		})
+		snake.go();
+		snake.keyDwon();
+	</script>
+</html>

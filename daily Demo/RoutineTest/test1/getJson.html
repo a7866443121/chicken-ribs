@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="btn">点我</button>
+		
+	</body>
+	<script>
+		function getJson(url,data,sucecss,error){
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST',url,'true');
+			xhr.send(data);
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState == 4){
+					if(xhr.status == 200){
+						sucecss(xhr.response);
+					}else{
+						error();
+					}
+				}
+			}			
+		}
+		document.getElementById("btn").addEventListener('click',function(){
+			getJson('json/a1.json','none',function(res){
+				console.log(res);
+			},function(){
+				console.log(111);
+			})
+		});
+	</script>
+</html>

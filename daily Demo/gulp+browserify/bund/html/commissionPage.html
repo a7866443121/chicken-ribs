@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <meta name="apple-mobile-web-app-capable" content="no">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <meta name="format-detection" content="telephone=no" />
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>	    
+	    <meta name="x5-orientation" content="portrait">
+	    <meta http-equiv="pragma" content="no-cache">
+	    <meta http-equiv="cache-control" content="no-cache">
+		<title>我的佣金</title>
+		<script>
+			(function(){					
+				window.onresize = function(){
+					scaleBody();
+				}
+				function scaleBody(){
+					var stand = 60;
+					var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+					isiOS ? stand = 30 : stand = 60;
+					document.documentElement.style.cssText = 'zoom:'+window.innerWidth/750+';font-size:'+stand*(window.innerWidth/750)+'px;';	
+				}
+				scaleBody();
+			})();
+		</script>
+		<link rel="stylesheet" href="../css/commissionPage.css" />
+	</head>
+	<body class="bg-white">
+		<div class="body" id="body">
+			<div class="content">
+				<div class="top bg-theme f-white">
+					<p class="f-15 op-8">可提现余额</p>
+					<div class="text-center" id="topMoney">
+						<p class="f-20 mt10"><span class="data-nowMoney">0</span> 元</p>
+						<!--<p class="f-13 mt10 op-5">当前有<span class="data-iceMoney">0.00</span>元佣金提现申请正在处理中。</p>-->
+					</div>
+				</div>
+				<ul class="tab">
+					<li class="tab1 active">收入记录</li>
+					<li class="tab2">提现记录</li>
+				</ul>
+				<div class="tab-content">
+					<ul class="tab1 active" id="getMoney">
+						<!--<li>
+							<div class="text-left">
+								<span class="data-getTime f-grey f-13">2017-12-30 14:00:00</span>
+								<p class="mt10 f-14">推荐 <span class="data-rcommName">张喵喵</span>（<span class="data-rcommPhone">178 9999 8888</span>）</p>
+							</div>
+							<div class="text-right data-getMoney f-theme f-15">+400元</div>
+						</li>-->
+					</ul>
+					<ul class="tab2" id="reduceMoney">
+						<!--<li>
+							<div class="text-left">
+								<span class="data-reduceTime f-grey f-13">2017-12-30 14:00:00</span>
+								<p class="mt10 f-14">提现</p>
+							</div>
+							<div class="text-right">
+								<span class="data-reduceMoney f-15">-400.00元</span>
+								<span class="tag f-theme f-13">处理中</span>
+							</div>						
+						</li>-->
+					</ul>
+				</div>
+			</div>				
+			<!--<div class="border-top btnBox"><div class="btn">去提现</div></div>-->
+			<div class="tost mui-hidden" id="tost_"></div>
+		</div>
+	</body>	
+	<script type="text/javascript" src="../js/jquery-2.1.0.js" ></script>
+	<script type="text/javascript" src="../js/wx/wx.js" ></script>
+	<script type="text/javascript" src="../js/commissionPage.js" ></script>
+</html>

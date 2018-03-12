@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>cb gallery</title>
+<style>
+* { margin:0; padding:0;}
+h1 { margin:20px auto; width:700px; font:700 24px/30px 'microsoft yahei'; text-align:center;}
+.type { margin:0 auto; width:700px; font-size:14px; line-height:21px; text-align:center;}
+.gallery { position:relative; margin:20px auto; width:700px; height:300px; overflow:hidden; border:5px solid #ddd;}
+.gallery ul { list-style:none; }
+.gallery img { display:block; width:100%;}
+
+/* 指示器 */
+.indicator { position:absolute; bottom:10px; left:0; width:100%; font-size:0; text-align:center;}
+.indicator i { margin:0 5px; display:inline-block; width:10px; height:10px; background:#fff; border-radius:50%; box-shadow:0 1px 1px rgba(0,0,0,.1);}
+.indicator i:first-child::before { margin:2px; display:block; width:6px; height:6px; background:#e33; content:''; border-radius:50%; -webkit-animation:indicate 12s ease 0 infinite; animation:indicate 12s ease 0 infinite;}
+@-webkit-keyframes 'indicate' {
+	25% { -webkit-transform:translateX(0);}
+	30%, 50% { -webkit-transform:translateX(20px);}
+	55%, 75% { -webkit-transform:translateX(40px);}
+	80%, to { -webkit-transform:translateX(60px);}
+}
+@keyframes 'indicate' {
+	25% { transform:translateX(0);}
+	30%, 50% { transform:translateX(20px);}
+	55%, 75% { transform:translateX(40px);}
+	80%, to { transform:translateX(60px);}
+}
+
+/* 淡入淡出 */
+.fade li { position:absolute; top:0; left:0; opacity:0;}
+.fade li:nth-child(1) { -webkit-animation:fade 12s ease 0 infinite; animation:fade 12s ease 0 infinite;}
+.fade li:nth-child(2) { -webkit-animation:fade 12s ease 3s infinite; animation:fade 12s ease 3s infinite;}
+.fade li:nth-child(3) { -webkit-animation:fade 12s ease 6s infinite; animation:fade 12s ease 6s infinite;}
+.fade li:nth-child(4) { -webkit-animation:fade 12s ease 9s infinite; animation:fade 12s ease 9s infinite;}
+@-webkit-keyframes 'fade' {
+	5%, 25% { opacity:1;}
+	30% { opacity:0;}
+}
+@keyframes 'fade' {
+	5%, 25% { opacity:1;}
+	30% { opacity:0;}
+}
+
+/* 横向滚动 */
+.roll li { position:absolute; top:0; left:100%; }
+.roll li:nth-child(1) { -webkit-animation:roll 12s ease 0 infinite; animation:roll 12s ease 0 infinite;}
+.roll li:nth-child(2) { -webkit-animation:roll 12s ease 3s infinite; animation:roll 12s ease 3s infinite;}
+.roll li:nth-child(3) { -webkit-animation:roll 12s ease 6s infinite; animation:roll 12s ease 6s infinite;}
+.roll li:nth-child(4) { -webkit-animation:roll 12s ease 9s infinite; animation:roll 12s ease 9s infinite;}
+@-webkit-keyframes 'roll' {
+	5%, 25% { -webkit-transform:translateX(-700px);}
+	30%, to { -webkit-transform:translateX(-1400px);}
+}
+@keyframes 'roll' {
+	5%, 25% { transform:translateX(-700px);}
+	30%, to { transform:translateX(-1400px);}
+}
+
+/* 缩放 */
+.zoom li { position:absolute; top:0; left:0; opacity:0; -webkit-transform:scale(.01);}
+.zoom li:nth-child(1) { -webkit-animation:zoom 12s ease 0 infinite; animation:zoom 12s ease 0 infinite;}
+.zoom li:nth-child(2) { -webkit-animation:zoom 12s ease 3s infinite; animation:zoom 12s ease 3s infinite;}
+.zoom li:nth-child(3) { -webkit-animation:zoom 12s ease 6s infinite; animation:zoom 12s ease 6s infinite;}
+.zoom li:nth-child(4) { -webkit-animation:zoom 12s ease 9s infinite; animation:zoom 12s ease 9s infinite;}
+@-webkit-keyframes 'zoom' {
+	5%, 25% { opacity:1; -webkit-transform:scale(1);}
+	30% { opacity:0; -webkit-transform:scale(.01);}
+}
+@keyframes 'zoom' {
+	5%, 25% { opacity:1; transform:scale(1);}
+	30% { opacity:0; transform:scale(.01);}
+}
+
+/* 百叶窗 */
+.shutter li { position:absolute; top:0; bottom:0; left:0; right:0; overflow:hidden;}
+.shutter li img { display:none;}
+.shutter li::before, .shutter li i::before, .shutter li i::after, .shutter li::after { float:left; display:block; width:25%; height:100%; content:''; -webkit-transform:rotateY(-90deg); transform:rotateY(-90deg);}
+.shutter li:nth-child(1)::before, .shutter li:nth-child(1) i::before, .shutter li:nth-child(1) i::after, .shutter li:nth-child(1)::after { background-image:url(http://www.w3cfuns.com/data/attachment/album/201411/14/113055bgmimu2ffbmuuff2.jpg); -webkit-animation:shutter 12s ease 0 infinite; animation:shutter 12s ease 0 infinite;}
+.shutter li:nth-child(2)::before, .shutter li:nth-child(2) i::before, .shutter li:nth-child(2) i::after, .shutter li:nth-child(2)::after { background-image:url(http://www.w3cfuns.com/data/attachment/album/201411/14/113055j653jq3jx8ce5qcj.jpg); -webkit-animation:shutter 12s ease 3s infinite; animation:shutter 12s ease 3s infinite;}
+.shutter li:nth-child(3)::before, .shutter li:nth-child(3) i::before, .shutter li:nth-child(3) i::after, .shutter li:nth-child(3)::after { background-image:url(http://www.w3cfuns.com/data/attachment/album/201411/14/113056k5bvb859505982zb.jpg); -webkit-animation:shutter 12s ease 6s infinite; animation:shutter 12s ease 6s infinite;}
+.shutter li:nth-child(4)::before, .shutter li:nth-child(4) i::before, .shutter li:nth-child(4) i::after, .shutter li:nth-child(4)::after { background-image:url(http://www.w3cfuns.com/data/attachment/album/201411/14/113056muggpdblprgdgjj5.jpg); -webkit-animation:shutter 12s ease 9s infinite; animation:shutter 12s ease 9s infinite;}
+.shutter li::before { background-position:0 0;}
+.shutter li i::before { background-position:33.33% 0;}
+.shutter li i::after { background-position:66.66% 0;}
+.shutter li::after { background-position:100% 0;}
+@-webkit-keyframes 'shutter' {
+	5%, 25% { -webkit-transform:rotateY(0);}
+	30%, to { -webkit-transform:rotateY(90deg);}
+}
+@keyframes 'shutter' {
+	5%, 25% { transform:rotateY(0);}
+	30%, to { transform:rotateY(90deg);}
+}
+
+/* 3D效果 */
+.three-D { height:100%; background:#eee;}
+.three-D li { position:absolute; top:0; bottom:0; left:0; right:0; margin:auto; width:70%; height:70%; overflow:hidden; opacity:0; box-shadow:0 2px 3px rgba(0,0,0,.1); -webkit-transform:translateX(250px) scale(.7); transform:translateX(250px) scale(.7);}
+.three-D li:nth-child(1) { -webkit-animation:three-Dm 12s ease 0 infinite; animation:three-Dm 12s ease 0 infinite;}
+.three-D li:nth-child(2) { -webkit-animation:three-D 12s ease 0 infinite; animation:three-D 12s ease 0 infinite;}
+.three-D li:nth-child(3) { -webkit-animation:three-D 12s ease 3s infinite; animation:three-D 12s ease 3s infinite;}
+.three-D li:nth-child(4) { -webkit-animation:three-D 12s ease 6s infinite; animation:three-D 12s ease 6s infinite;}
+@-webkit-keyframes 'three-D' {
+	5%, 25% { opacity:.7; z-index:1; -webkit-transform:translateX(250px) scale(.7);}
+	30%, 50% { opacity:1; z-index:2; -webkit-transform:translateX(0) scale(1);}
+	55%, 75% { opacity:.7; z-index:1; -webkit-transform:translateX(-250px) scale(.7);}
+	76% { opacity:0; -webkit-transform:translateX(250px) scale(.7);}
+}
+@keyframes 'three-D' {
+	5%, 25% { opacity:.7; z-index:1; transform:translateX(250px) scale(.7);}
+	30%, 50% { opacity:1; z-index:2; transform:translateX(0) scale(1);}
+	55%, 75% { opacity:.7; z-index:1; transform:translateX(-250px) scale(.7);}
+	76% { opacity:0; transform:translateX(250px) scale(.7);}
+}
+@-webkit-keyframes 'three-Dm' {
+	5%, 25% { opacity:1; z-index:2; -webkit-transform:translateX(0) scale(1);}
+	30%, 50% { opacity:.7; z-index:1; -webkit-transform:translateX(-250px) scale(.7);}
+	51% { opacity:0; -webkit-transform:translateX(-250px) scale(.7);}
+	75% { opacity:0; -webkit-transform:translateX(250px) scale(.7);}
+	from, 76%, to { opacity:.7; z-index:1;}
+}
+@keyframes 'three-Dm' {
+	5%, 25% { opacity:1; z-index:2; transform:translateX(0) scale(1);}
+	30%, 50% { opacity:.7; z-index:1; transform:translateX(-250px) scale(.7);}
+	51% { opacity:0; transform:translateX(-250px) scale(.7);}
+	75% { opacity:0; transform:translateX(250px) scale(.7);}
+	from, 76%, to { opacity:.7; z-index:1;}
+}
+</style>
+</head>
+
+<body>
+	
+	<h1>CSS3图片轮播效果</h1>
+	<div id="gallery" class="gallery">
+		<ul class="fade">
+			<li><img src="images/binner1.jpg" /><i></i></li>
+			<li><img src="images/binner2.jpg" /><i></i></li>
+			<li><img src="images/binner3.jpg" /><i></i></li>
+			<li><img src="images/binner4.jpg" /><i></i></li>
+		</ul>
+		<p class="indicator">
+			<i></i>
+			<i></i>
+			<i></i>
+			<i></i>
+		</p>
+	</div>
+	<div id="type" class="type">
+		<label>请选择轮播效果：</label>
+		<select>
+			<option>淡入淡出</option>
+			<option>横向滚动</option>
+			<option>缩放</option>
+			<option>百叶窗</option>
+			<option>3D效果</option>
+		</select>
+	</div>
+	
+	<script>
+		window.onload = function(){
+			var type = document.getElementById('type').getElementsByTagName('select')[0],
+				gallery = document.getElementById('gallery').getElementsByTagName('ul')[0],
+				indicator = document.getElementById('gallery').getElementsByTagName('p')[0],
+				css = ['fade', 'roll', 'zoom', 'shutter', 'three-D'];
+			type.onchange = function(){
+				indicator.className = '';
+				setTimeout(function(){
+					gallery.className = css[type.selectedIndex];
+					indicator.className = 'indicator';
+				},10);
+			}
+		}
+	</script>
+
+</body>
+</html>

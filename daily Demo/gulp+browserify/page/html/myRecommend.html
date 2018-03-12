@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <meta name="format-detection" content="telephone=no" />
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>	    
+	    <meta name="x5-orientation" content="portrait">
+	    <meta http-equiv="pragma" content="no-cache">
+	    <meta http-equiv="cache-control" content="no-cache">
+		<title>我的推荐</title>
+		<script>
+			(function(){					
+				window.onresize = scaleBody;
+				function scaleBody(){
+					var standard = 60;
+					var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+					isiOS ? standard = 30 : standard = 60;
+					document.documentElement.style.cssText = 'zoom:'+window.innerWidth/750+';font-size:'+standard*(window.innerWidth/750)+'px;';
+				}
+				scaleBody();
+			})();
+		</script>
+		<link rel="stylesheet" type="text/css" href="../css/myRecommend.css"/>
+	</head>
+	<body>
+		<div class="body" id="body">
+			<ul id="myRecommend">
+				<!--<li class="my-borrow-li">
+					<div class="content">
+						<p class="f-14">2017.2.23 19:00</p>
+						<p class="f-15">王汪汪<span class="fr">12398741234</span></p>
+						<p class="f-15">车辆名称<span class="fr">2016款 Huracan LP 600-4 限量版</span></p>
+					</div>
+				</li>
+				<li class="my-borrow-li mark">
+					<div class="content">
+						<p class="f-14">2017.2.23 19:00</p>
+						<p class="f-15">王汪汪<span class="fr">12398741234</span></p>
+						<p class="f-15">车辆名称<span class="fr">2016款 Huracan LP 600-4 限量版</span></p>
+					</div>
+				</li>-->
+			</ul>
+		</div>
+		<div id="tost_" class="tost mui-hidden"></div>
+	</body>
+	<script type="text/javascript" src="../js/wx/wx.js" ></script>
+	<script type="text/javascript" src="../js/myRecommend.js"></script>
+</html>

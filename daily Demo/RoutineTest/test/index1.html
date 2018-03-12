@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		*{margin: 0;padding: 0;}
+		li{list-style: none;}
+	</style>
+	<body>
+		<div class="container">
+		    <ul class="list" id="list">
+		        <li id="test1">
+		            <a href="#">测试1</a>
+		        </li>
+		        <li id="test2">
+		            <a href="#">测试2</a>
+		        </li>
+		        <li id="test3">
+		            <a href="#">测试3</a>
+		        </li>
+		    </ul>
+		
+		    <div class="all-content">
+		        <ul class="content" id="content">
+		           
+		        </ul>
+		    </div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function person(name){
+			
+			this.name = name;
+			this.say = function(){
+				console.log('我的名字是:'+name[1]+'我的年龄是'+name[0]);
+			}
+		}
+		person.prototype.eat= function(){
+			console.log('吃饭');
+		}
+		
+		function men(age,name){
+			this.age = age;
+			person.call(this,arguments);
+			this.sayAge = function(){
+				console.log('我的年龄是'+age);
+			}
+		}
+		men.prototype = new person();
+		new men('23','张三').say();
+		new men().eat();
+		
+		(function(){
+			var postMassge = 'http://192.168.1.196:8020/demo/test/demo1.html';
+		
+		
+		
+		})()
+//		function animal(type) {
+//          this.type = type
+//          this.behavior = function(){
+//              console.log(this.type[0]+" is running")
+//          }
+//      }
+//
+//      function cat(name, type) {
+//          this.name = name
+//          //这里call的意思就是把animal的方法应用到cat这个对象身上
+//          //所以cat就继承了animal的方法
+//          //animal.call(this);//type undefined
+//          //animal.call(this,type);//type cute
+//          // animal.call(this,arguments[0]);//type cute
+//          animal.call(this,arguments);//type ['wsscat','cute']
+//         // animal.apply(this,arguments)//type: wsscat
+//      }
+//		new cat('wsscat','cute').behavior()
+////      console.log(new cat('wsscat','cute'))
+	</script>
+</html>

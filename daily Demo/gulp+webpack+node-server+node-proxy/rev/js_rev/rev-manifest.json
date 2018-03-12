@@ -1,0 +1,23 @@
+{
+  "addBankCard.js": "addBankCard.js?v=c11b807e80",
+  "borrow.js": "borrow.js?v=51768b2e6e",
+  "carChose.js": "carChose.js?v=98537ef1e7",
+  "cityChose.js": "cityChose.js?v=6bc6facb6f",
+  "commissionPage.js": "commissionPage.js?v=cdb5b0d4ee",
+  "comom.js": "comom.js?v=6947d5503f",
+  "cusRecommend.js": "cusRecommend.js?v=38e13c6cc5",
+  "infoUpload.js": "infoUpload.js?v=52e57d0d2d",
+  "jquery-2.js": "jquery-2.js?v=7009a99898",
+  "loanCalculate.js": "loanCalculate.js?v=7b48d0bf83",
+  "loanScheme.js": "loanScheme.js?v=499f6eef13",
+  "login.js": "login.js?v=f0dea027e0",
+  "mui.js": "mui.js?v=bd4326f131",
+  "myBorrow.js": "myBorrow.js?v=c70fe7a743",
+  "myBorrowDetail.js": "myBorrowDetail.js?v=978b76ec5c",
+  "myRecommend.js": "myRecommend.js?v=8b099ec2b1",
+  "myRecommendDetail.js": "myRecommendDetail.js?v=9759253840",
+  "personalCenter.js": "personalCenter.js?v=a463dcd9b5",
+  "picker.js": "picker.js?v=935be146e5",
+  "promptPage.js": "promptPage.js?v=291d505544",
+  "withdrawal.js": "withdrawal.js?v=17fed8b903"
+}

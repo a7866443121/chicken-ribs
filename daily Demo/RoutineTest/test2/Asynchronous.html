@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="css/lessdemo1.css"/>
+	<body>
+		<div id="el">
+			
+		</div>
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script>
+	<script>
+		(function(){
+			function aa(bb){
+				var b;
+				setTimeout(function(){
+					b =1;
+					bb(b);
+				},500);
+			}
+			function bb(s){
+				console.log(s);
+			}
+			aa(bb);
+			
+			function getSomething() {
+				var r = 0;
+				return new Promise(function(resolve) {
+				 	setTimeout(function() {
+						r = 2;
+						resolve(r);
+					}, 1000);
+				});
+			}
+				 
+			function compute(x) {
+			    console.log(x * 2);
+			}
+			getSomething().then(compute);
+			
+
+
+		})()
+		
+	</script>
+	</body>
+</html>

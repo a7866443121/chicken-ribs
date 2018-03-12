@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="x5-orientation" content="portrait">
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+    <script>
+			(function(win,doc){					
+				var winScale = function(){
+					var nScale = win.innerWidth/750;
+					doc.documentElement.style.cssText = 'height:'+1/nScale*100+'%;width:'+1/nScale*100+'%; font-size:'+60*nScale+'px; transform:scale('+nScale+','+nScale+'); transform-origin:left top;';
+				}
+				winScale();
+				win.onresize = winScale;
+			})(window,document);
+		</script>
+    <title>曰点钱</title>
+  </head>
+  <body>
+    <div id="index"></div>
+    <div id="tost_" class="tost"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>

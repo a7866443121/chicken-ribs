@@ -1,0 +1,26 @@
+@width:100px;
+@height:120px;
+@red:#ff0000;
+@solid-border:1px solid #000;
+@font-size:14px;
+.box-flex-row(){
+    display: box;              /* OLD - Android 4.4- */
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+.box-flex-1(){
+    -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */ 
+    -webkit-flex: 1;          /* Chrome */
+    flex: 1; 
+}
+div{
+    width: @width;
+    height: @height;
+    background-color: @red;
+    border: @solid-border;
+    font-size: @font-size;
+}
