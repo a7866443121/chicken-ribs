@@ -1,0 +1,88 @@
+
+		<div class="gray-wrap">
+			<!-- 筛选-start -->
+			<div class="filter-box mb-10" id="filterBox">
+				<div class="filter-item">
+					<label>交易状态：</label>
+					<div class="clearfix" style="margin-left: 70px;">
+						<span class="active">全部</span>
+						<span>已支付</span>
+						<span>已退款</span>
+					</div>
+				</div>
+				<div class="filter-item">
+					<label>检索内容：</label>
+					<div class="search-wrap ml-10 fl-l">
+						<input type="search" class="ipt search" placeholder="报告名称" />
+						<a href="javascript:;" class="search-btn"><i class="iconfont"></i></a>
+					</div>
+
+				</div>
+			</div>
+			<!-- 筛选-end -->
+			<!-- 套餐列表-start -->
+			<div class="white-wrap pt-10">
+				<div class="table-title">
+					<label>支付记录列表</label>
+				</div>
+				<table id="packageTab" class="table">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>订单号</th>
+							<th>姓名</th>
+							<th>企业名称</th>
+							<th>体检类型</th>
+							<th>定制套餐包</th>
+							<th>金额</th>
+							<th>支付方式</th>
+							<th>交易状态</th>
+							<th>创建时间</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>1245836</td>
+							<td>王大锤</td>
+							<td>微康信息</td>
+							<td>体检类型</td>
+							<td>基础套餐+妇科套餐</td>
+							<td>60</td>
+							<td>微信</td>
+							<td>已支付</td>
+							<td>创建时间</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- 套餐列表-end -->
+		</div>
+		<script>
+			//筛选条件
+			$("#filterBox .filter-item").on("click", "span", function() {
+				$(this).parent().find("span.active").removeClass("active");
+				$(this).addClass("active");
+				if($(this).hasClass("custom")){
+					$(this).next(".custom-box").show();
+				} else {
+					$(this).nextAll(".custom-box").hide();
+				}
+			})
+			
+			//数据切换
+			$(".table-title").on("click", "li", function() {
+				$(this).parent().find(".active").removeClass("active");
+				$(this).addClass("active");
+			})
+			
+			/*table初始化*/
+			var orderTab = $('#packageTab').DataTable({
+				searching: false, //禁止搜索
+				lengthChange: true, //条数显示选择
+				ordering: false, //允许点击表头排序
+				paging: false,
+				info: false,
+				scrollY: $("#windows", window.parent.document).val() - 378
+			});
+		</script>

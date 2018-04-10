@@ -1,0 +1,197 @@
+
+		<div class="tjxm-main clearfix">
+			<div class="tjxm-left">
+				<div class="table-title">
+					<label>体检系统项目</label>
+					<div class="fl-r">
+						<button class="btn-hol btn-hol-primary">同步项目</button>
+					</div>
+				</div>
+				<div class="filter-box">
+					<div class="filter-item clearfix">
+						<label>项目名称：</label>
+						<input type="text" class="ipt fl-l">
+						<label class="ml-10">状态：</label>
+						<select class="slt fl-l">
+							<option>启用</option>
+							<option>停用</option>
+						</select>
+						<button class="btn btn-primary fl-r ml-10">查询</button>
+					</div>
+				</div>
+				<table id="tTjxmTab" class="table">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>项目编码</th>
+							<th>项目名称</th>
+							<th>状态</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>123</td>
+							<td>粉尘</td>
+							<td>已匹配</td>
+							<td><a class="link-a">重新匹配</a></td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>123</td>
+							<td>粉尘</td>
+							<td><span class="cl-red">未匹配</span></td>
+							<td><a class="link-a">匹配</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="tjxm-right">
+				<div class="table-title">
+					<label>体检系统危害因素</label>
+					<div class="fl-r">
+						<button id="addBtn" class="btn-hol btn-hol-primary">新增项目</button>
+					</div>
+				</div>
+				<div class="filter-box">
+					<div class="filter-item clearfix">
+						<label>项目分类：</label>
+						<input type="text" class="ipt fl-l">
+						<label class="ml-10">项目名称：</label>
+						<input type="text" class="ipt fl-l">
+						<label class="ml-10">状态：</label>
+						<select class="slt fl-l">
+							<option>启用</option>
+							<option>停用</option>
+						</select>
+						<button class="btn btn-primary fl-r ml-10">查询</button>
+					</div>
+				</div>
+				<table id="pTjxmTab" class="table">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>项目分类</th>
+							<th>项目编码</th>
+							<th>项目名称</th>
+							<th>状态</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>分类1</td>
+							<td>123</td>
+							<td>粉尘</td>
+							<td>已匹配</td>
+							<td><a class="link-a">确认匹配</a></td
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>分类2</td>
+							<td>123</td>
+							<td>粉尘</td>
+							<td><span class="cl-red">未匹配</span></td>
+							<td><a class="link-a">确认匹配</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- 新增项目 -->
+		<div id="addProject" class="alg-content pt-10">
+			<form id="addForm">
+				<div class="row">
+					<div class="row-label">项目名称：</div>
+					<input id="projectName" class="ipt" type="text">
+				</div>
+				<div class="row">
+					<div class="row-label">项目分类：</div>
+					<input id="projectSort" class="ipt" type="text">
+				</div>
+				<div class="row">
+					<div class="row-label">是否启用：</div>
+					<div class="row-item">
+						<label class="label-slt">
+							<input type="radio" class="label-radio" name="radio" checked="">
+							<i class="iconfont label-radio"></i>启用
+						</label>
+						<label class="label-slt ml-10">
+							<input type="radio" class="label-radio" name="radio">
+							<i class="iconfont label-radio-icon"></i>停用
+						</label>
+					</div>
+				</div>
+			</form>
+		</div>
+		<script>
+			
+			$(function(){
+				
+				/*tWhysTab初始化*/
+				var tTjxmTab = $('#tTjxmTab').DataTable({
+					searching: false, //禁止搜索
+					lengthChange: true, //条数显示选择
+					ordering: false, //允许点击表头排序
+					paging: false,
+					info: false,
+					scrollY: $("#windows", window.parent.document).val() - 240
+				});
+				
+				/*pWhysTab初始化*/
+				var pTjxmTab = $('#pTjxmTab').DataTable({
+					searching: false, //禁止搜索
+					lengthChange: true, //条数显示选择
+					ordering: false, //允许点击表头排序
+					paging: false,
+					info: false,
+					scrollY: $("#windows", window.parent.document).val() - 240
+				});
+				
+				//tTjxmTab表格tr点击事件
+				$("#tTjxmTab").on("click","tbody tr",function(e){
+					if(e.target.nodeName=="A"){
+						//点击a标签
+						$("#tTjxmTab").find("tbody tr").removeClass("selected");
+					}else{
+						//点击行
+						$(this).addClass("selected").siblings().removeClass("selected");
+					}
+				})
+				
+				/*//pTjxmTab表格tr点击事件
+				$("#pTjxmTab").on("click","tbody tr",function(){
+					$(this).addClass("selected").siblings().removeClass("selected");
+				})*/
+				
+				//新增项目
+				$("#addBtn").on("click",function(){
+					layer.open({
+						type: 1,
+						title: '新增项目',
+						content: $('#addProject'),
+						btn: ['确定','取消'],
+						area: '380px',
+						shadeClose: true,
+						success: function(index){
+							
+						},
+						yes: function(index) {
+							if($("#projectName").val()==""){
+								$("#projectName").focus();
+								layer.tips('项目名称不能为空！', '#projectName');
+							} else if($("#projectSort").val()==""){
+								$("#projectSort").focus();
+								layer.tips('项目分类不能为空！', '#projectSort');
+							} else{
+								//提交
+							}
+						}
+					})
+				})
+				
+			})
+			
+		</script>

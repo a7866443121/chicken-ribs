@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>订单管理</title>
+		<link href="favicon.ico" rel="icon">
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap-responsive.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/mycomom.css" />
+		<link rel="stylesheet" type="text/css" href="../css/orderManagement.css" />
+		<script type="text/javascript" src="../js/tools/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="../js/tools/bootstrap.min.js"></script>
+	</head>
+
+	<body>
+		<div class="-body">
+			<div class="filter-box mb-10" id="filterBox">
+				<div class="filter-item">
+					<label>添加时间：</label>
+					<div class="clearfix" style="margin-left: 70px;">
+						<span class="active">当天</span>
+						<span>近七天</span>
+						<span>近一个月</span>
+						<span>近三个月</span>
+						<span class="custom">自定义</span>
+						<div class="fl custom-box hide">
+							<input class="Wdate ipt ml-10" type="text" id="d15" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'d16\')||\'%y-%M-%d\'}',skin:'blue'})" />
+							<div class="fl mlr10">-</div>
+							<input class="Wdate ipt" type="text" id="d16" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'d15\')}',maxDate:'%y-%M-%d',skin:'blue'})" />
+							<button class="btn btn-primary ml10">确定</button>
+						</div>	
+					</div>
+				</div>
+				<div class="filter-item">
+					<label class="control-label mr10" for="entity_code">订单编号:</label>
+				    <input class="fl mr10" type="text" id="entity_code">
+				    <label class="control-label mr10 ml20" for="entity_name">单位名称:</label>
+				    <input type="text" id="entity_name">
+				    <button class="btn ml10 btn-large" disabled>查询</button>
+				</div>
+			</div>
+			<div class="content mt10">
+				<!--数据上传成功后-->
+				<div class="upload-table" id="upload_table">
+					<ul class="nav nav-tabs" id="myTab">
+						<li class="active">
+							<a href="#enterprise">企业订单 <span class="fBlue">（88）</span></a>
+						</li>
+						<li>
+							<a href="#personal">个人订单<span class="fBlue">（66）</span></a>
+						</li>
+						<li>
+							<a href="#group">社会团体订单<span class="fBlue">（66）</span></a>
+						</li>
+						<li>
+							<a href="#vip">VIP订单<span class="fBlue">（66）</span></a>
+						</li>
+					</ul>
+
+					<div class="tab-content">
+						<!--成功导入-->
+						<div class="tab-pane active" id="enterprise">
+							<!-- 数据导入-start -->
+							<div class="white-wrap pt-10">
+								<table id="projiectList_enterprise" class="table">
+									<thead>
+										<tr>
+											<th>
+												<input id="che0" class="for-label" type="checkbox">
+												<label for="che0" class="for-checkbox"></label>
+											</th>
+											<th>序号</th>
+											<th>订单编号</th>
+											<th>企业名称</th>
+											<th>最新体检排期时间</th>
+											<th>已预约人数</th>
+											<th>正在提交</th>
+											<th>异常人数</th>
+											<th>已到检</th>
+											<th>未到检</th>
+											<th>业务员</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<input id="che1" class="for-label" type="checkbox">
+												<label for="che1" class="for-checkbox"></label>
+											</td>
+											<td>1</td>
+											<td>QY20181216123456</td>
+											<td>长沙微康信息技术有限公司</td>
+											<td>2018\05\18</td>
+											<td>120</td>
+											<td>20</td>
+											<td class="fRed">20</td>
+											<td>60</td>
+											<td>40</td>
+											<td>东方慕容</td>
+											<td class="fBlue"><a href="orderProcessing.html">立即处理异常</a></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>						
+						</div>
+						<!--个人订单-->
+						<div class="tab-pane" id="personal">
+							<!-- 数据导入异常处理-start -->
+							<div class="white-wrap pt-10">
+								<table id="projiectList_personal" class="table">
+									<thead>
+										<tr>
+											<th>
+												<input id="che0" class="for-label" type="checkbox">
+												<label for="che0" class="for-checkbox"></label>
+											</th>
+											<th>序号</th>
+											<th>订单编号</th>
+											<th>企业名称</th>
+											<th>最新体检排期时间</th>
+											<th>已预约人数</th>
+											<th>正在提交</th>
+											<th>异常人数</th>
+											<th>已到检</th>
+											<th>未到检</th>
+											<th>业务员</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<input id="che1" class="for-label" type="checkbox">
+												<label for="che1" class="for-checkbox"></label>
+											</td>
+											<td>1</td>
+											<td>QY20181216123456</td>
+											<td>长沙微康术有限公司</td>
+											<td>2018\05\18</td>
+											<td>120</td>
+											<td>20</td>
+											<td class="fRed">20</td>
+											<td>60</td>
+											<td>40</td>
+											<td>东方慕容</td>
+											<td class="fBlue"><a href="orderProcessing.html">立即处理异常</a></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>						
+						</div>
+						<!--社会团体订单-->
+						<div class="tab-pane" id="group">
+							<div class="white-wrap pt-10">
+								<table id="projiectList_group" class="table">
+									<thead>
+										<tr>
+											<th>
+												<input id="che0" class="for-label" type="checkbox">
+												<label for="che0" class="for-checkbox"></label>
+											</th>
+											<th>序号</th>
+											<th>订单编号</th>
+											<th>企业名称</th>
+											<th>最新体检排期时间</th>
+											<th>已预约人数</th>
+											<th>正在提交</th>
+											<th>异常人数</th>
+											<th>已到检</th>
+											<th>未到检</th>
+											<th>业务员</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<input id="che1" class="for-label" type="checkbox">
+												<label for="che1" class="for-checkbox"></label>
+											</td>
+											<td>1</td>
+											<td>QY20181216123456</td>
+											<td>长息技术有限公司</td>
+											<td>2018\05\18</td>
+											<td>120</td>
+											<td>20</td>
+											<td class="fRed">20</td>
+											<td>60</td>
+											<td>40</td>
+											<td>东方慕容</td>
+											<td class="fBlue"><a href="orderProcessing.html">立即处理异常</a></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>						
+						</div>
+						<!--社会团体订单-->
+						<div class="tab-pane" id="vip">
+							<div class="white-wrap pt-10">
+								<table id="projiectList_vip" class="table">
+									<thead>
+										<tr>
+											<th>
+												<input id="che0" class="for-label" type="checkbox">
+												<label for="che0" class="for-checkbox"></label>
+											</th>
+											<th>序号</th>
+											<th>订单编号</th>
+											<th>企业名称</th>
+											<th>最新体检排期时间</th>
+											<th>已预约人数</th>
+											<th>正在提交</th>
+											<th>异常人数</th>
+											<th>已到检</th>
+											<th>未到检</th>
+											<th>业务员</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<input id="che1" class="for-label" type="checkbox">
+												<label for="che1" class="for-checkbox"></label>
+											</td>
+											<td>1</td>
+											<td>QY20181216123456</td>
+											<td>长沙微康信息技术</td>
+											<td>2018\05\18</td>
+											<td>120</td>
+											<td>20</td>
+											<td class="fRed">20</td>
+											<td>60</td>
+											<td>40</td>
+											<td>东方慕容</td>
+											<td class="fBlue"><a href="orderProcessing.html">立即处理异常</a></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>							
+						</div>
+					</div>
+				</div>
+			</div> 
+			<div class="prompt hide" id="pop_prompt">
+				<p><input id="prompt_input" type="text" placeholder="请输入您要修改的内容" /></p>
+				<button id="prompt_sure" class="btn btn-success">确定</button>
+				<button id="prompt_no"  class="btn btn-grey fr">取消</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/tools/jquery.pagination.min.js"></script>
+		<script src="../../js/lib/datatables/jquery.dataTables.min.js"></script>
+		<script src="../../js/lib/My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="../js/orderManagement.js"></script>
+	</body>
+
+</html>

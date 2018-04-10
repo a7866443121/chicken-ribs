@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>预约管理</title>
+		<link href="favicon.ico" rel="icon">
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../font/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap-responsive.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/mycomom.css" />
+		<link rel="stylesheet" href="../../js/lib/zTree/metroStyle/style.css" />
+		<link rel="stylesheet" type="text/css" href="../css/groupManagement.css" />
+		<script type="text/javascript" src="../js/tools/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="../js/tools/bootstrap.min.js"></script>
+	</head>
+
+	<body>
+		<div class="listform-body module-box">
+			<div class="listform-header">
+				<ul class="inline">
+					<li class="green">1 单位信息关联</li>
+					<li class="green">2 团检名单导入</li>
+					<li class="green">3 分组及配套体检项</li>
+					<li>4 订单最终确认</li>
+				</ul>
+			</div>
+			<div class="header-tips">
+				<span>注:<span class="fRed" id="tips_num">28</span>人 等待分组、排期、配项</span><button class="btn btn-success ml20">立即分组</button>
+			</div>
+			<div class="groupManagement-content">
+				<div class="mg-main">
+					<div class="mg-left">
+						<div class="table-title">
+							<label>分组管理</label>
+							<div class="mg-search">
+								<input type="text" class="mg-input" placeholder="姓名、手机号、证件号"/>
+								<button class="btn-search">查询</button>
+							</div>
+						</div>
+						<table id="tMgTab" class="table">
+							<thead>
+								<tr>
+									<th>分组名称、人数</th>
+									<th>项目及排期</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>男生组<i class="iconfont icon-editor mg-icon-edit"></i><br>10人</td>
+									<td>未选择项目和排期</td>
+									<td class="mg-edit">分组管理</td>
+								</tr>
+								<tr>
+									<td>男生组<i class="iconfont icon-editor mg-icon-edit"></i><br>10人</td>
+									<td>3个体检项目<br>2018-03-10</td>
+									<td class="mg-edit">分组管理</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="mg-right">
+						<div class="table-title">
+							<label>体检信息</label>
+							<div class="mg-set">
+								<span id="addMg"><i class="iconfont icon-addition mg-icon-right"></i>配置检项</span>
+								<span><i class="iconfont icon-trash mg-icon-right"></i>删除检项</span>
+							</div>
+						</div>
+						<table id="tMgTab" class="table">
+							<thead>
+								<tr>
+									<th><input type="checkbox"/></th>
+									<th>套餐名称</th>
+									<th>项目名称</th>
+									<th>项目金额</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><input type="checkbox"/></td>
+									<td>身体常规检查</td>
+									<td>体检费(五官科)</td>
+									<td>80</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox"/></td>
+									<td rowspan="8">蓝思离岗粉尘</td>
+									<td>静脉注射</td>
+									<td>80</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox"/></td>
+									<td>尿常规</td>
+									<td>80</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox"/></td>
+									<td>血细胞分析(五分类)</td>
+									<td>80</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox"/></td>
+									<td>尘肺会诊阅片</td>
+									<td>80</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox"/></td>
+									<td>血清丙氨酸基转移酶测定(ALT)</td>
+									<td>80</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox"/></td>
+									<td>常规心电图检查</td>
+									<td>80</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox"/></td>
+									<td>肺通气功能检查</td>
+									<td>80</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox"/></td>
+									<td>体检费(内外皮神经科)</td>
+									<td>80</td>
+								</tr>
+								<tr>
+									<td>项目总计</td>
+									<td colspan="3" class="mg-td-left"><input type="text" value="188" class="table-input"/></td>
+								</tr>
+								<tr>
+									<td>个人支付金额</td>
+									<td><input type="text" value="0" class="table-input"/></td>
+									<td>单位支付金额</td>
+									<td><input type="text" value="188" class="table-input"/></td>
+								</tr>
+								<tr>
+									<td>体检排期</td>
+									<td colspan="3" class="mg-td-left"><input class="Wdate" type="text" id="d15" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'d15\')||\'%y-%M-%d\'}',skin:'blue'})" /></td>
+								</tr>
+								<tr>
+									<td colspan="4" class="mg-td-right"><button class="btn btn-success mg-btn">确定</button></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>	
+		</div>
+		
+		<!-- 配置体检项弹出层 -->
+		<div id="addContent" class="alg-content pt-10">
+			<div class="dbtable">
+		        <div class="dbtable-left">
+		            <div class="nav-module-wrap">
+		                <nav class="nav-module-nav mt-10">
+		                    <a href="javascript:;" class="active">套餐</a>
+		                    <a href="javascript:;">组合类别</a>
+		                    <a href="javascript:;">快速检索</a>
+		                </nav>
+		                <div class="dbtable-wrap">
+		                    <div class="nav-module-content" style="display: block;">
+		                        <div class="search-wrap" style="margin: 0 auto 6px">
+		                            <input id="tcksquery" type="text" placeholder="请输入套餐名称、拼音码">
+		                            <i class="iconfont icon-search fs16" onclick="tcssquery()"></i>
+		                        </div>
+		                        <div style="max-height: 370px;overflow-y:auto;overflow-x:hidden">
+		                            <table class="table" id="tcTab">
+		                                <thead>
+		                                <tr>
+		                                    <th>套餐名称</th>
+		                                    <th>价格</th>
+		                                </tr>
+		                                </thead>
+		                                <tbody>
+		                                	<tr>
+		                                		<td>维胜射线岗前</td>
+		                                		<td>
+		                                			<span style="font-size:14px;">143</span>/
+		                                			<span style="color:#79818a;text-decoration: line-through">738</span>
+		                                		</td>
+		                                	</tr>
+		                                </tbody>
+		                            </table>
+		                        </div>
+		                    </div>
+		                    <div class="nav-module-content" style="display: none;">
+		                        <div id="tree" class="ztree"></div>
+		                    </div>
+		                    <div class="nav-module-content" style="display: none;">
+		                        <div class="search-wrap" style="margin: 0 auto 6px">
+		                            <input id="xmksquery" type="text" placeholder="请输入项目名称、拼音码">
+		                            <i class="iconfont icon-search fs16" onclick="sskcx()"></i>
+		                        </div>
+		                        <div style="max-height: 370px; overflow-y:auto;overflow-x:hidden">
+		                            <table class="table" id="zhTab">
+		                                <thead>
+		                                <tr>
+		                                    <th>组合名称</th>
+		                                    <th>组合金额</th>
+		                                </tr>
+		                                </thead>
+		                                <tbody>
+		                                	<tr>
+		                                		<td>维胜射线岗前</td>
+		                                		<td>143</td
+		                                	</tr>
+		                                </tbody>
+		                            </table>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="dbtable-right">
+		            <div style="line-height: 39px;text-align: center;">
+		                已选项目
+		            </div>
+		            <div class="dbtable-wrap">
+		                <table class="table" id="addTab">
+		                    <thead>
+		                    <tr>
+		                    	<th>套餐名称</th>
+		                        <th>组合名称</th>
+		                        <th>组合金额</th>
+		                    </tr>
+		                    </thead>
+		                    <tbody>
+		                    </tbody>
+		                </table>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	    
+		<script src="../js/groupManagement.js" ></script>
+		<script src="../../js/lib/My97DatePicker/WdatePicker.js"></script>
+		<script src="../../js/lib/layer/layer.js"></script>
+		<script src="../../js/lib/zTree/jquery.ztree.all.min.js"></script>
+		<script>
+			//配置检项
+			window.onload=function(){
+				$('#addMg').on('click', function() {
+					layer.open({
+						type: 1,
+						title: '新增项目',
+						content: $('#addContent'),
+						area: ['800px', ''],
+						btn: ['确认','取消','清空'],
+						shadeClose: true,
+						success: function(index){
+							//切换
+							$("#addContent .nav-module-nav a").on("click",function(){
+								var index = $(this).index();
+								$(this).addClass("active").siblings().removeClass("active");
+								$("#addContent .dbtable-wrap .nav-module-content").eq(index).show().siblings().hide();
+							})
+						},
+						yes: function(index) {
+							//确定的回调
+							layer.close(index);
+						},btn3: function(index, layero){
+							//清空回调
+							$("#addTab tbody").empty();
+							return false;
+						}
+					})
+				});
+				
+				var xmData = [];
+	
+				function getData() {
+					var mxData = [];
+					$.ajax({
+						url: './mxData.json',
+						type: 'get',
+						async: false,
+						dataType: 'json',
+						success: function(data) {
+							mxData = data.data.rows;
+						}
+					})
+					return mxData;
+				}
+	
+				var setting = {
+					async: {
+						enable: true, //否开启异步加载模式
+						url: './tree.json',
+						dataFilter: function(treeId, parentNode, responseData) {
+							var treeData = responseData.data.rows;
+							var zhxmData = getData();
+							for(var ii in treeData) {
+								treeData[ii].dm = "FL_" + treeData[ii].dm;
+							}
+							for(var i = 0; i < zhxmData.length; i++) {
+								var dm = zhxmData[i].dm;
+								var mc = zhxmData[i].mc;
+								var dj = zhxmData[i].dj;
+								var fdm = "FL_" + zhxmData[i].tjxmfldm;
+								treeData.push({
+									dm: dm,
+									fdm: fdm,
+									mc: mc,
+									dj: dj
+								});
+							}
+							return treeData;
+						},
+						dataType: 'json',
+						type: 'get'
+					},
+	
+					data: {
+						simpleData: {
+							enable: true,
+							idKey: 'dm',
+							pIdKey: 'fdm'
+						},
+						key: {
+							name: 'mc'
+						}
+					},
+					callback: {
+						//选中目录树事件
+						onClick: onCheck
+					}
+				}
+				//初始化组合类别树
+				var tree = $.fn.zTree.init($('#tree'), setting, null);
+	
+				function onCheck(e, treeId, treeNode) {
+					if(treeNode.fdm != null) {
+						for(var i = 0; i < xmData.length; i++) {
+							if(xmData[i].dm == treeNode.dm) {
+								return;
+							}
+						}
+						$('#addTab tbody').append('<tr><td> <p style="display: none;">' + treeNode.dm + '</p> ' + treeNode.mc + '</td><td>' + treeNode.dj + '</td></tr>');
+						xmData.push({
+							dm: treeNode.dm,
+							mc: treeNode.mc,
+							dj: treeNode.dj
+						});
+					} else {
+						var childNodes = tree.getNodesByParam('fdm', treeNode.dm);
+						for(var i = 0; i < childNodes.length; i++) {
+	
+							var con = 0;
+							var node = childNodes[i];
+							for(var j = 0; j < xmData.length; j++) {
+	
+								if(xmData[j].dm == node.dm) {
+	
+									con = 1;
+								}
+	
+							}
+							if(con == 1) {} else {
+								$('#addTab  tbody').append('<tr><td> <p style="display: none;">' + node.dm + '</p> ' + node.mc + '</td><td>' + node.dj + '</td></tr>');
+								xmData.push({
+									dm: node.dm,
+									mc: node.mc,
+									dj: node.dj
+								});
+							}
+						}
+					}
+				}
+				
+				
+			}
+				
+		</script>
+	</body>
+
+</html>

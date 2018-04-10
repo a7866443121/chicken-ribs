@@ -1,0 +1,236 @@
+@charset "utf-8";
+/*头部*/
+body{
+	text-align: center;
+}
+.listform-body{
+	position: relative;
+	display: inline-block;
+	padding: 22px;
+	width: 1000px;
+	text-align: left;
+}
+.listform-header{
+	width: 100%;
+	padding: 22px 0;
+	color: #8D8D8D;
+	text-align: center;
+	border-bottom: 1px solid #e4e8eb;
+}
+.listform-header .inline{
+	font-size: 0;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.listform-header .inline li{
+	position: relative;
+	display: inline-block;
+	font-size: 14px;
+	margin-left: 50px;
+}
+.listform-header .inline li:first-child{
+	margin-left: 0;
+}
+.listform-header .inline li:last-child:after{
+	width: 0;
+	height: 0;
+	display: none;
+}
+.listform-header .inline li:after{
+	content: '';
+	position: absolute;
+	top: 10px;
+	margin-left: 14px;
+	width: 22px;
+	height: 1px;
+	background-color: #e4e8eb;
+}
+.listform-header .inline li.green{
+	color: #0fb626;
+}
+.listform-header .inline li.green:after{
+	background-color: #0fb626;
+}
+/*
+ * 表单内容
+ */
+.listform-content{
+	position: relative;
+	padding: 40px 0;
+	text-align: left;
+	overflow: hidden;
+	height:100%;
+}
+.form-box{
+	float: left;
+}
+.form-horizontal{
+	border-bottom: 1px solid #e4e8eb;	
+}
+.form-horizontal .controls{
+	margin-left: 120px;
+}
+.form-horizontal .controls input{
+	width: 300px;
+	border-radius: 0;
+	padding: 10px;
+}
+.control-search{
+	color:#3f8dfc;
+	margin-left: 10px;
+}
+.form-control:first-child{
+	margin-left: 0;
+}
+.form-control{
+	margin-left: 10px;
+	width: 98px;
+	height: 32px;
+    line-height: 32px;
+    border-radius: 0;
+}
+.form-horizontal .control-label{
+	text-align: left;
+	width: auto;
+}
+.submit-box{
+	text-align: center;
+	padding:0 0 20px;
+}
+.btn-large{
+	padding: 10px 30px;
+	background-color: #e7e7eb;
+	background-image: none;
+	color: #a5a6aa;
+}
+/*模态表单*/
+.modal .form-box{
+	width: 100%;
+	margin-left: 0;
+}
+.myModal-header{
+	width: 100%;
+	padding:20px;
+	background-color: #fbfbfb;
+	box-sizing: border-box;
+	border-radius: 6px;
+}
+.modal .form-box .form-horizontal{
+	padding: 0 20px;
+	border-bottom: 0;
+	margin-top: 20px;
+}
+/*
+ 右侧搜索
+ * */
+.search-box.are{
+	float: right;
+	height: 434px;
+	width: 424px;
+	padding-left: 30px;
+	border-left: 1px solid #e4e8eb;	
+}
+.search-box.are .search-input{
+	width: 310px;
+}
+.search-box.are .list-header,.search-box.are .box,.search-box.are .list-ul{
+	display: block;
+}
+.search-box.are .list-ul{
+	height: 225px;
+	overflow: hidden;
+}
+.search-box.are .btn-success{
+	padding: 10px 24px;
+}
+.search-box.are .ui-pagination-container {
+	height: 34px;
+	line-height: 34px;
+	margin-top: 12px;
+}
+
+.search-box.are .ui-pagination-container .ui-pagination-page-item {
+	font-size: 12px;
+	padding: 6px 8px;
+	background: #fff;
+	border: 1px solid #c5b7b7;
+	color: #888;
+	margin: 0 3px;
+	text-decoration: none;
+}
+
+.search-box.are .ui-pagination-container .ui-pagination-page-item:hover {
+	border-color: #568dbd;
+	color: #568dbd;
+	text-decoration: none;
+}
+
+.search-box.are .ui-pagination-container .ui-pagination-page-item.active {
+	background: #568dbd;
+	border-color: #568dbd;
+	color: #fff;
+	cursor: default;
+}
+/*搜索*/
+
+.search-box.are .list-ul li{
+	padding: 12px;
+	border-top:1px solid #e4e8eb;
+}
+.search-box.are .list-ul li:last-child{
+	border-bottom: 1px solid #e4e8eb;	
+}
+.search-box.are .list-ul li span{
+	color:#3f8dfc;
+}
+.search-box.are .list-active{
+	background: #f3f8fe;
+}
+.search-box.are .list-header{
+	background: #f3f3f3;
+	margin-top: 20px;
+	border-top:1px solid #e4e8eb;
+}
+.search-box.are .list-header h5{
+	padding: 10px;
+	display: inline-block;
+}
+.search-box.are .list-header .fr{
+	padding: 10px;
+}
+/*默认搜索*/
+.search-box{
+	width: 100%;
+	float: none;
+}
+.search-box .list-header,.search-box .box,.search-box .list-ul{
+	display: none;
+}
+.search-box .search-input{
+	width: 570px;
+}
+.search-box .form-search{
+	text-align: center;
+}
+.search-box .form-search span{
+	text-align: left;
+}
+/*缺省页*/
+.search-default{
+	text-align: center;
+	margin-top: 100px;
+}
+.search-default .iconfont{
+	font-size: 90px;
+	color: #eff8ff;
+}
+.search-default font{
+	color: #FF0000;
+}
+.search-default a{
+	color: blue;
+	text-decoration: underline;
+}
+.search-default-info{
+	margin-top: 30px;
+}

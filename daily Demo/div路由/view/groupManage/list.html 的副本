@@ -1,0 +1,4222 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>团检分组管理</title>
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/style.css">
+		<link rel="stylesheet" href="../../font/iconfont.css" />
+		<link rel="stylesheet" href="../../js/lib/zTree/metroStyle/style.css" />
+	</head>
+
+	<body>
+		<div class="gray-wrap group-manage">
+			<!-- 筛选-start -->
+			<div class="filter-box mb-10" id="filterBox">
+				<div class="filter-item">
+					<label>体检日期：</label>
+					<div class="clearfix" style="margin-left: 70px;">
+						<span class="active">当天</span>
+						<span>近七天</span>
+						<span>近一个月</span>
+						<span>近三个月</span>
+						<span class="custom">自定义</span>
+						<div class="fl-l custom-box hide">
+							<input class="Wdate ipt ml-10" type="text" id="d15" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'d16\')||\'%y-%M-%d\'}',skin:'blue'})" />
+							<div class="fl-l mlr-10">-</div>
+							<input class="Wdate ipt" type="text" id="d16" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'d15\')}',maxDate:'%y-%M-%d',skin:'blue'})" />
+						</div>
+					</div>
+				</div>
+				<div class="filter-item">
+					<label>订单编号：</label>
+					<div class="clearfix" style="margin-left: 70px;">
+						<input type="text" class="ipt fl-l">
+						<label class="ml-20">单位名称：</label>
+						<input id="tjdwmc" type="text" class="ipt fl-l">
+						<input id="tjdw" type="hidden">
+						<label class="ml-20">单位联系人：</label>
+						<input type="text" class="ipt fl-l">
+						<label class="ml-20">单位联系电话：</label>
+						<input type="text" class="ipt fl-l">
+						<button class="btn btn-primary ml-20">&nbsp;&nbsp;查询&nbsp;&nbsp;</button>
+					</div>
+				</div>
+			</div>
+			<!-- 筛选-end -->
+			<!-- 订单列表-start -->
+			<div class="white-wrap pt-10">
+				<div class="table-title">
+					<ul class="ul-nav">
+						<li class="active">待审核订单</li>
+						<li>已审核订单</li>
+					</ul>
+				</div>
+				<table id="orderTable" class="table content-table">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>订单编号</th>
+							<th>单位名称</th>
+							<th>体检类型</th>
+							<th>订单日期</th>
+							<th>联系人</th>
+							<th>联系电话</th>
+							<th>订单人数</th>
+							<th>分组名称</th>
+							<th>组内人数</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>
+								<a href="javascript:;" class="link-a detail">20170211120230</a>
+							</td>
+							<td>长沙微康信息科技有限公司</td>
+							<td>职业健康体检</td>
+							<td>2016-12-20<br/>12:00:01</td>
+							<td>王大锤</td>
+							<td>18888888888</td>
+							<td>
+								<font class="c-red">800</font>
+							</td>
+							<td>未分组</td>
+							<td>
+								<font class="c-red">800</font>
+							</td>
+							<td>
+								<a href="javascript:;" class="cl-primary edit link-a">分组</a>
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>
+								<a href="javascript:;" class="link-a detail">20170211120230</a>
+							</td>
+							<td>长沙微康信息科技有限公司</td>
+							<td>职业健康体检</td>
+							<td>2016-12-20<br/>12:00:01</td>
+							<td>王大锤</td>
+							<td>18888888888</td>
+							<td>
+								<font class="c-red">800</font>
+							</td>
+							<td><a href="javascript:;" class="link-a count">分组1</a></td>
+							<td>
+								<font class="c-red">800</font>
+							</td>
+							<td>
+								<a href="javascript:;" class="cl-primary submit link-a">提交</a>
+								<a href="javascript:;" class="cl-primary edit link-a">编辑</a>
+								<a href="javascript:;" class="cl-primary select-item link-a">选项目</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table class="table content-table hide">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>订单编号</th>
+							<th>单位名称</th>
+							<th>体检类型</th>
+							<th>订单日期</th>
+							<th>联系人</th>
+							<th>联系电话</th>
+							<th>订单人数</th>
+							<th>分组名称</th>
+							<th>组内人数</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>
+								<a href="javascript:;" class="link-a detail">20170211120230</a>
+							</td>
+							<td>长沙微康信息科技有限公司</td>
+							<td>职业健康体检</td>
+							<td>2016-12-20<br/>12:00:01</td>
+							<td>王大锤</td>
+							<td>18888888888</td>
+							<td>
+								<font class="c-red">800</font>
+							</td>
+							<td>未分组</td>
+							<td>
+								<font class="c-red">800</font>
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>
+								<a href="javascript:;" class="link-a detail">20170211120230</a>
+							</td>
+							<td>长沙微康信息科技有限公司</td>
+							<td>职业健康体检</td>
+							<td>2016-12-20<br/>12:00:01</td>
+							<td>王大锤</td>
+							<td>18888888888</td>
+							<td>
+								<font class="c-red">800</font>
+							</td>
+							<td><a href="javascript:;" class="link-a count">分组1</a></td>
+							<td>
+								<font class="c-red">800</font>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- 订单列表-end -->
+
+			<!-- 订单详情弹出框 -->
+			<section id="listDetail" class="alg-content alg-txt">
+				<div class="row">
+					<div class="row-label">订单编号：</div>
+					<span>20170211120230</span>
+				</div>
+				<div class="row">
+					<div class="row-label">体检类型：</div>
+					<span>个人健康体检</span>
+				</div>
+				<div class="row">
+					<div class="row-label">危害因素：</div>
+					<div class="row-item">粉尘、噪音</div>
+				</div>
+				<div class="row">
+					<div class="row-label">分组名称：</div>
+					<span>粉尘+噪音</span>
+				</div>
+				<div class="row">
+					<div class="row-label">人数：</div>
+					<span>20</span>
+				</div>
+				<div class="row">
+					<div class="row-label">单位联系人：</div>
+					<span>王大锤</span>
+				</div>
+				<div class="row">
+					<div class="row-label">联系电话：</div>
+					<span>15111014785</span>
+				</div>
+				<div class="row">
+					<div class="row-label">订单备注：</div>
+					<div class="row-item">希望安排在周末体检</div>
+				</div>
+			</section>
+
+			<!--分组、编辑弹出框-->
+			<div id="groupDlg" class="alg-content pt-10">
+				<form id="searchForm" class="filter-box mb-10" style="border-bottom: #e5e5e5 1px solid;">
+					<div class="filter-item pn mt-10">
+						<label>性别：</label>
+						<select class="slt sex fl-l">
+							<option>男</option>
+							<option>女</option>
+						</select>
+						<label class="ml-20">年龄：</label>
+						<input id="ageMin" class="fl-l ipt age" type="text" dataType="age" />
+						<label class="mlr-10">-</label>
+						<input id="ageMax" class="fl-l ipt age" type="text" dataType="age" />
+						<label class="ml-20">车间部门：</label>
+						<input class="fl-l ipt" type="text" />
+						<label class="ml-20">工种：</label>
+						<input class="fl-l ipt" type="text" />
+						<button id="searchBtn" class="btn btn-primary ml-20">&nbsp;&nbsp;查询&nbsp;&nbsp;</button>
+					</div>
+				</form>
+				<div class="table-title" style="border: none;">
+					<button id="addGroup" class="btn-hol btn-hol-primary"><i class="iconfont icon-addition"></i>新增分组</button>
+					<button id="joinGroup" class="btn-hol btn-hol-primary ml-10"><i class="iconfont icon-addition"></i>加入分组</button>
+					<button id="removeGroup" class="btn-hol btn-hol-primary ml-10"><i class="iconfont icon-addition"></i>移出分组</button>
+				</div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>
+								<label class="label-check">
+									<input type="checkbox" />
+									<i class="iconfont icon-fangxingxuanzhongfill"></i>
+								</label>
+							</th>
+							<th>序号</th>
+							<th>姓名</th>
+							<th>性别</th>
+							<th>出生年月</th>
+							<th>体检类别</th>
+							<th>车间部门</th>
+							<th>工种</th>
+							<th>所属分组</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<label class="label-check">
+									<input type="checkbox" />
+									<i class="iconfont icon-fangxingxuanzhongfill"></i>
+								</label>
+							</td>
+							<td>1</td>
+							<td>张三</td>
+							<td>男</td>
+							<td>1999-12-12</td>
+							<td>职业健康体检</td>
+							<td>车间1</td>
+							<td>工种1</td>
+							<td>分组1</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="label-check">
+									<input type="checkbox" />
+									<i class="iconfont icon-fangxingxuanzhongfill"></i>
+								</label>
+							</td>
+							<td>1</td>
+							<td>张三</td>
+							<td>男</td>
+							<td>1999-12-12</td>
+							<td>职业健康体检</td>
+							<td>车间1</td>
+							<td>工种1</td>
+							<td>分组1</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="label-check">
+									<input type="checkbox" />
+									<i class="iconfont icon-fangxingxuanzhongfill"></i>
+								</label>
+							</td>
+							<td>1</td>
+							<td>张三</td>
+							<td>男</td>
+							<td>1999-12-12</td>
+							<td>职业健康体检</td>
+							<td>车间1</td>
+							<td>工种1</td>
+							<td>分组1</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<!--新增分组弹出框-->
+			<div id="addGroupDlg" class="alg-content pt-10">
+				<form id="form">
+					<div class="row">
+						<div class="row-label">分组名称：</div>
+						<input class="ipt" type="text" datatype="*">
+					</div>
+				</form>
+			</div>
+			<!--加入分组弹出框-->
+			<div id="joinGroupDlg" class="alg-content pt-10">
+				<div class="row">
+					<div class="row-label">分组名称：</div>
+					<select class="slt">
+						<option>分组1</option>
+						<option>分组2</option>
+						<option>分组3</option>
+					</select>
+				</div>
+			</div>
+			<!--选项目弹出框-->
+			<div id="selectItemDlg" class="alg-content pt-10">
+				选项目弹出框
+			</div>
+		</div>
+
+		<!--项目选择dlg-->
+		<div id="xmContent" class="alg-content pt-10">
+			<div class="dbtable">
+				<div class="dbtable-left">
+					<div style="line-height: 39px;text-align: center;border-bottom:1px #d4d4d4 solid;">组合项目</div>
+					<div class="dbtable-wrap">
+						<div id="tree" class="ztree" style="padding: 10px;"></div>
+					</div>
+				</div>
+				<div class="dbtable-right">
+					<div style="line-height: 39px;text-align: center;">已选项目</div>
+					<div class="dbtable-wrap">
+						<table class="table" id="xmTab">
+							<thead>
+								<tr>
+									<th>项目名称</th>
+									<th>金额</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="row a-r">
+				<button class="btn btn-primary" id="sumbitBtn">确认</button>
+				<button class="btn" id="cancleBtn">取消</button>
+				<button class="btn mr-5" id="cleanput">
+		            <i class="iconfont icon-qingkong"></i>清空
+		        </button>
+			</div>
+		</div>
+		<!--分组详情-->
+		<section id="countDlg" class="alg-content pt-10">
+			<table id="persons" class="table">
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>姓名</th>
+						<th>性别</th>
+						<th>手机号</th>
+						<th>出生年月</th>
+						<th>身份证</th>
+						<th>部门</th>
+						<th>工号</th>
+						<th>工种</th>
+						<th>工龄</th>
+						<th>体检类别</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>高雅婷</td>
+						<td>女</td>
+						<td>13212629342</td>
+						<td>1994-03-19</td>
+						<td>430721199403195422</td>
+						<td>部门一</td>
+						<td>D12</td>
+						<td>电焊工</td>
+						<td>8</td>
+						<td>职业健康体检</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+		<script src="../../js/lib/jquery/jquery-1.91.min.js"></script>
+		<script src="../../js/common/common.js"></script>
+		<script src="../../js/lib/layer/layer.js"></script>
+		<script src="../../js/module/reportTable.js"></script>
+		<script src="../../js/lib/My97DatePicker/WdatePicker.js"></script>
+		<script src="../../js/lib/datatables/jquery.dataTables.min.js"></script>
+		<script src="../../js/lib/Validform/Validform.min.js"></script>
+		<script src="../../js/lib/zTree/jquery.ztree.all.min.js"></script>
+		<script src="../../js/lib/jqueryAutocomplete/jquery.autocomplete.min.js"></script>
+		<script>
+			//筛选条件
+			$("#filterBox .filter-item").on("click", "span", function() {
+				$(this).parent().find("span.active").removeClass("active");
+				$(this).addClass("active");
+				if($(this).hasClass("custom")) {
+					$(this).next(".custom-box").show();
+				} else {
+					$(this).nextAll(".custom-box").hide();
+				}
+			})
+			
+			/*模块切换*/
+			$('.ul-nav li').on('click',function(){
+				var index = $(this).index();
+				$('.ul-nav li').removeClass('active');
+				$(this).addClass('active');
+				$('.content-table').hide();
+				$('.content-table').eq(index).show();
+			})
+
+
+			/*table初始化*/
+			var orderTab = $('#orderTable').ReportTable({
+				ajax: {
+					url: 'report.json',
+					data: {
+						page: 1,
+						rows: 10
+					}
+				},
+				title: [
+					{
+						data:'xh',
+						name:'序号',
+						width: 50
+					},
+					{
+						data:'tjh',
+						name:'体检号',
+						className: 'good',
+						render:function(data) {
+							return '<a class="link-a" href="javascript:;">'+ data +'</a>'
+						}
+					},
+					{
+						data:'xm',
+						name:'项目',
+					},
+					{
+						data:'sfzh',
+						name:'身份证号'
+					}
+				],
+				cols: [
+					2
+				]
+			});
+
+			//订单详情
+			$(".table").on("click", ".detail", function() {
+				layer.open({
+					type: 1,
+					title: "订单详情",
+					btn: ['返回'],
+					area: '400px',
+					yes: function(index) {
+						layer.close(index);
+					},
+					content: $("#listDetail"),
+					shadeClose: true
+				})
+			})
+			//分组详情
+			$(".table").on("click", ".count", function() {
+				layer.open({
+					type: 1,
+					title: "分组详情",
+					btn: ['返回'],
+					area: ['880px','400px'],
+					yes: function(index) {
+						layer.close(index);
+					},
+					content: $("#countDlg"),
+					shadeClose: true
+				})
+			})
+			/*人员分组*/
+			$('#orderTable').on('click', ".edit", function() {
+				layer.open({
+					type: 1,
+					title: '人员分组',
+					content: $('#groupDlg'),
+					area: ['100%', '100%'],
+					shadeClose: true
+				})
+			})
+
+			/*提交*/
+			$('#orderTable').on('click', ".submit", function() {
+				layer.confirm('提交后不可修改，确定提交吗？', {
+					icon: 3,
+					title: '提示',
+					shadeClose: true
+				}, function(index) {
+					layer.msg('提交成功!', {
+						icon: 1
+					});
+					layer.close(index);
+				});
+			})
+			
+			//筛选人员
+			$("#searchBtn").on("click",function(){
+				searchForm.submitForm();
+			})
+			
+			/* 筛选人员表单校验*/
+			var searchForm = $("#searchForm").Validform({
+				postonce: true,
+				beforeSubmit: function(form) {
+					//查询代码
+					
+					return false;
+				},
+				tiptype: function(msg, o) {
+					if(msg) {
+						layer.tips(msg, o.obj[0], {
+							tips: 3
+						})
+					}
+				},
+				datatype:{
+					"age": /^$|^(?:[1-9]?\d|150)$/
+				}
+				
+			});
+			
+			/*添加分组*/
+			$('#addGroup').on('click', function() {
+				layer.open({
+					type: 1,
+					title: '添加分组',
+					content: $('#addGroupDlg'),
+					btn: '确定',
+					shadeClose: true,
+					area: '380px',
+					yes: function(index) {
+						form.submitForm();
+					}
+				})
+			})
+
+			/* 表单校验*/
+			var form = $("#form").Validform({
+				postonce: true,
+				beforeSubmit: function(form) {
+					submitFormData();
+					return false;
+				},
+				tiptype: function(msg, o) {
+					if(msg) {
+						layer.tips(msg, o.obj[0], {
+							tips: 3
+						})
+					}
+				},
+			});
+
+			/*表单提交*/
+			function submitFormData() {
+				$.ajax({
+					url: '',
+					type: 'post',
+					data: $('#form').serialize(),
+					dataType: 'json',
+					success: function(obj) {
+						if(obj.code == 1) {
+							layer.closeAll();
+							layer.msg(obj.msg, {
+								icon: 1
+							});
+							return;
+						}
+						layer.msg(obj.msg, {
+							icon: 0
+						});
+					},
+					error: function(obj) {
+						layer.msg(obj.msg, {
+							icon: 2
+						})
+					}
+				})
+			}
+
+			/*加入分组*/
+			$('#joinGroup').on('click', function() {
+				layer.open({
+					type: 1,
+					title: '加入分组',
+					content: $('#joinGroupDlg'),
+					btn: '确定',
+					shadeClose: true,
+					area: '380px',
+					yes: function(index) {
+						layer.msg('加入成功!', {
+							icon: 1
+						});
+						layer.close(index)
+					}
+				})
+			})
+
+			/*移出分组*/
+			$('#removeGroup').on('click', function() {
+				layer.confirm('确定移出？', {
+					icon: 3,
+					title: '提示',
+					shadeClose: true
+				}, function(index) {
+					layer.msg('移出成功!', {
+						icon: 1
+					});
+					layer.close(index);
+				});
+			})
+
+			/*选项目*/
+			$('#orderTable').on('click', ".select-item", function() {
+				layer.open({
+					type: 1,
+					title: '选项目',
+					content: $('#xmContent'),
+					area: ['700px', '595px']
+				})
+			})
+			var xmData = [];
+			function getData (){
+				var mxData = [];
+				$.ajax({
+					url:'mxData.json',
+					type:'get',
+					async: false,
+					dataType:'json',
+					success:function(data){
+						mxData =  data.data.rows;
+					}
+				})
+				return mxData;
+			}
+
+			var setting = {
+				async: {
+					enable: true, //否开启异步加载模式
+					url: 'tree.json',
+					dataFilter: function(treeId, parentNode, responseData) {
+						var treeData = responseData.data.rows;
+						var zhxmData = getData();
+						for(var ii in treeData) {
+							treeData[ii].dm = "FL_" + treeData[ii].dm;
+						}
+						for (var i = 0; i < zhxmData.length; i++) {
+		                    var dm = zhxmData[i].dm;
+		                    var mc = zhxmData[i].mc;
+		                    var dj = zhxmData[i].dj;
+		                    var fdm = "FL_" + zhxmData[i].tjxmfldm;
+		                    treeData.push({dm: dm, fdm: fdm, mc: mc, dj: dj});
+		                }
+						return treeData;
+					},
+					dataType: 'json',
+					type:'get'
+				},
+
+				data: {
+					simpleData: {
+						enable: true,
+						idKey: 'dm',
+						pIdKey: 'fdm'
+					},
+					key: {
+						name: 'mc'
+					}
+				},
+				callback: {
+					//选中复选框时间
+					onClick: onCheck
+				}
+			}
+			//初始化组合类别树
+		    var tree = $.fn.zTree.init($('#tree'), setting, null);
+		    
+			function onCheck(e, treeId, treeNode) {
+				if(treeNode.fdm != null) {
+					for(var i = 0; i < xmData.length; i++) {
+						if(xmData[i].dm == treeNode.dm) {
+							return;
+						}
+					}
+					$('#xmTab  tbody').append('<tr><td> <p style="display: none;">' + treeNode.dm + '</p> ' + treeNode.mc + '</td><td>' + treeNode.dj + '</td></tr>');
+					xmData.push({
+						dm: treeNode.dm,
+						mc: treeNode.mc,
+						dj: treeNode.dj
+					});
+				} else {
+					var childNodes = tree.getNodesByParam('fdm', treeNode.dm);
+					for(var i = 0; i < childNodes.length; i++) {
+
+						var con = 0;
+						var node = childNodes[i];
+						for(var j = 0; j < xmData.length; j++) {
+
+							if(xmData[j].dm == node.dm) {
+
+								con = 1;
+							}
+
+						}
+						if(con == 1) {} else {
+							$('#xmTab  tbody').append('<tr><td> <p style="display: none;">' + node.dm + '</p> ' + node.mc + '</td><td>' + node.dj + '</td></tr>');
+							xmData.push({
+								dm: node.dm,
+								mc: node.mc,
+								dj: node.dj
+							});
+						}
+					}
+				}
+			}
+			
+			/*删除项目*/
+		    $('#xmTab tbody').on('click', 'tr', function () {
+	        	$(this).remove();
+		        //xmData
+		        var dm = $(this).find("p").text();
+		        for (var j = 0; j < xmData.length; j++) {
+		            if (parseInt(xmData[j].dm) == parseInt(dm)) {
+		                xmData.splice(j, 1)
+		            }
+		        }
+		    });
+			
+			/*体检单位自动填充*/
+			function tjdwInit() {
+				//数据自己去后台请求
+				var tjdwData = {
+					"code": 1,
+					"data": {
+						"total": 107,
+						"rows": [{
+							"id": 51,
+							"jgbm": 430105047,
+							"dm": "30600",
+							"mc": "个体",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "gt,gb",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2016-11-25 09:34:46",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2016-11-25 09:34:46"
+						}, {
+							"id": 52,
+							"jgbm": 430105047,
+							"dm": "30700",
+							"mc": "湖南金天钛业科技有限公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "C",
+							"qygmdm": "3",
+							"jjlxdm": "1041",
+							"qydm": "43010000",
+							"lxr": "",
+							"lxdh": "18670018441",
+							"lxrdzyx": "",
+							"zcdz": "",
+							"dwdz": "",
+							"yzbm": "",
+							"dwjj": "",
+							"bz": null,
+							"pym": "hnjttykjyxgs",
+							"wbm": "ifqgqotrdbwn",
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2016-12-13 08:21:20",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-05-31 09:02:52"
+						}, {
+							"id": 53,
+							"jgbm": 430105047,
+							"dm": "33600",
+							"mc": "常德市汉寿县人民医院",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "cdshsxrmyy",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-06 08:44:51",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-06 08:44:51"
+						}, {
+							"id": 54,
+							"jgbm": 430105047,
+							"dm": "37100",
+							"mc": "澧县大堰垱镇中武桥社区居民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "lxdydzzwqsojmwyh,lxdydzzwqsqjmwyk,lxdydzzwqsojmwyk,lxdydzzwqsqjmwyh",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-15 10:24:13",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-15 10:24:13"
+						}, {
+							"id": 55,
+							"jgbm": 430105047,
+							"dm": "34400",
+							"mc": "常德维联机械有限公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "cdwljxyxgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-02-15 08:14:10",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-02-15 08:14:10"
+						}, {
+							"id": 56,
+							"jgbm": 430105047,
+							"dm": "35000",
+							"mc": "湖南德海制药有限公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "hndhzyyxgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-02-17 07:57:29",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-02-17 07:57:29"
+						}, {
+							"id": 57,
+							"jgbm": 430105047,
+							"dm": "36100",
+							"mc": "原常德市水泥水管厂",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "C",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "ycdssnsgc,ycdssnsga,ycdssnsgh",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-02 08:36:44",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-02 08:36:44"
+						}, {
+							"id": 58,
+							"jgbm": 430105047,
+							"dm": "36200",
+							"mc": "澧县火连坡镇羊耳山村民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "lxhlpzyescmwyh,lxhlpzyescmwyk",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-03 08:03:34",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-03 08:03:34"
+						}, {
+							"id": 59,
+							"jgbm": 430105047,
+							"dm": "34700",
+							"mc": "原88712工程兵部队",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "y88712gcbbd",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-02-16 08:44:23",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-02-16 08:44:23"
+						}, {
+							"id": 60,
+							"jgbm": 430105047,
+							"dm": "34900",
+							"mc": "常德新希望饲料有限公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "cdxxwslyxgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-02-16 10:19:56",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-02-16 10:19:56"
+						}, {
+							"id": 61,
+							"jgbm": 430105047,
+							"dm": "35600",
+							"mc": "澧县码头铺镇洞市村民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "lxmtpzdscmwyk,lxmtpzdscmwyh",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-02-23 09:21:33",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-02-23 09:21:33"
+						}, {
+							"id": 62,
+							"jgbm": 430105047,
+							"dm": "34200",
+							"mc": "振东机械有限公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "C",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "zdjxyxgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-02-14 09:29:11",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-02-14 09:29:11"
+						}, {
+							"id": 63,
+							"jgbm": 430105047,
+							"dm": "36300",
+							"mc": "澧县码头镇万家岗村民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "lxmtzmggcmwyh,lxmtzwjgcmwyk,lxmtzwjgcmwyh,lxmtzwggcmwyk",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-06 08:36:58",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-06 08:36:58"
+						}, {
+							"id": 64,
+							"jgbm": 430105047,
+							"dm": "36900",
+							"mc": "汉寿县毛家滩回维乡田庄村民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "hsxmgthwxtzcmwyk,hsxmjthwxtzcmwyk,hsxmgthwxtzcmwyh,hsxmjthwxtzcmwyh",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-07 10:32:49",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-07 10:32:49"
+						}, {
+							"id": 65,
+							"jgbm": 430105047,
+							"dm": "35200",
+							"mc": "常德百春体育工程建设有限公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "E",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "cdbcbygcjsyxgs,cdbctygcjsyxgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-02-21 09:29:27",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-02-21 09:29:27"
+						}, {
+							"id": 66,
+							"jgbm": 430105047,
+							"dm": "35300",
+							"mc": "澧县码头铺镇码头社区居委会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "lxmtpzmtsojwh,lxmtpzmtsqjwk,lxmtpzmtsqjwh,lxmtpzmtsojwk",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-02-22 08:28:53",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-02-22 08:28:53"
+						}, {
+							"id": 67,
+							"jgbm": 430105047,
+							"dm": "32100",
+							"mc": "原铁2师8团机械连",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "yt2s8tjxl",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-04 09:19:15",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-04 09:19:15"
+						}, {
+							"id": 68,
+							"jgbm": 430105047,
+							"dm": "37200",
+							"mc": "常德力元新材料有限责任公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "C",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "cdlyxclyxzrgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-17 09:06:20",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-17 09:06:20"
+						}, {
+							"id": 69,
+							"jgbm": 430105047,
+							"dm": "37400",
+							"mc": "石门县三圣乡彭家堰村村民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "smxssxpjyccmwyh,dmxssxpgyccmwyh,smxssxpgyccmwyh,dmxssxpjyccmwyk",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-20 11:05:08",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-20 11:05:08"
+						}, {
+							"id": 70,
+							"jgbm": 430105047,
+							"dm": "37700",
+							"mc": "临澧县官亭乡双泉村",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "llxgtxsqc",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-21 10:34:22",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-21 10:34:22"
+						}, {
+							"id": 71,
+							"jgbm": 430105047,
+							"dm": "38500",
+							"mc": "石门县白云镇青龙桥村村民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "smxbyzqlqccmwyk,dmxbyzqlqccmwyk,smxbyzqlqccmwyh,dmxbyzqlqccmwyh",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-27 15:29:03",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-27 15:29:03"
+						}, {
+							"id": 72,
+							"jgbm": 430105047,
+							"dm": "38800",
+							"mc": "石门县新铺乡西溪峪村",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "smxxpxxqyc,dmxxpxxxyc,smxxpxxxyc,dmxxpxxqyc",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-29 10:16:38",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-29 10:16:38"
+						}, {
+							"id": 73,
+							"jgbm": 430105047,
+							"dm": "31500",
+							"mc": "常德赤峰实业总公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "B",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "cdcfsyzgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2016-12-16 10:09:32",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2016-12-16 10:09:32"
+						}, {
+							"id": 74,
+							"jgbm": 430105047,
+							"dm": "32800",
+							"mc": "工程兵3886部队",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "gcb3886bd",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-04 10:11:57",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-04 10:11:57"
+						}, {
+							"id": 75,
+							"jgbm": 430105047,
+							"dm": "38900",
+							"mc": "石门县新铺乡河曲峪村村民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "smxxpxhqyccmwyh,dmxxpxhqyccmwyh,smxxpxhqyccmwyk,dmxxpxhqyccmwyk",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-30 09:52:31",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-30 09:52:31"
+						}, {
+							"id": 76,
+							"jgbm": 430105047,
+							"dm": "31000",
+							"mc": "常德芙蓉大亚化纤有限公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "C",
+							"qygmdm": "0",
+							"jjlxdm": "0",
+							"qydm": "43000000",
+							"lxr": "",
+							"lxdh": "",
+							"lxrdzyx": "",
+							"zcdz": "",
+							"dwdz": "",
+							"yzbm": "",
+							"dwjj": "",
+							"bz": null,
+							"pym": "cdfrdyhxyxgs,cdfrdyhqyxgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2016-12-13 09:53:57",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2016-12-13 09:53:57"
+						}, {
+							"id": 77,
+							"jgbm": 430105047,
+							"dm": "31100",
+							"mc": "中国石化销售有限公司湖南常德石油分公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "D",
+							"qygmdm": "0",
+							"jjlxdm": "0",
+							"qydm": "43000000",
+							"lxr": "",
+							"lxdh": "",
+							"lxrdzyx": "",
+							"zcdz": "",
+							"dwdz": "",
+							"yzbm": "",
+							"dwjj": "",
+							"bz": null,
+							"pym": "zgdhxsyxgshncddyfgs,zgdhxsyxgshncdsyfgs,zgshxsyxgshncddyfgs,zgshxsyxgshncdsyfgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2016-12-13 09:54:45",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2016-12-13 09:54:45"
+						}, {
+							"id": 78,
+							"jgbm": 430105047,
+							"dm": "31200",
+							"mc": "湖南华南光电（集团）有限责任公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "C",
+							"qygmdm": "0",
+							"jjlxdm": "0",
+							"qydm": "43000000",
+							"lxr": "",
+							"lxdh": "",
+							"lxrdzyx": "",
+							"zcdz": "",
+							"dwdz": "",
+							"yzbm": "",
+							"dwjj": "",
+							"bz": null,
+							"pym": "hnhngdjtyxzrgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2016-12-13 09:55:58",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2016-12-13 09:55:58"
+						}, {
+							"id": 79,
+							"jgbm": 430105047,
+							"dm": "33200",
+							"mc": "原工程兵355部队",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "ygcb355bd",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-04 10:58:25",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-04 10:58:25"
+						}, {
+							"id": 80,
+							"jgbm": 430105047,
+							"dm": "33500",
+							"mc": "工程兵88701部队",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "gcb88701bd",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-04 11:28:33",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-04 11:28:33"
+						}, {
+							"id": 81,
+							"jgbm": 430105047,
+							"dm": "32200",
+							"mc": "原工程兵8342部队",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "ygcb8342bd",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-04 09:24:23",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-04 09:24:23"
+						}, {
+							"id": 82,
+							"jgbm": 430105047,
+							"dm": "33400",
+							"mc": "工程兵8042部队",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "gcb8042bd",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-04 11:15:04",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-04 11:15:04"
+						}, {
+							"id": 83,
+							"jgbm": 430105047,
+							"dm": "38100",
+							"mc": "石门县永兴街道双桥社区居民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "dmxyxjdsqsqjmwyh,smxyxjdsqsojmwyh,dmxyxjdsqsojmwyh,smxyxjdsqsqjmwyk",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-23 10:18:12",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-23 10:18:12"
+						}, {
+							"id": 84,
+							"jgbm": 430105047,
+							"dm": "35900",
+							"mc": "湖南华电常德发电有限公司",
+							"dwjc": null,
+							"zzjgbm": "MA1234567",
+							"frdb": null,
+							"hydm": "D",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": "张三",
+							"lxdh": "13211112222",
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": "长沙市麓云路100号",
+							"yzbm": "410000",
+							"dwjj": null,
+							"bz": null,
+							"pym": "hnhdcdfdyxgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-02-28 08:32:45",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-02-28 08:32:45"
+						}, {
+							"id": 85,
+							"jgbm": 430105047,
+							"dm": "31600",
+							"mc": "常德仁孚汽车服务有限公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "cdrfqjfwyxgs,cdrfqcfwyxgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2016-12-21 09:16:08",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2016-12-21 09:16:08"
+						}, {
+							"id": 86,
+							"jgbm": 430105047,
+							"dm": "31700",
+							"mc": "湖南洞庭药业股份有限公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "hndtyygfyxgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2016-12-30 08:21:54",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2016-12-30 08:21:54"
+						}, {
+							"id": 87,
+							"jgbm": 430105047,
+							"dm": "33100",
+							"mc": "原工程兵54师101团",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "ygcb54s101t",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-04 10:43:18",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-04 10:43:18"
+						}, {
+							"id": 88,
+							"jgbm": 430105047,
+							"dm": "34000",
+							"mc": "汉寿县崔家桥镇姚家村",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "hsxcjqzyjc,hsxcgqzyjc,hsxcjqzygc,hsxcgqzygc",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-19 08:14:17",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-19 08:14:17"
+						}, {
+							"id": 89,
+							"jgbm": 430105047,
+							"dm": "37600",
+							"mc": "石门县中美矽砂矿",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "dmxzmxsk,smxzmxsk",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-21 08:42:49",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-21 08:42:49"
+						}, {
+							"id": 90,
+							"jgbm": 430105047,
+							"dm": "37900",
+							"mc": "常德市西湖区柳林咀家桥加油站",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "cdsxholljjqjyz,cdsxhqlljgqjyz,cdsxholljgqjyz,cdsxhqllzjqjyz",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-22 10:16:48",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-22 10:16:48"
+						}, {
+							"id": 91,
+							"jgbm": 430105047,
+							"dm": "38600",
+							"mc": "澧县码头铺镇三观寺村民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "lxmtpzsgscmwyh,lxmtpzsgscmwyk",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-28 09:39:51",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-28 09:39:51"
+						}, {
+							"id": 92,
+							"jgbm": 430105047,
+							"dm": "38700",
+							"mc": "常德昱泰锅炉制造有限公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "cdytglzzyxgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-29 08:51:18",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-29 08:51:18"
+						}, {
+							"id": 93,
+							"jgbm": 430105047,
+							"dm": "39000",
+							"mc": "石门县夹山镇枣峰村村民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "dmxjszzfccmwyh,dmxgszzfccmwyh,smxjszzfccmwyk,smxgszzfccmwyk",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-31 14:38:41",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-31 14:38:41"
+						}, {
+							"id": 94,
+							"jgbm": 430105047,
+							"dm": "32000",
+							"mc": "国防施工",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "gfsg",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-04 08:55:07",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-04 08:55:07"
+						}, {
+							"id": 95,
+							"jgbm": 430105047,
+							"dm": "31400",
+							"mc": "湖南海利常德农药化工有限公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "hnhlcdnyhgyxgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2016-12-16 08:49:29",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2016-12-16 08:49:29"
+						}, {
+							"id": 96,
+							"jgbm": 430105047,
+							"dm": "31800",
+							"mc": "原工程兵部队",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "ygcbbd",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-04 08:25:58",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-04 08:25:58"
+						}, {
+							"id": 97,
+							"jgbm": 430105047,
+							"dm": "32500",
+							"mc": "原工程兵8318部队",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "ygcb8318bd",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-04 09:50:00",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-04 09:50:00"
+						}, {
+							"id": 98,
+							"jgbm": 430105047,
+							"dm": "32700",
+							"mc": "工程兵8462部队",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "gcb8462bd",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-04 10:02:01",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-04 10:02:01"
+						}, {
+							"id": 99,
+							"jgbm": 430105047,
+							"dm": "33900",
+							"mc": "石门县新铺乡中河铺村村民居委会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "dmxxpxzhpccmjwk,smxxpxzhpccmjwk,dmxxpxzhpccmjwh,smxxpxzhpccmjwh",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-12 11:25:14",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-12 11:25:14"
+						}, {
+							"id": 100,
+							"jgbm": 430105047,
+							"dm": "39200",
+							"mc": "扬子江药业集团广州海瑞药业有限公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "yzjyyjtgzhryyyxgs,yzjyyjtazhryyyxgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-04-05 10:26:10",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-04-05 10:26:10"
+						}, {
+							"id": 101,
+							"jgbm": 430105047,
+							"dm": "30900",
+							"mc": "常德达门船舶有限公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "G",
+							"qygmdm": "0",
+							"jjlxdm": "0",
+							"qydm": "43000000",
+							"lxr": "",
+							"lxdh": "",
+							"lxrdzyx": "",
+							"zcdz": "",
+							"dwdz": "",
+							"yzbm": "",
+							"dwjj": "",
+							"bz": null,
+							"pym": "cddmcbyxgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2016-12-13 09:53:27",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2016-12-13 09:53:27"
+						}, {
+							"id": 102,
+							"jgbm": 430105047,
+							"dm": "32300",
+							"mc": "原工程兵建筑103团2营",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "ygcbjz103t2y",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-04 09:28:51",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-04 09:28:51"
+						}, {
+							"id": 103,
+							"jgbm": 430105047,
+							"dm": "34500",
+							"mc": "澧县码头铺镇龙洞峪村民居委会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "lxmtpzldycmjwk,lxmtpzldycmjwh",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-02-15 08:18:55",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-02-15 08:18:55"
+						}, {
+							"id": 104,
+							"jgbm": 430105047,
+							"dm": "35500",
+							"mc": "石门县新铺乡黄家峪村村民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "dmxxpxhjyccmwyk,smxxpxhgyccmwyk,smxxpxhjyccmwyk,dmxxpxhgyccmwyk",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-02-23 08:18:18",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-02-23 08:18:18"
+						}, {
+							"id": 105,
+							"jgbm": 430105047,
+							"dm": "37800",
+							"mc": "常德市西湖管理区福湘源加油站",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "D",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "cdsxhglofxyjyz,cdsxhglqfxyjyz",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-22 09:03:41",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-22 09:03:41"
+						}, {
+							"id": 106,
+							"jgbm": 430105047,
+							"dm": "38000",
+							"mc": "石门县新铺乡黄木岗村",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "dmxxpxhmgc,smxxpxhmgc",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-22 10:44:17",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-22 10:44:17"
+						}, {
+							"id": 107,
+							"jgbm": 430105047,
+							"dm": "33000",
+							"mc": "铁道兵5757部队",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "tdb5757bd",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-04 10:32:04",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-04 10:32:04"
+						}, {
+							"id": 108,
+							"jgbm": 430105047,
+							"dm": "34600",
+							"mc": "湖南中烟工业公司常德卷烟厂",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "C",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "hnzygygscdqya,hnzygygscdjyc,hnzygygscdqyh,hnzygygscdjya",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-02-16 08:28:06",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-02-16 08:28:06"
+						}, {
+							"id": 109,
+							"jgbm": 430105047,
+							"dm": "37000",
+							"mc": "澧县甘溪滩镇精华寺社区居民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "lxgqtzjhssqjmwyk,lxgqtzjhssojmwyk,lxgqtzjhssqjmwyh,lxgxtzjhssqjmwyk",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-14 10:42:37",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-14 10:42:37"
+						}, {
+							"id": 110,
+							"jgbm": 430105047,
+							"dm": "39100",
+							"mc": "临澧县修梅镇沃沙村村民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "llxxmzwsccmwyk,llxxmzwsccmwyh",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-04-05 08:00:00",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-04-05 08:00:00"
+						}, {
+							"id": 111,
+							"jgbm": 430105047,
+							"dm": "30800",
+							"mc": "胜美达电机（常德）有限公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "smddjcdyxgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2016-12-13 08:28:53",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2016-12-13 08:28:53"
+						}, {
+							"id": 112,
+							"jgbm": 430105047,
+							"dm": "31900",
+							"mc": "铁道兵部队",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "tdbbd",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-04 08:51:12",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-04 08:51:12"
+						}, {
+							"id": 113,
+							"jgbm": 430105047,
+							"dm": "33300",
+							"mc": "工程兵103团",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "gcb103t",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-04 11:11:57",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-04 11:11:57"
+						}, {
+							"id": 114,
+							"jgbm": 430105047,
+							"dm": "34100",
+							"mc": "湖南常德纳菲尔新材料有限公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "C",
+							"qygmdm": "0",
+							"jjlxdm": "0",
+							"qydm": "43000000",
+							"lxr": "",
+							"lxdh": "",
+							"lxrdzyx": "",
+							"zcdz": "",
+							"dwdz": "",
+							"yzbm": "",
+							"dwjj": "",
+							"bz": null,
+							"pym": "hncdnfexclyxgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-02-10 11:19:56",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-02-10 11:19:56"
+						}, {
+							"id": 115,
+							"jgbm": 430105047,
+							"dm": "36500",
+							"mc": "澧县码头铺镇昌家村民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "lxmtpzcgcmwyh,lxmtpzcjcmwyk,lxmtpzcgcmwyk,lxmtpzcjcmwyh",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-06 10:00:49",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-06 10:00:49"
+						}, {
+							"id": 116,
+							"jgbm": 430105047,
+							"dm": "36700",
+							"mc": "湖南常德纳菲尔新材料科技有限公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "C",
+							"qygmdm": "0",
+							"jjlxdm": "0",
+							"qydm": "43000000",
+							"lxr": "谭冰峰",
+							"lxdh": "15173163931",
+							"lxrdzyx": "",
+							"zcdz": "",
+							"dwdz": "",
+							"yzbm": "",
+							"dwjj": "",
+							"bz": null,
+							"pym": "hncdnfexclkjyxgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-07 07:57:34",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-07 07:57:34"
+						}, {
+							"id": 117,
+							"jgbm": 430105047,
+							"dm": "37300",
+							"mc": "石门县白云镇王家堰村村民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "dmxbyzwjyccmwyh,dmxbyzwgyccmwyh,smxbyzwgyccmwyh,smxbyzwjyccmwyh",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-20 10:33:18",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-20 10:33:18"
+						}, {
+							"id": 118,
+							"jgbm": 430105047,
+							"dm": "37500",
+							"mc": "外省个体钢铁厂",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "C",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "wsgtgth,wsgbgta,wsgtgtc,wxgbgth",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-21 08:33:03",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-21 08:33:03"
+						}, {
+							"id": 119,
+							"jgbm": 430105047,
+							"dm": "32600",
+							"mc": "工程兵6918部队",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "gcb6918bd",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-04 09:59:10",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-04 09:59:10"
+						}, {
+							"id": 120,
+							"jgbm": 430105047,
+							"dm": "33800",
+							"mc": "湖南大北互互感器有限公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "hndbhhgqyxgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-10 09:14:34",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-10 09:14:34"
+						}, {
+							"id": 121,
+							"jgbm": 430105047,
+							"dm": "34800",
+							"mc": "澧县火连坡镇楠木村村民居委会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "lxhlpznmccmjwk,lxhlpznmccmjwh",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-02-16 09:29:03",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-02-16 09:29:03"
+						}, {
+							"id": 122,
+							"jgbm": 430105047,
+							"dm": "35100",
+							"mc": "临澧县刻木山乡岩龙村村民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "llxkmsxylccmwyk,llxkmsxylccmwyh",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-02-17 08:51:27",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-02-17 08:51:27"
+						}, {
+							"id": 123,
+							"jgbm": 430105047,
+							"dm": "31300",
+							"mc": "石门县芦垭煤矿",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "B",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "dmxlymk,smxlymk",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2016-12-13 10:27:26",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2016-12-13 10:27:26"
+						}, {
+							"id": 124,
+							"jgbm": 430105047,
+							"dm": "32400",
+							"mc": "原工程兵54师103团",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "ygcb54s103t",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-04 09:38:13",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-04 09:38:13"
+						}, {
+							"id": 125,
+							"jgbm": 430105047,
+							"dm": "32900",
+							"mc": "工程兵101团",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "gcb101t",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-04 10:25:37",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-04 10:25:37"
+						}, {
+							"id": 126,
+							"jgbm": 430105047,
+							"dm": "33700",
+							"mc": "澧县甘溪滩镇东门村民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "lxgxtzdmcmwyh,lxgqtzdmcmwyk,lxgqtzdmcmwyh,lxgxtzdmcmwyk",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-01-06 08:56:00",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-01-06 08:56:00"
+						}, {
+							"id": 127,
+							"jgbm": 430105047,
+							"dm": "34300",
+							"mc": "澧县甘溪滩镇芦茅村民居委会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "lxgqtzlmcmjwh,lxgxtzlmcmjwk,lxgxtzlmcmjwh,lxgqtzlmcmjwk",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-02-14 14:49:12",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-02-14 14:49:12"
+						}, {
+							"id": 128,
+							"jgbm": 430105047,
+							"dm": "35400",
+							"mc": "澧县甘溪滩镇古北村村民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "lxgxtzgbccmwyh,lxgqtzgbccmwyk,lxgqtzgbccmwyh,lxgxtzgbccmwyk",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-02-23 08:11:10",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-02-23 08:11:10"
+						}, {
+							"id": 129,
+							"jgbm": 430105047,
+							"dm": "35700",
+							"mc": "澧县甘溪滩镇遇市村民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "lxgxtzyscmwyh,lxgqtzyscmwyk,lxgqtzyscmwyh,lxgxtzyscmwyk",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-02-27 08:25:35",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-02-27 08:25:35"
+						}, {
+							"id": 130,
+							"jgbm": 430105047,
+							"dm": "35800",
+							"mc": "澧县火连坡镇芦桥村民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "lxhlpzlqcmwyk,lxhlpzlqcmwyh",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-02-27 15:00:21",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-02-27 15:00:21"
+						}, {
+							"id": 131,
+							"jgbm": 430105047,
+							"dm": "36000",
+							"mc": "石门县白云镇三合山村村民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "smxbyzsgsccmwyk,dmxbyzshsccmwyk,dmxbyzsgsccmwyk,smxbyzshsccmwyk",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-01 08:29:54",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-01 08:29:54"
+						}, {
+							"id": 132,
+							"jgbm": 430105047,
+							"dm": "36400",
+							"mc": "津市市澹津社区09327号",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "jsstjsq09327h,jssdjso09327h,jsstjso09327h,jssdjsq09327h",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-06 08:59:08",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-06 08:59:08"
+						}, {
+							"id": 133,
+							"jgbm": 430105047,
+							"dm": "36600",
+							"mc": "澧县方石坪镇柳树村7组07002号",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "lxfdpzlsc7z07002h,lxfspzlsc7z07002h",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-06 14:40:54",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-06 14:40:54"
+						}, {
+							"id": 134,
+							"jgbm": 430105047,
+							"dm": "36800",
+							"mc": "常德鼎鑫机械有限公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "C",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "cddxjxyxgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-07 08:12:50",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-07 08:12:50"
+						}, {
+							"id": 135,
+							"jgbm": 430105047,
+							"dm": "38200",
+							"mc": "石门县皂市镇白沙渡村",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "dmxzszbsdc,smxzszbsdc",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-24 10:02:15",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-24 10:02:15"
+						}, {
+							"id": 136,
+							"jgbm": 430105047,
+							"dm": "38300",
+							"mc": "湖南德山酒业营销有限公司",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "F",
+							"qygmdm": "0",
+							"jjlxdm": "0",
+							"qydm": "43000000",
+							"lxr": "",
+							"lxdh": "",
+							"lxrdzyx": "",
+							"zcdz": "",
+							"dwdz": "",
+							"yzbm": "",
+							"dwjj": "",
+							"bz": null,
+							"pym": "hndsjyyxyxgs",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-27 11:14:18",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-27 11:14:18"
+						}, {
+							"id": 137,
+							"jgbm": 430105047,
+							"dm": "38400",
+							"mc": "石门县白元镇青龙桥村村民委员会",
+							"dwjc": null,
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": null,
+							"jjlxdm": "0",
+							"qydm": null,
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "smxbyzqlqccmwyk,dmxbyzqlqccmwyk,smxbyzqlqccmwyh,dmxbyzqlqccmwyh",
+							"wbm": null,
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 0,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-03-27 14:39:28",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-03-27 14:39:28"
+						}, {
+							"id": 138,
+							"jgbm": 430105047,
+							"dm": "TJ_DW_0056",
+							"mc": "常德市德投沥青混凝土有限公司",
+							"dwjc": "",
+							"zzjgbm": "",
+							"frdb": "",
+							"hydm": "E",
+							"qygmdm": "0020",
+							"jjlxdm": "1039",
+							"qydm": "43070000",
+							"lxr": "杨进美",
+							"lxdh": "0736-7341888",
+							"lxrdzyx": "",
+							"zcdz": "",
+							"dwdz": "",
+							"yzbm": "",
+							"dwjj": "",
+							"bz": "",
+							"pym": "cdsdtlqhntyxgs",
+							"wbm": "itytrigiufdbwn",
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 1,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-04-14 14:35:23",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-04-18 11:19:04"
+						}, {
+							"id": 139,
+							"jgbm": 430105047,
+							"dm": "TJ_DW_0057",
+							"mc": "临澧县刻木山乡天星村村民委员会",
+							"dwjc": "",
+							"zzjgbm": "",
+							"frdb": "",
+							"hydm": "O",
+							"qygmdm": "1",
+							"jjlxdm": "1022",
+							"qydm": "43070000",
+							"lxr": "",
+							"lxdh": null,
+							"lxrdzyx": "",
+							"zcdz": "",
+							"dwdz": "",
+							"yzbm": "",
+							"dwjj": "",
+							"bz": "",
+							"pym": "llxkmsxtxccmwyh,llxkmsxtxccmwyk",
+							"wbm": "jieysmxgjssntkw",
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 2,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-04-17 09:38:25",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-04-17 09:38:25"
+						}, {
+							"id": 140,
+							"jgbm": 430105047,
+							"dm": "TJ_DW_0058",
+							"mc": "湖南蓝天航油常德供油站",
+							"dwjc": "",
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "D",
+							"qygmdm": "1",
+							"jjlxdm": "1039",
+							"qydm": "43070000",
+							"lxr": null,
+							"lxdh": "13970672447",
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": "",
+							"pym": "hnlthycdgyz",
+							"wbm": "ifagtiitwiu",
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 3,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-04-18 09:06:11",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-04-18 09:06:11"
+						}, {
+							"id": 141,
+							"jgbm": 430105047,
+							"dm": "TJ_DW_0059",
+							"mc": "澧县山门水库管理处直属村村民委员会",
+							"dwjc": "",
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": "1",
+							"jjlxdm": "1022",
+							"qydm": "43070000",
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": "",
+							"pym": "lxsmskglczzccmwyk,lxsmskglczsccmwyk,lxsmskglczzccmwyh,lxsmskglczsccmwyh",
+							"wbm": "iemuiytgtfnssntkw",
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 4,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-04-18 09:13:39",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-04-18 09:13:39"
+						}, {
+							"id": 142,
+							"jgbm": 430105047,
+							"dm": "TJ_DW_0060",
+							"mc": "石门县宝峰街道华山社区居民委员会",
+							"dwjc": "",
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": "1",
+							"jjlxdm": "1022",
+							"qydm": "43070000",
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": "",
+							"pym": "dmxbfjdhssojmwyh,smxbfjdhssqjmwyk,dmxbfjdhssqjmwyk,smxbfjdhssojmwyk",
+							"wbm": "duepmtuwmpanntkw",
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 5,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-04-18 09:22:36",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-04-18 09:22:36"
+						}, {
+							"id": 143,
+							"jgbm": 430105047,
+							"dm": "TJ_DW_0061",
+							"mc": "石门县宝峰街道花山社区居民委员会",
+							"dwjc": "",
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": "1",
+							"jjlxdm": "1022",
+							"qydm": "43070000",
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": "",
+							"pym": "dmxbfjdhssojmwyh,smxbfjdhssqjmwyk,dmxbfjdhssqjmwyk,smxbfjdhssojmwyk",
+							"wbm": "duepmtuampanntkw",
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 6,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-04-18 09:30:17",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-04-18 09:30:17"
+						}, {
+							"id": 144,
+							"jgbm": 430105047,
+							"dm": "TJ_DW_0062",
+							"mc": "石门县平安矿业有限公司",
+							"dwjc": "",
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "B",
+							"qygmdm": "0020",
+							"jjlxdm": "1039",
+							"qydm": "43070000",
+							"lxr": null,
+							"lxdh": "0736-5353439",
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": "",
+							"pym": "smxpakyyxgs,dmxpakyyxgs",
+							"wbm": "duegpdodbwn",
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 7,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-04-18 09:50:08",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-04-18 12:53:31"
+						}, {
+							"id": 145,
+							"jgbm": 430105047,
+							"dm": "TJ_DW_0063",
+							"mc": "澧县火连坡镇水氽洞村民委员会",
+							"dwjc": "",
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "O",
+							"qygmdm": "0020",
+							"jjlxdm": "1022",
+							"qydm": "43070000",
+							"lxr": null,
+							"lxdh": "1234567",
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": "",
+							"pym": "lxhlpzstdcmwyk,lxhlpzstdcmwyh",
+							"wbm": "ieolfqiwisntkw",
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 8,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-04-18 10:44:43",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-04-18 10:44:43"
+						}, {
+							"id": 146,
+							"jgbm": 430105047,
+							"dm": "TJ_DW_0064",
+							"mc": "冷水江市湘波煤炭贸易有限责任公司",
+							"dwjc": "",
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "",
+							"qygmdm": "0020",
+							"jjlxdm": "1039",
+							"qydm": "43070000",
+							"lxr": null,
+							"lxdh": "18073817800",
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": "",
+							"pym": "lsjsxbmtmyyxzrgs,lsjsxpmtmyyxzrgs",
+							"wbm": "uiiyiiomqjdbgwwn",
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 9,
+							"jlzt": 1,
+							"cjr": 1000,
+							"cjrxm": "杨光宏",
+							"cjsj": "2017-04-19 10:36:23",
+							"xgr": 1000,
+							"xgrxm": "杨光宏",
+							"xgsj": "2017-04-19 10:36:23"
+						}, {
+							"id": 147,
+							"jgbm": 430105047,
+							"dm": "TJ_DW_0065",
+							"mc": "个体",
+							"dwjc": "",
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "",
+							"qygmdm": "1",
+							"jjlxdm": "1022",
+							"qydm": "43000000",
+							"lxr": null,
+							"lxdh": "13143333333",
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": "",
+							"pym": "gt,gb",
+							"wbm": "ww",
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 10,
+							"jlzt": 1,
+							"cjr": 1000003101,
+							"cjrxm": "CS管理员",
+							"cjsj": "2017-05-10 15:07:30",
+							"xgr": 1000003101,
+							"xgrxm": "CS管理员",
+							"xgsj": "2017-05-10 15:07:30"
+						}, {
+							"id": 148,
+							"jgbm": 430105047,
+							"dm": "TJ_DW_0066",
+							"mc": "hz",
+							"dwjc": "",
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "",
+							"qygmdm": "1",
+							"jjlxdm": "1023",
+							"qydm": "43010000",
+							"lxr": null,
+							"lxdh": "12222222222",
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": "",
+							"pym": "h",
+							"wbm": "h",
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 11,
+							"jlzt": 1,
+							"cjr": 1000003101,
+							"cjrxm": "CS管理员",
+							"cjsj": "2017-05-11 16:19:07",
+							"xgr": 1000003101,
+							"xgrxm": "CS管理员",
+							"xgsj": "2017-05-11 16:19:07"
+						}, {
+							"id": 149,
+							"jgbm": 430105047,
+							"dm": "TJ_DW_0067",
+							"mc": "cs",
+							"dwjc": "",
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "",
+							"qygmdm": "1",
+							"jjlxdm": "1039",
+							"qydm": "43010000",
+							"lxr": null,
+							"lxdh": "13142222222",
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": "",
+							"pym": "c",
+							"wbm": "c",
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 12,
+							"jlzt": 1,
+							"cjr": 1000003101,
+							"cjrxm": "CS管理员",
+							"cjsj": "2017-05-15 10:14:53",
+							"xgr": 1000003101,
+							"xgrxm": "CS管理员",
+							"xgsj": "2017-05-15 10:14:53"
+						}, {
+							"id": 150,
+							"jgbm": 430105047,
+							"dm": "TJ_DW_0068",
+							"mc": "测试",
+							"dwjc": "",
+							"zzjgbm": "",
+							"frdb": "",
+							"hydm": "F",
+							"qygmdm": "1",
+							"jjlxdm": "1024",
+							"qydm": "43010000",
+							"lxr": "",
+							"lxdh": "18670018441",
+							"lxrdzyx": "",
+							"zcdz": "",
+							"dwdz": "",
+							"yzbm": "",
+							"dwjj": "",
+							"bz": "",
+							"pym": "cs",
+							"wbm": "iy",
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 13,
+							"jlzt": 1,
+							"cjr": 1000003101,
+							"cjrxm": "CS管理员",
+							"cjsj": "2017-05-31 09:17:26",
+							"xgr": 1000003101,
+							"xgrxm": "CS管理员",
+							"xgsj": "2017-05-31 09:17:26"
+						}, {
+							"id": 151,
+							"jgbm": 430105047,
+							"dm": "TJ_DW_0069",
+							"mc": "测试团体预约",
+							"dwjc": "",
+							"zzjgbm": null,
+							"frdb": null,
+							"hydm": "B",
+							"qygmdm": "1",
+							"jjlxdm": "1039",
+							"qydm": "43010000",
+							"lxr": null,
+							"lxdh": "155555555",
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": "",
+							"pym": "csttyy,cstbyy",
+							"wbm": "iylwcx",
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 14,
+							"jlzt": 1,
+							"cjr": 1000003101,
+							"cjrxm": "CS管理员",
+							"cjsj": "2017-06-23 17:44:44",
+							"xgr": 1000003101,
+							"xgrxm": "CS管理员",
+							"xgsj": "2017-06-23 17:44:44"
+						}, {
+							"id": 152,
+							"jgbm": 430105047,
+							"dm": "0012321",
+							"mc": "长沙微康科技有限Company",
+							"dwjc": null,
+							"zzjgbm": "123456789",
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": "0",
+							"jjlxdm": "0",
+							"qydm": "0",
+							"lxr": "张三",
+							"lxdh": "18670018441",
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": "长沙市岳麓区100号",
+							"yzbm": null,
+							"dwjj": null,
+							"bz": "企业名称错误",
+							"pym": "zswkkjyxCompan,cswkkjyxCompan",
+							"wbm": "titytrdbCompan",
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 15,
+							"jlzt": 1,
+							"cjr": 0,
+							"cjrxm": "企业健康平台",
+							"cjsj": "2017-07-10 11:41:51",
+							"xgr": 0,
+							"xgrxm": "企业健康平台",
+							"xgsj": "2017-07-10 11:41:51"
+						}, {
+							"id": 153,
+							"jgbm": 430105047,
+							"dm": "TJ_BM_0043",
+							"mc": "长沙微康信息科技有限公司",
+							"dwjc": null,
+							"zzjgbm": "TJ_BM_0043",
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": "0",
+							"jjlxdm": "0",
+							"qydm": "0",
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "zswkxxkjyxgs,zswksxkjyxgs,cswkxxkjyxgs,cswksxkjyxgs",
+							"wbm": "titywttrdbwn",
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 16,
+							"jlzt": 1,
+							"cjr": 0,
+							"cjrxm": "企业健康平台",
+							"cjsj": "2017-07-19 15:00:33",
+							"xgr": 0,
+							"xgrxm": "企业健康平台",
+							"xgsj": "2017-07-19 15:00:33"
+						}, {
+							"id": 157,
+							"jgbm": 430105047,
+							"dm": "cccccccccccc",
+							"mc": "cccccccccccccccccc",
+							"dwjc": null,
+							"zzjgbm": "cccccccccccc",
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": "0",
+							"jjlxdm": "0",
+							"qydm": "0",
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "cccccccccccccccccc",
+							"wbm": "cccccccccccccccccc",
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 17,
+							"jlzt": 1,
+							"cjr": 0,
+							"cjrxm": "企业健康平台",
+							"cjsj": "2017-08-01 11:37:09",
+							"xgr": 0,
+							"xgrxm": "企业健康平台",
+							"xgsj": "2017-08-01 11:37:09"
+						}, {
+							"id": 159,
+							"jgbm": 430105047,
+							"dm": "912102002418338631",
+							"mc": "长沙微康信息科技有限公司1",
+							"dwjc": null,
+							"zzjgbm": "912102002418338631",
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": "0",
+							"jjlxdm": "0",
+							"qydm": "0",
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "zswkxxkjyxgs1,cswkxxkjyxgs1,cswksxkjyxgs1,zswksxkjyxgs1",
+							"wbm": "titywttrdbwn1",
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 18,
+							"jlzt": 1,
+							"cjr": 0,
+							"cjrxm": "企业健康平台",
+							"cjsj": "2017-08-01 11:42:11",
+							"xgr": 0,
+							"xgrxm": "企业健康平台",
+							"xgsj": "2017-08-01 11:42:11"
+						}, {
+							"id": 160,
+							"jgbm": 430105047,
+							"dm": "912102002418338633",
+							"mc": "万达股份",
+							"dwjc": null,
+							"zzjgbm": "912102002418338633",
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": "0",
+							"jjlxdm": "0",
+							"qydm": "0",
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "mdgf,wdgf",
+							"wbm": "ddew",
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 19,
+							"jlzt": 1,
+							"cjr": 0,
+							"cjrxm": "企业健康平台",
+							"cjsj": "2017-08-01 12:46:34",
+							"xgr": 0,
+							"xgrxm": "企业健康平台",
+							"xgsj": "2017-08-01 12:46:34"
+						}, {
+							"id": 168,
+							"jgbm": 430105047,
+							"dm": "91110108MA00FQ6J3R",
+							"mc": "阿里",
+							"dwjc": null,
+							"zzjgbm": "91110108MA00FQ6J3R",
+							"frdb": null,
+							"hydm": null,
+							"qygmdm": "0",
+							"jjlxdm": "0",
+							"qydm": "0",
+							"lxr": null,
+							"lxdh": null,
+							"lxrdzyx": null,
+							"zcdz": null,
+							"dwdz": null,
+							"yzbm": null,
+							"dwjj": null,
+							"bz": null,
+							"pym": "el,al",
+							"wbm": "bj",
+							"wldm": null,
+							"wlmc": null,
+							"pxxh": 20,
+							"jlzt": 1,
+							"cjr": 0,
+							"cjrxm": "企业健康平台",
+							"cjsj": "2017-08-04 10:02:46",
+							"xgr": 0,
+							"xgrxm": "企业健康平台",
+							"xgsj": "2017-08-04 10:02:46"
+						}]
+					},
+					"msg": null
+				};
+				var countries = [];
+
+				$.each(tjdwData.data.rows, function(index, element) {
+					countries.push({
+						value: element.mc + element.pym + element.wbm,
+						data: element.dm,
+						val: element.mc
+					});
+				});
+				/*单位填充下拉*/
+				$('#tjdwmc').autocomplete({
+					lookup: countries,
+					minChars: 0,
+					width: "320",
+					maxHeight: "180",
+					showName: 'val',
+					lookupLimit: 30,
+					autoSelectFirst: true, //默认选中第一行
+					onSelect: function(suggestion) {
+						$("#tjdw").val(suggestion.data);
+						$("#tjdwmc").val(suggestion.val);
+					},
+					formatResult: function(suggestion, currentValue) {
+						return suggestion.val;
+					}
+				})
+			}
+			tjdwInit();
+		</script>
+	</body>
+
+</html>

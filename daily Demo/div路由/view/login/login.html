@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>登录页面 </title>
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/login.css">
+		<link rel="stylesheet" href="../../font/iconfont.css" />
+	</head>
+	<body>
+		<div class="header">
+			<div class="header-content">
+				<img src="../../img/login/logo.png">
+				<div class="telephone">0731-88036079</div>
+			</div>
+		</div>
+		<div class="main">
+			<div class="login-wrap">
+				<form class="login-form">
+					<h3>机构登录</h3>
+					<div class="row">
+						<input type="text" placeholder="机构账号" datatype="*" nullmsg="请输入机构账号">
+					</div>
+					<div class="row">
+						<input type="password" placeholder="机构密码" datatype="*" nullmsg="请输入密码">
+					</div>
+					<div class="remenber">
+						<label><input type="checkbox">自动登录</label>
+						<a class="fl-r" href="resetPassword.html">忘记密码？</a>
+					</div>
+					<div class="row">
+						<button>登 录</button>
+					</div>
+					<p class="go-reg">还没有账号？ <a href="register.html" class="cl-primary">去注册</a></p>
+				</form>
+			</div>
+		</div>
+		<div class="footer">
+			<p>技术支持：长沙微康信息科技有限公司</p>
+			<p>2014&copy;版权所有 长沙微康信息科技有限公司 湘ICP备14008641号-1</p>
+		</div>
+		<script src="../../js/lib/jquery/jquery-1.91.min.js"></script>
+		<script src="../../js/lib/layer/layer.js"></script>
+		<script src="../../js/lib/Validform/Validform.min.js"></script>
+		<script>
+			/* 表单校验*/
+			var form = $(".login-form").Validform({
+				postonce: true,
+				beforeSubmit: function(form) {
+					submitFormData();
+					return false;
+				},
+				tiptype: function(msg, o) {
+					if(msg) {
+						layer.tips(msg, o.obj[0], {
+							tips: 3
+						})
+					}
+				},
+			});
+
+			/*表单提交*/
+			function submitFormData() {
+				$.ajax({
+					url: '',
+					type: 'post',
+					data: $('.login-form').serialize(),
+					dataType: 'json',
+					success: function(obj) {
+						if(obj.code == 1) {
+							layer.closeAll();
+							layer.msg(obj.msg, {
+								icon: 1
+							});
+							return;
+						}
+						layer.msg(obj.msg, {
+							icon: 0
+						});
+					},
+					error: function(obj) {
+						layer.msg(obj.msg, {
+							icon: 2
+						})
+					}
+				})
+			}
+			
+			// 登录页面若在框架内，则跳出框架
+			if(top.location != location){  
+			    top.location.href= location.href;  
+			}  
+
+		</script>
+	</body>
+</html>

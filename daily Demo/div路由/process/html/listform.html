@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>预约管理</title>
+		<link href="favicon.ico" rel="icon">
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap-responsive.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/mycomom.css" />
+		<link rel="stylesheet" type="text/css" href="../css/listform.css" />
+		<script type="text/javascript" src="../js/tools/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="../js/tools/bootstrap.min.js"></script>
+	</head>
+
+	<body>
+		<div class="listform-body module-box">
+			<div class="listform-header">
+				<ul class="inline">
+					<li class="green">1 单位信息关联</li>
+					<li>2 团检名单导入</li>
+					<li>3 分组及配套体检项</li>
+					<li>4 订单最终确认</li>
+				</ul>
+			</div>
+			<div class="listform-content">
+				<!--模态弹窗-->
+				<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="form-box" >
+						<div class="myModal-header"><span>新增</span><i id="close_modal" class="fr iconfont">&#xe6e9;</i></div>
+						<form class="form-horizontal">
+							<div class="control-group">
+								<label class="control-label" for="inputName">单位名称</label>
+								<div class="controls">
+									<input type="text" id="inputName" placeholder="请输入单位名称">
+									<p class="text-error hide"  id="inputName_error"></p>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="inputCode">企业信用代码</label>
+								<div class="controls">
+									<input type="text" id="inputCode" placeholder="请输入企业信用代码">
+									<span class="control-search">快速查找</span>
+									<p class="text-error hide" id="inputCode_error"></p>
+								</div>
+							</div>
+							<!--三级联动-->
+							<div class="control-group">
+								<label class="control-label" for="inputPassword">公司地址</label>
+								<div class="controls">
+									<div id="distpicker" class="select-city" >
+										<select class="form-control" id="province"></select>
+										<select class="form-control" id="city" ></select>
+										<select class="form-control" id="district"></select>
+										<div class="detailed-address mt10">
+											<input type="text" id="detailed——address" placeholder="请输入详细地址">
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="control-group">
+								<label class="control-label" for="inputUser">公司联系人</label>
+								<div class="controls">
+									<input type="text" id="inputUser" placeholder="请输入公司联系人">
+									<p class="text-error hide" id="inputUser_error"></p>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="inputTel">联系人手机</label>
+								<div class="controls">
+									<input type="text" id="inputTel" placeholder="请输入联系人手机">
+									<p class="text-error hide" id="inputTel_error">输入验证错误</p>
+								</div>
+							</div>
+						</form>
+						<div class="submit-box">
+							 <button id="btn_success" class="btn btn-success">确定</button>
+						</div>
+						
+					</div>
+				</div>
+				<!--有信息需要补充-->
+				<div class="form-box hide" id="form_box">
+					<form class="form-horizontal">
+						<div class="control-group">
+							<label class="control-label" for="inputName">单位名称</label>
+							<div class="controls">
+								<input type="text" id="inputName" placeholder="请输入单位名称">
+								<p class="text-error hide"  id="inputName_error"></p>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="inputCode">企业信用代码</label>
+							<div class="controls">
+								<input type="text" id="inputCode" placeholder="请输入企业信用代码">
+								<span class="control-search">快速查找</span>
+								<p class="text-error hide" id="inputCode_error"></p>
+							</div>
+						</div>
+						<!--三级联动-->
+						<div class="control-group">
+							<label class="control-label" for="inputPassword">公司地址</label>
+							<div class="controls">
+								<div id="distpicker1" class="select-city" >
+									<select class="form-control" id="province"></select>
+									<select class="form-control" id="city" ></select>
+									<select class="form-control" id="district"></select>
+									<div class="detailed-address mt10">
+										<input type="text" id="detailed——address" placeholder="请输入详细地址">
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="inputUser">公司联系人</label>
+							<div class="controls">
+								<input type="text" id="inputUser" placeholder="请输入公司联系人">
+								<p class="text-error hide" id="inputUser_error"></p>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="inputTel">联系人手机</label>
+							<div class="controls">
+								<input type="text" id="inputTel" placeholder="请输入联系人手机">
+								<p class="text-error hide" id="inputTel_error">输入验证错误</p>
+							</div>
+						</div>
+					</form>
+					<div class="submit-box mt20">
+						 <button class="btn btn-large" type="button">下一步</button>
+					</div>
+				</div>
+				
+				<!--搜索框-->
+				<div class="search-box" id="search_box">
+					<div class="form-search">
+						<span>
+						    <input class="search-input" type="text" id="search_input" placeholder="请输入您想搜索的公司名">
+						    <button id="search_btn"  class="btn btn-success">搜索</button>
+						</span>
+					</div>
+					<div class="search-result" id="search_result">
+						<div class="list-header">
+							<h5>搜索结果</h5><span class="fr" id="seach_result">找到相关30个</span>
+						</div>
+						<ul class="list-ul list-ul-page1" id="list_ul">
+<!--							<li class="list-active"><span>长沙</span>维康信息科技有限公司</li>-->
+						</ul>
+						<div class="box">
+							<div id="pagination" class="page fr"></div>
+						</div>
+					</div>
+					<div class="search-default" id="seach_default">
+						<i class="iconfont">&#xe62c;</i>
+						<p class="search-default-info"><span class="fbold">抱歉sorry~~</span>没有搜索到<font id="company_name">长沙微康信息</font>的相关结果<a id="addinfo" href="javascritp:;">立即新增</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/tools/distpicker.data.js"></script>
+		<script type="text/javascript" src="../js/tools/distpicker.js"></script>
+		<script type="text/javascript" src="../js/listform.js" ></script>
+	</body>
+
+</html>

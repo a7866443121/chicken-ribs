@@ -1,0 +1,476 @@
+
+		<div class="gray-wrap group-manage">
+			<!-- 筛选-start -->
+			<div class="filter-box mb-10" id="filterBox">
+				<div class="filter-item">
+					<label>创建时间：</label>
+					<input class="Wdate ipt ml-10" type="text" id="d15" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'d16\')||\'%y-%M-%d\'}',skin:'blue'})">
+					<div class="fl-l mlr-10">-</div>
+					<input class="Wdate ipt" type="text" id="d16" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'d15\')}',maxDate:'%y-%M-%d',skin:'blue'})">
+					<label class="ml-10">单位名称：</label>
+					<input type="text" class="ipt fl-l">
+					<label class="ml-10">方案名称：</label>
+					<input type="text" class="ipt fl-l">
+					<label class="ml-10">体检类型：</label>
+					<select class="slt"></select>
+					<button class="btn btn-primary ml-10">&nbsp;&nbsp;查询&nbsp;&nbsp;</button>
+				</div>
+			</div>
+			<!-- 筛选-end -->
+			<!-- 订单列表-start -->
+			<div class="white-wrap pt-10">
+				<div class="table-title">
+					<label>方案管理</label>
+				</div>
+				<div class="pro-table-wrap">
+					<div class="pro-left">
+						<div class="pro-table-tit">单位名称</div>
+						<table class="table content-table">
+							<thead>
+								<tr>
+									<th style="width: 50px;">序号</th>
+									<th>单位名称</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>长沙微康</td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>长沙微康</td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>长沙微康</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="pro-right">
+						<div class="pro-table-tit">
+							方案列表
+							<button id="zdBtn" class="fl-r btn-hol btn-hol-primary"><i class="iconfont icon-editor"></i>制定方案</button>
+						</div>
+						<table id="orderTable" class="table content-table">
+							<thead>
+								<tr>
+									<th>序号</th>
+									<th>方案名称</th>
+									<th>协议号</th>
+									<th>价格</th>
+									<th>创建人</th>
+									<th>创建时间</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>
+										<a href="javascript:;" class="cl-primary faName link-a">方案10</a>
+									</td>
+									<td>20170829</td>
+									<td>60</td>
+									<td>王大锤</td>
+									<td>2016-12-20<br/>12:00:01</td>
+									<td>
+										<a href="javascript:;" class="cl-primary xmBtn link-a">选项目</a>
+										<a href="javascript:;" class="cl-primary chooseIpt link-a">危害因素</a>
+										<a href="javascript:;" class="cl-primary del link-a">删除</a>
+									</td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>
+										<a href="javascript:;" class="cl-primary faName link-a">方案10</a>
+									</td>
+									<td>20170829</td>
+									<td>60</td>
+									<td>王大锤</td>
+									<td>2016-12-20<br/>12:00:01</td>
+									<td>
+										<a href="javascript:;" class="cl-primary xmBtn link-a">选项目</a>
+										<a href="javascript:;" class="cl-primary chooseIpt link-a">危害因素</a>
+										<a href="javascript:;" class="cl-primary del link-a">删除</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<!-- 订单列表-end -->
+			
+		</div>
+
+		<!--制定方案dlg-->
+		<div id="faContent" class="alg-content">
+			<form id="form" style="margin: 50px 0 0 180px;">
+				<div class="row">
+					<label class="row-label">方案名称：</label>
+					<input type="text" class="ipt" datatype="*" nullmsg="请填写方案名称！">
+				</div>
+				<div class="row">
+					<label class="row-label">单位名称：</label>
+					<input type="text" class="ipt" datatype="*" nullmsg="请填写单位名称！">
+				</div>
+				<div class="row">
+					<label class="row-label">体检类型：</label>
+					<select class="slt fl-l" datatype="*" nullmsg="请选择！">
+						<option value="1">职业健康体检</option>
+						<option value="2">岗前体检</option>
+					</select>
+				</div>
+				<div class="row">
+					<label class="row-label">协议号：</label>
+					<input type="text" class="ipt" datatype="*" nullmsg="请填写协议号！">
+				</div>
+			</form>
+		</div>
+		<!-- 项目选择dlg -->
+		<div id="xmContent" class="alg-content pt-10">
+			<div class="dbtable">
+				<div class="dbtable-left">
+					<div style="line-height: 39px;text-align: center;border-bottom:1px #d4d4d4 solid;">组合项目</div>
+					<div class="dbtable-wrap" style="height:340px;">
+						<div id="tree" class="ztree" style="padding: 10px;"></div>
+					</div>
+				</div>
+				<div class="dbtable-right">
+					<div style="line-height: 39px;text-align: center;">已选项目</div>
+					<div class="dbtable-wrap" style="height:340px;">
+						<table class="table" id="xmTab">
+							<thead>
+								<tr>
+									<th>项目名称</th>
+									<th>金额</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<label class="row-label">总价：<font class="cl-red">￥888</font></label>
+				<label class="row-label">协议价：</label>
+				<input type="text" class="ipt fl-l" datatype="*" nullmsg="请填写方案名称！" style="width: 186px;">
+			</div>
+		</div>
+		<!-- 选择危害因素 -->
+		<section id="treeWrap" class="alg-content">
+			<div class="search-wrap search-type">
+				<input id="treeSearchIpt" type="text" placeholder="请输入名称或拼音码">
+				<i id="filterBtn" class="iconfont icon-search"></i>
+			</div>
+			<div id="whTree" class="ztree tree-wrap">
+
+			</div>
+		</section>
+		<script>
+			/*table初始化*/
+			var orderTab = $('#orderTable').ReportTable({
+				ajax: {
+					url: 'programmeManage/report.json',
+					data: {
+						page: 1,
+						rows: 10
+					}
+				},
+				title: [{
+						data: 'xh',
+						name: '序号',
+						width: 50
+					},
+					{
+						data: 'tjh',
+						name: '体检号',
+						className: 'good',
+						render: function(data) {
+							return '<a class="link-a" href="javascript:;">' + data + '</a>'
+						}
+					},
+					{
+						data: 'xm',
+						name: '项目',
+					},
+					{
+						data: 'sfzh',
+						name: '身份证号'
+					}
+				],
+				cols: [
+					2
+				]
+			});
+
+			/* 表单校验*/
+			var form = $("#form").Validform({
+				postonce: true,
+				beforeSubmit: function(form) {
+					submitFormData();
+					return false;
+				},
+				tiptype: function(msg, o) {
+					if(msg) {
+						layer.tips(msg, o.obj[0], {
+							tips: 3
+						})
+					}
+				},
+			});
+
+			/*表单提交*/
+			function submitFormData() {
+				$.ajax({
+					url: '',
+					type: 'post',
+					data: $('#form').serialize(),
+					dataType: 'json',
+					success: function(obj) {
+						if(obj.code == 1) {
+							layer.closeAll();
+							layer.msg(obj.msg, {
+								icon: 1
+							});
+							return;
+						}
+						layer.msg(obj.msg, {
+							icon: 0
+						});
+					},
+					error: function(obj) {
+						layer.msg(obj.msg, {
+							icon: 2
+						})
+					}
+				})
+			}
+
+			/*制定方案*/
+			$('#zdBtn,.faName').on('click', function() {
+				layer.open({
+					type: 1,
+					title: '制定方案',
+					content: $('#faContent'),
+					area: ['800px', '350px'],
+					btn: ['确认','取消'],
+					shadeClose: true,
+					yes: function(index) {
+						//确定的回调
+						form.submitForm();
+						//layer.close(index);
+					}
+				})
+			})
+			/*选项目*/
+			$('.xmBtn').on('click', function() {
+				layer.open({
+					type: 1,
+					title: '制定方案',
+					content: $('#xmContent'),
+					area: ['800px', ''],
+					btn: ['确认','取消','清空'],
+					shadeClose: true,
+					yes: function(index) {
+						//确定的回调
+						layer.close(index);
+					},btn3: function(index, layero){
+						//清空回调
+						$("#xmTab tbody").empty();
+						return false;
+					}
+				})
+			})
+			var xmData = [];
+
+			function getData() {
+				var mxData = [];
+				$.ajax({
+					url: 'programmeManage/mxData.json',
+					type: 'get',
+					async: false,
+					dataType: 'json',
+					success: function(data) {
+						mxData = data.data.rows;
+					}
+				})
+				return mxData;
+			}
+
+			var setting = {
+				async: {
+					enable: true, //否开启异步加载模式
+					url: 'programmeManage/tree.json',
+					dataFilter: function(treeId, parentNode, responseData) {
+						var treeData = responseData.data.rows;
+						var zhxmData = getData();
+						for(var ii in treeData) {
+							treeData[ii].dm = "FL_" + treeData[ii].dm;
+						}
+						for(var i = 0; i < zhxmData.length; i++) {
+							var dm = zhxmData[i].dm;
+							var mc = zhxmData[i].mc;
+							var dj = zhxmData[i].dj;
+							var fdm = "FL_" + zhxmData[i].tjxmfldm;
+							treeData.push({
+								dm: dm,
+								fdm: fdm,
+								mc: mc,
+								dj: dj
+							});
+						}
+						return treeData;
+					},
+					dataType: 'json',
+					type: 'get'
+				},
+
+				data: {
+					simpleData: {
+						enable: true,
+						idKey: 'dm',
+						pIdKey: 'fdm'
+					},
+					key: {
+						name: 'mc'
+					}
+				},
+				callback: {
+					//选中复选框时间
+					onClick: onCheck
+				}
+			}
+			//初始化组合类别树
+			var tree = $.fn.zTree.init($('#tree'), setting, null);
+
+			function onCheck(e, treeId, treeNode) {
+				if(treeNode.fdm != null) {
+					for(var i = 0; i < xmData.length; i++) {
+						if(xmData[i].dm == treeNode.dm) {
+							return;
+						}
+					}
+					$('#xmTab  tbody').append('<tr><td> <p style="display: none;">' + treeNode.dm + '</p> ' + treeNode.mc + '</td><td>' + treeNode.dj + '</td></tr>');
+					xmData.push({
+						dm: treeNode.dm,
+						mc: treeNode.mc,
+						dj: treeNode.dj
+					});
+				} else {
+					var childNodes = tree.getNodesByParam('fdm', treeNode.dm);
+					for(var i = 0; i < childNodes.length; i++) {
+
+						var con = 0;
+						var node = childNodes[i];
+						for(var j = 0; j < xmData.length; j++) {
+
+							if(xmData[j].dm == node.dm) {
+
+								con = 1;
+							}
+
+						}
+						if(con == 1) {} else {
+							$('#xmTab  tbody').append('<tr><td> <p style="display: none;">' + node.dm + '</p> ' + node.mc + '</td><td>' + node.dj + '</td></tr>');
+							xmData.push({
+								dm: node.dm,
+								mc: node.mc,
+								dj: node.dj
+							});
+						}
+					}
+				}
+			}
+
+			/*删除项目*/
+			$('#xmTab tbody').on('click', 'tr', function() {
+				$(this).remove();
+				//xmData
+				var dm = $(this).find("p").text();
+				for(var j = 0; j < xmData.length; j++) {
+					if(parseInt(xmData[j].dm) == parseInt(dm)) {
+						xmData.splice(j, 1)
+					}
+				}
+			});
+			
+			
+			/*tree数据筛选请求参数*/
+			var setting1 = {
+				check: {
+					enable: true
+				},
+				data: {
+					simpleData: {
+						enable: true,
+						idKey: "id",
+						pIdKey: "fid"
+					},
+					key: {
+						name: 'text'
+					}
+				},
+				callback: {
+					onClick: function(event, treeId, treeNode) {}
+				}
+			};
+			var tree1 = null;
+
+			/*选择因素 弹出框*/
+			$('.chooseIpt').on('click', function() {
+				var self = $(this);
+				if(tree1) {
+					tree1.cancelSelectedNode();
+				}
+				layer.open({
+					type: 1,
+					title: '选择危害因素',
+					content: $('#treeWrap'),
+					area: ['400px', '500px'],
+					btn: ['确定', '取消'],
+					shadeClose: true,
+					success: function() {
+						if(!tree1) {
+							tree1 = $.fn.zTree.init($("#whTree"), setting1, datafilter1());
+							//ztree_search('whTree', 'treeSearchIpt', 'filterBtn', ['text']);
+						}
+					},
+					yes: function(index) {
+						var node = tree1.getCheckedNodes(true);
+						var val = '';
+						for(var i = 0; i < node.length; i++) {
+							if(i == 0) {
+								val += node[i].text;
+								continue;
+							}
+							val += ',' + node[i].text;
+						}
+						//self.val(val);
+						//form.submitForm();
+						layer.close(index);
+					}
+				})
+			})
+
+			function datafilter1() {
+				var treeData = null;
+				$.ajax({
+					url: 'programmeManage/programmeManagetree1.json',
+					type: 'get',
+					async: false,
+					dataType: 'json',
+					success: function(data) {
+						if(data.length > 0) {
+							data[0].open = true;
+							treeData = data;
+						}
+					}
+				});
+				return treeData;
+			}
+
+		</script>

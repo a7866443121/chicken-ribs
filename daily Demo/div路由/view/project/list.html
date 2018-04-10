@@ -1,0 +1,290 @@
+
+		<div class="gray-wrap">
+			<!-- 筛选-start -->
+			<div class="filter-box mb-10">
+				<div class="filter-item">
+					<label>检索内容：</label>
+					<div class="search-wrap ml-10 fl-l">
+						<input type="search" class="ipt search" placeholder="姓名/手机号" />
+						<a href="javascript:;" class="search-btn"><i class="iconfont"></i></a>
+					</div>
+
+				</div>
+			</div>
+			<!-- 筛选-end -->
+
+			<!-- 项目列表-start -->
+			<div class="white-wrap pt-10">
+				<div class="table-title">
+					<label>项目列表</label>
+					<div class="fl-r">
+						<button id="move" class="btn-hol btn-hol-primary"><i class="iconfont icon-back"></i>转移项目</button>
+						<button id="edit" class="btn-hol btn-hol-primary"><i class="iconfont icon-editor"></i>编辑类别</button>
+						<button class="btn-hol btn-hol-green"><i class="iconfont icon-refresh"></i>同步项目</button>
+					</div>
+				</div>
+				<table id="projiectList" class="table">
+					<thead>
+						<tr>
+							<th>
+								<input id="che0" class="for-label" type="checkbox">
+								<label for="che0" class="for-checkbox"></label>
+							</th>
+							<th>序号</th>
+							<th>诊室</th>
+							<th>项目编码</th>
+							<th>项目名称</th>
+							<th>检查目的和意义</th>
+							<th>价格（元）</th>
+							<th>状态</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<input id="che1" class="for-label" type="checkbox">
+								<label for="che1" class="for-checkbox"></label>
+							</td>
+							<td>1</td>
+							<td>检验科</td>
+							<td>2501</td>
+							<td>全景牙片</td>
+							<td></td>
+							<td>60</td>
+							<td>
+								<span class="cl-green">启用</span>
+							</td>
+							<td>
+								<a href="javascript:;" class="cl-primary edit">
+									<i class="iconfont icon-brush"></i>编辑
+								</a>
+								<a href="javascript:;" class="cl-red">
+									<i class="iconfont icon-offline"></i>停用
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- 项目列表-end -->
+
+			<!-- 编辑项目 -->
+			<section id="editContent" class="alg-content">
+				<form id="editForm">
+					<div class="row">
+						<div class="row-label">项目类别：</div>
+						<input class="ipt disabled" type="text" disabled>
+					</div>
+					<div class="row">
+						<div class="row-label">诊室编码：</div>
+						<input class="ipt disabled" type="text" disabled>
+					</div>
+					<div class="row">
+						<div class="row-label">诊室名称：</div>
+						<input class="ipt disabled" type="text" disabled>
+					</div>
+					<div class="row">
+						<div class="row-label">项目编码：</div>
+						<input class="ipt disabled" type="text" disabled>
+					</div>
+					<div class="row">
+						<div class="row-label">项目名称：</div>
+						<input class="ipt disabled" type="text" disabled>
+					</div>
+					<div class="row">
+						<div class="row-label">适用性别：</div>
+						<input class="ipt disabled" type="text" disabled>
+					</div>
+					<div class="row">
+						<div class="row-label">价格：</div>
+						<input class="ipt" type="text" datatype="*">
+					</div>
+					<div class="row">
+						<div class="row-label">项目说明：</div>
+						<textarea class="txtarea" rows="4" placeholder="请输入项目说明..."></textarea>
+					</div>
+				</form>
+			</section>
+
+			<!--项目转移弹出html-->
+			<div id="moveContent" class="alg-content">
+				<div class="row">
+					<div class="row-label">体检类别：</div>
+					<select class="slt"></select>
+				</div>
+			</div>
+
+			<!--编辑类别弹出html-->
+			<section id="typeContent" class="alg-content pt-10">
+				<div class="form-title">
+					<label><i class="iconfont icon-list"></i>类别列表</label>
+					<button id="addTypeBtn" class="btn-hol btn-hol-primary fl-r"><i class="iconfont icon-addition"></i>添加类别</button>
+				</div>
+				<table class="table" id="typeTab">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>体检类别</th>
+							<th>排序</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>科室检查</td>
+							<td>
+								<input type="text" class="ipt">
+							</td>
+							<td>
+								<a href="javascript:;" class="cl-primary edit">
+									<i class="iconfont icon-brush"></i>编辑
+								</a>
+								<a href="javascript:;" class="cl-red del">
+									<i class="iconfont icon-trash"></i>删除
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<!--编辑/添加类别弹出html-->
+			<div id="addContent" class="alg-content">
+				<div class="row">
+					<div class="row-label">类别名称：</div>
+					<input class="ipt" type="text">
+				</div>
+			</div>
+		</div>
+		<script>
+			/*table初始化*/
+			var orderTab = $('#projiectList').DataTable({
+				searching: false, //禁止搜索
+				lengthChange: true, //条数显示选择
+				ordering: false, //允许点击表头排序
+				paging: false,
+				info: false,
+				scrollY: $("#windows", window.parent.document).val() - 258
+			});
+
+			//编辑项目
+			$("#projiectList").on("click", ".edit", function() {
+				layer.open({
+					type: 1,
+					title: '编辑项目',
+					area: '360px',
+					content: $('#editContent'),
+					btn: ['确定', '取消'],
+					yes: function(index) {
+						form.submitForm();
+					}
+				})
+			})
+
+			//项目转移
+			$("#move").on("click", function() {
+				if($('#projiectList tbody').find('input[type="checkbox"]:checked').length <= 0) {
+					layer.msg('请选择项目', {
+						icon: 0
+					});
+					return;
+				}
+				layer.open({
+					type: 1,
+					title: '项目转移',
+					area: '360px',
+					content: $('#moveContent'),
+					btn: ['确定', '取消'],
+					yes: function(index) {
+
+					}
+				})
+			})
+
+			/* 表单校验*/
+			var form = $("#editForm").Validform({
+				postonce: true,
+				beforeSubmit: function(form) {
+					submitFormData();
+					return false;
+				},
+				tiptype: function(msg, o) {
+					if(msg) {
+						layer.tips(msg, o.obj[0], {
+							tips: 3
+						})
+					}
+				}
+			});
+
+			/*表单提交*/
+			function submitFormData() {
+				$.ajax({
+					url: '',
+					type: 'post',
+					data: $('#editForm').serialize(),
+					dataType: 'json',
+					success: function(obj) {
+						if(obj.code == 1) {
+							layer.closeAll();
+							layer.msg(obj.msg, {
+								icon: 1
+							});
+							return;
+						}
+						layer.msg(obj.msg, {
+							icon: 0
+						});
+					},
+					error: function(obj) {
+						layer.msg(obj.msg, {
+							icon: 2
+						})
+					}
+				})
+			}
+
+			/*类别列表*/
+			$('#edit').on('click', function() {
+				layer.open({
+					type: 1,
+					title: '类别列表',
+					area: ['800px', $(window).height() * 0.8 + 'px'],
+					content: $('#typeContent'),
+					btn: ['确定', '取消'],
+					yes: function(index) {
+						form.submitForm();
+					}
+				})
+			})
+
+			/*编辑类别*/
+			$('#typeTab tbody').on('click', '.edit', function() {
+				layer.open({
+					type: 1,
+					title: '编辑类别',
+					area: '360px',
+					content: $('#addContent'),
+					btn: ['确定', '取消'],
+					yes: function(index) {
+						layer.close(index);
+					}
+				})
+			})
+
+			/*添加类别*/
+			$('#addTypeBtn').on('click', function() {
+				layer.open({
+					type: 1,
+					title: '添加类别',
+					area: '360px',
+					content: $('#addContent'),
+					btn: ['确定', '取消'],
+					yes: function(index) {
+						layer.close(index);
+					}
+				})
+			})
+		</script>

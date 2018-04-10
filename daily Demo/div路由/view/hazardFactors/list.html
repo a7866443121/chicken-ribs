@@ -1,0 +1,136 @@
+
+		<div class="whys-main clearfix">
+			<div class="whys-left">
+				<div class="table-title">
+					<label>体检系统危害因素</label>
+					<div class="fl-r">
+						<button class="btn-hol btn-hol-primary">同步危害因素</button>
+					</div>
+				</div>
+				<div class="filter-box">
+					<div class="filter-item clearfix">
+						<label>项目名称：</label>
+						<input type="text" class="ipt fl-l">
+						<label class="ml-10">状态：</label>
+						<select class="slt fl-l">
+							<option>启用</option>
+							<option>停用</option>
+						</select>
+						<button class="btn btn-primary fl-r ml-10">查询</button>
+					</div>
+				</div>
+				<table id="tWhysTab" class="table">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>危害因素编码</th>
+							<th>危害因素名称</th>
+							<th>状态</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>123</td>
+							<td>粉尘</td>
+							<td>启用</td>
+							<td><a class="link-a">匹配</a></td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>123</td>
+							<td>粉尘</td>
+							<td><span class="cl-red">停用</span></td>
+							<td><a class="link-a">重新匹配</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="whys-right">
+				<div class="table-title">
+					<label>平台危害因素</label>
+				</div>
+				<div class="filter-box">
+					<div class="filter-item clearfix">
+						<label>项目名称：</label>
+						<input type="text" class="ipt fl-l">
+						<label class="ml-10">状态：</label>
+						<select class="slt fl-l">
+							<option>启用</option>
+							<option>停用</option>
+						</select>
+						<button class="btn btn-primary fl-r ml-10">查询</button>
+					</div>
+				</div>
+				<table id="pWhysTab" class="table">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>危害因素编码</th>
+							<th>危害因素名称</th>
+							<th>状态</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>123</td>
+							<td>粉尘</td>
+							<td>启用</td>
+							<td><a class="link-a">确认匹配</a></td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>123</td>
+							<td>粉尘</td>
+							<td><span class="cl-red">停用</span></td>
+							<td><a class="link-a">确认匹配</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<script>
+			
+			$(function(){
+				
+				/*tWhysTab初始化*/
+				var tWhysTab = $('#tWhysTab').DataTable({
+					searching: false, //禁止搜索
+					lengthChange: true, //条数显示选择
+					ordering: false, //允许点击表头排序
+					paging: false,
+					info: false,
+					scrollY: $("#windows", window.parent.document).val() - 240
+				});
+				
+				/*pWhysTab初始化*/
+				var pWhysTab = $('#pWhysTab').DataTable({
+					searching: false, //禁止搜索
+					lengthChange: true, //条数显示选择
+					ordering: false, //允许点击表头排序
+					paging: false,
+					info: false,
+					scrollY: $("#windows", window.parent.document).val() - 240
+				});
+				
+				//tWhysTab表格tr点击事件
+				$("#tWhysTab").on("click","tbody tr",function(e){
+					if(e.target.nodeName=="A"){
+						//点击a标签
+						$("#tWhysTab").find("tbody tr").removeClass("selected");
+					}else{
+						//点击行
+						$(this).addClass("selected").siblings().removeClass("selected");
+					}
+				})
+				
+				/*//pWhysTab表格tr点击事件
+				$("#pWhysTab").on("click","tbody tr",function(){
+					$(this).addClass("selected").siblings().removeClass("selected");
+				})*/
+			})
+			
+		</script>

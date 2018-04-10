@@ -1,0 +1,256 @@
+
+		<div class="gray-wrap">
+			<!-- 筛选-start -->
+			<div class="filter-box mb-10" id="filterBox">
+				<div class="filter-item">
+					<label>体检日期：</label>
+					<div class="clearfix" style="margin-left: 70px;">
+						<span class="active">当天</span>
+						<span>近七天</span>
+						<span>近一个月</span>
+						<span>近三个月</span>
+						<span class="custom">自定义</span>
+						<div class="fl-l custom-box hide">
+							<input class="Wdate ipt ml-10" type="text" id="d15" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'d16\')||\'%y-%M-%d\'}',skin:'blue'})" />
+							<div class="fl-l mlr-10">-</div>
+							<input class="Wdate ipt" type="text" id="d16" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'d15\')}',maxDate:'%y-%M-%d',skin:'blue'})" />
+							<button class="btn btn-primary ml-10">确定</button>
+						</div>
+					</div>
+				</div>
+				<div class="filter-item">
+					<label>商品类别：</label>
+					<div class="clearfix" style="margin-left: 70px;">
+						<span class="active">基础套餐一</span>
+						<span>基础套餐二</span>
+						<span>基础套餐三</span>
+					</div>
+				</div>
+				<div class="filter-item">
+					<label>状态：</label>
+					<div class="clearfix" style="margin-left: 70px;">
+						<span class="active">全部</span>
+						<span>启用</span>
+						<span>停用</span>
+					</div>
+				</div>
+				<div class="filter-item">
+					<label>检索内容：</label>
+					<div class="search-wrap ml-10 fl-l">
+						<input type="search" class="ipt search" placeholder="报告名称" />
+						<a href="javascript:;" class="search-btn"><i class="iconfont"></i></a>
+					</div>
+
+				</div>
+			</div>
+			<!-- 筛选-end -->
+			<!-- 套餐列表-start -->
+			<div class="white-wrap pt-10">
+				<div class="table-title">
+					<ul class="ul-nav">
+						<li class="active">固定套餐</li>
+						<li>1+X基础套餐</li>
+						<li>1+X专病套餐</li>
+					</ul>
+					<div class="fl-r">
+						<button id="editType" class="btn-hol btn-hol-primary"><i class="iconfont icon-editor"></i>类别编辑</button>
+						<a class="btn-hol btn-hol-primary" href="add.html"><i class="iconfont icon-addition"></i>添加商品</a>
+					</div>
+				</div>
+				<table id="packageTab" class="table">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>类别</th>
+							<th>名称</th>
+							<th>明显总价</th>
+							<th>原价</th>
+							<th>现价</th>
+							<th>排序</th>
+							<th>状态</th>
+							<th>创建时间</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>妇女节特惠</td>
+							<td>宝宝套餐</td>
+							<td>440</td>
+							<td>440</td>
+							<td>300</td>
+							<td>0</td>
+							<td>
+								<span class="cl-red">停用</span>
+							</td>
+							<td>2017-07-02</td>
+							<td>
+								<a href="javascript:;" class="cl-primary edit">
+									<i class="iconfont icon-brush"></i>编辑
+								</a>
+								<a href="javascript:;" class="cl-red">
+									<i class="iconfont icon-offline"></i>停用
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- 套餐列表-end -->
+
+			<!--类别列表弹出框-->
+			<div id="typeDlg" class="alg-content pt-10">
+				<div class="table-title">
+					<label>类别列表</label>
+					<button id="addType" class="btn-hol btn-hol-primary fl-r"><i class="iconfont icon-addition"></i>添加类别</button>
+				</div>
+				<table id="typeTab" class="table">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>名称</th>
+							<th>图片</th>
+							<th>排序</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>名称</td>
+							<td>
+								<img src="../../img/code.png" width="28" height="28">
+							</td>
+							<td>
+								<input type="text" class="ipt">
+							</td>
+							<td>
+								<a href="javascript:;" class="cl-primary edit">
+									<i class="iconfont icon-brush"></i>编辑
+								</a>
+								<a href="javascript:;" class="cl-red del">
+									<i class="iconfont icon-trash"></i>删除
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<!--编辑添加类别弹出框-->
+			<div id="addTypeDlg" class="alg-content pt-10">
+				<div class="row">
+					<div class="row-label">类别名称：</div>
+					<input class="ipt" type="text">
+				</div>
+				<div class="row">
+					<div class="row-label">图片：</div>
+					<div class="row-item" style="width:212px;">
+						<div id="file_upload"></div>
+						<p class="pt-10">
+							<img id="backShowImg" src="../../img/code.png" width="50" height="50">
+						</p>
+						<input type="hidden" id="backImg">
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			//筛选条件
+			$("#filterBox .filter-item").on("click", "span", function() {
+				$(this).parent().find("span.active").removeClass("active");
+				$(this).addClass("active");
+				if($(this).hasClass("custom")) {
+					$(this).next(".custom-box").show();
+				} else {
+					$(this).nextAll(".custom-box").hide();
+				}
+			})
+
+			//数据切换
+			$(".table-title").on("click", "li", function() {
+				$(this).parent().find(".active").removeClass("active");
+				$(this).addClass("active");
+			})
+
+			/*table初始化*/
+			var orderTab = $('#packageTab').DataTable({
+				searching: false, //禁止搜索
+				lengthChange: true, //条数显示选择
+				ordering: false, //允许点击表头排序
+				paging: false,
+				info: false,
+				scrollY: $("#windows", window.parent.document).val() - 378
+			});
+
+			/*类别列表*/
+			$('#editType').on('click', function() {
+				layer.open({
+					type: 1,
+					title: '编辑类别',
+					content: $('#typeDlg'),
+					area: ['800px', '440px']
+				})
+			})
+
+			/*添加类别*/
+			$('#addType').on('click', function() {
+				layer.open({
+					type: 1,
+					title: '添加类别',
+					content: $('#addTypeDlg'),
+					btn: '确定',
+					area: '380px',
+					yes: function(index) {
+						layer.close(index)
+					}
+				})
+			})
+			
+			/*编辑类别*/
+			$('#typeTab tbody').on('click','.edit',function(){
+				layer.open({
+					type: 1,
+					title: '编辑类别',
+					content: $('#addTypeDlg'),
+					btn: '确定',
+					area: '380px',
+					yes: function(index) {
+						layer.close(index)
+					}
+				})
+			})
+			
+			/*删除类别*/
+			$('#typeTab tbody').on('click','.del',function(){
+				layer.msg('删除成功',{icon: 1});
+			})
+			
+			/*上传图片*/
+			var basePath = "../../";
+			$("#file_upload").Huploadify({
+			    auto: true,
+			    multi: false,
+			    method: "POST",
+			    buttonText: "上传图片",
+			    fileObjName: "file",
+			    uploader: basePath + "check/uploadHeadImage",
+			    swf: basePath + "js/lib/uploadify/uploadify.swf",
+			    'fileTypeExts': '*.jpg;*.JPG;*.png;*.PNG;*.gif;*.GIF;*.JPNG;*.jpng',
+			    fileTypeDesc: "请选择图片",
+			    fileSizeLimit: 10240,
+			    onUploadSuccess: function (file, data, response) {
+			    	//上传成功
+			        if (data.indexOf("error") == -1) {
+			        	$("#backImg").val(data);
+            			$("#backShowImg").attr("src", data);
+			            layer.closeAll();
+			        } else {
+			            layer.alert("上传图片失败", {
+			                icon: 0
+			            })
+			        }
+			    }
+			});
+		</script>

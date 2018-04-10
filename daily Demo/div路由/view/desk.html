@@ -1,0 +1,243 @@
+
+		<div class="gray-wrap">
+			<ul class="count-wrap">
+				<li>
+					<img src="../img/desk/p1.png">
+					<p class="num">100</p>
+					<p>团检总人数</p>
+				</li>
+				<li>
+					<img src="../img/desk/p2.png">
+					<p class="num">100</p>
+					<p>个性定制总人数</p>
+				</li>
+				<li>
+					<img src="../img/desk/p3.png">
+					<p class="num">100</p>
+					<p>个人预约总人数</p>
+				</li>
+			</ul>
+			
+			<div class="filter-box mb-10" id="filterBox">
+				<div class="filter-item">
+					<label>体检排期：</label>
+					<div class="clearfix" style="margin-left: 70px;">
+						<span class="active">当天</span>
+						<span>近七天</span>
+						<span>近一个月</span>
+						<span>近三个月</span>
+						<span class="custom">自定义</span>
+						<div class="fl-l custom-box hide">
+							<input class="Wdate ipt ml-10" type="text" id="d15" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'d16\')||\'%y-%M-%d\'}',skin:'blue'})" />
+							<div class="fl-l mlr-10">-</div>
+							<input class="Wdate ipt" type="text" id="d16" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'d15\')}',maxDate:'%y-%M-%d',skin:'blue'})" />
+							<button class="btn btn-primary ml-10">确定</button>
+						</div>	
+					</div>
+				</div>
+				<div class="filter-item">
+					<label>检索内容：</label>
+					<div class="search-wrap ml-10 fl-l">
+						<input type="search" class="ipt search" placeholder="报告名称" />
+						<a href="javascript:;" class="search-btn"><i class="iconfont"></i></a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="white-wrap pt-10">
+				<div class="table-title">
+					<ul class="ul-nav">
+						<li class="active">团体订单</li>
+						<li>团体个性化订单</li>
+						<li>个人订单</li>
+					</ul>
+				</div>
+				<table id="orderTab" class="table">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>订单编号</th>
+							<th>企业名称</th>
+							<th>分组名称</th>
+							<th>人数</th>
+							<th>订单备注</th>
+							<th>体检排期</th>
+							<th>体检类型</th>
+							<th>体检状态</th>
+							<th>已到检</th>
+							<th>未到检</th>
+							<th>业务员</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>14121026</td>
+							<td>长沙微康</td>
+							<td>技术部</td>
+							<td>420</td>
+							<td>周日体检</td>
+							<td>2017-01-20</td>
+							<td>职业健康体检</td>
+							<td>已预约</td>
+							<td>400</td>
+							<td>
+								<span class="cl-red">20</span>
+							</td>
+							<td>业务员</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div id="demo" class="alg-content pn">
+			<div class="desk-main clearfix">
+				<div class="filter-box">
+					<div class="filter-item clearfix">
+						<label>性别：</label>
+						<select class="slt fl-l">
+							<option>男</option>
+							<option>女</option>
+						</select>
+						<label class="ml-20">年龄：</label>
+						<input type="text" class="ipt year fl-l">
+						<div class="fl-l mlr-10">-</div>
+						<input type="text" class="ipt year fl-l">
+						<label class="ml-20">部门：</label>
+						<input type="text" class="ipt fl-l">
+						<label class="ml-20">车间场所：</label>
+						<input type="text" class="ipt fl-l">
+						<label class="ml-20">工种：</label>
+						<input type="text" class="ipt fl-l">
+						<button class="btn btn-primary ml-20">查询</button>
+					</div>
+				</div>
+				<div class="desk-left">
+					<div class="table-title">
+						<label>分组</label>
+						<div class="fl-r">
+							<button class="btn-hol btn-hol-primary"><i class="iconfont icon-addition"></i>新增分组</button>
+						</div>
+					</div>
+					<table id="leftTab" class="table">
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>分组名称</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>粉尘</td>
+								<td><a class="link-a">删除</a></td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>粉尘</td>
+								<td><a class="link-a">删除</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="desk-right">
+					<div class="table-title">
+						<label>人员列表</label>
+						<div class="fl-r">
+							<button class="btn-hol btn-hol-primary"><i class="iconfont icon-addition"></i>加入分组</button>
+							<button class="btn-hol btn-hol-primary ml-10"><i class="iconfont icon-offline"></i>移除分组</button>
+						</div>
+					</div>
+					<table id="rightTab" class="table">
+						<thead>
+							<tr>
+								<th><input type="checkbox"></th>
+								<th>序号</th>
+								<th>姓名</th>
+								<th>性别</th>
+								<th>年龄</th>
+								<th>体检类别</th>
+								<th>部门</th>
+								<th>工种</th>
+								<th>车间场所</th>
+								<th>所属分组</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>1</td>
+								<td>张三</td>
+								<td>男</td>
+								<td>22</td>
+								<td>职业健康体检</td>
+								<td>部门</td>
+								<td>钳工</td>
+								<td>车间1</td>
+								<td>分组1</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>1</td>
+								<td>张三</td>
+								<td>男</td>
+								<td>22</td>
+								<td>职业健康体检</td>
+								<td>部门</td>
+								<td>钳工</td>
+								<td>车间1</td>
+								<td>分组1</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>	
+		</div>
+		<script>
+			//筛选条件
+			$("#filterBox .filter-item").on("click", "span", function() {
+				$(this).parent().find("span.active").removeClass("active");
+				$(this).addClass("active");
+				if($(this).hasClass("custom")){
+					$(this).next(".custom-box").show();
+				} else {
+					$(this).nextAll(".custom-box").hide();
+				}
+			})
+			
+			//数据切换
+			$(".table-title").on("click", "li", function() {
+				$(this).parent().find(".active").removeClass("active");
+				$(this).addClass("active");
+			})
+			
+			/*table初始化*/
+			var orderTab = $('#orderTab').DataTable({
+				searching: false, //禁止搜索
+				lengthChange: true, //条数显示选择
+				ordering: false, //允许点击表头排序
+				paging: false,
+				info: false,
+				scrollY: $("#windows", window.parent.document).val() - 438
+			});
+			
+			//人员分组
+			$("#orderTab").on("click",function(){
+				layer.open({
+					type: 1,
+					title: '人员分组',
+					content: $('#demo'),
+					btn: false,
+					area: ['100%','100%'],
+					shadeClose: true,
+					success: function(index){
+						
+					},
+					yes: function(index) {
+						
+					}
+				})
+			})
+			
+		</script>

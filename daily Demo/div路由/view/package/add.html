@@ -1,0 +1,315 @@
+
+		<div class="white-wrap pt-10">
+			<div class="table-title">
+				<ul class="ul-nav">
+					<li class="active">基本信息</li>
+					<li>下单须知</li>
+					<li>承诺项</li>
+					<li>套餐详情</li>
+				</ul>
+				<div class="fl-r">
+					<button class="btn-hol btn-hol-primary"><i class="iconfont icon-save"></i>保存</button>
+					<a class="btn-hol btn-hol-gray" href="javascript:history.back();"><i class="iconfont icon-back"></i>取消</a>
+				</div>
+			</div>
+			<div class="nav-wrap">
+				<div class="nav-content add-package-wrap" style="display: block;">
+					<div class="row">
+						<div class="row-label">商品类别：</div>
+						<select class="slt"></select>
+					</div>
+					<div class="row">
+						<div class="row-label">商品名称：</div>
+						<input class="ipt" type="text">
+					</div>
+					<div class="row">
+						<div class="row-label">原价：</div>
+						<input class="ipt" type="text">
+					</div>
+					<div class="row">
+						<div class="row-label">现价：</div>
+						<input class="ipt" type="text">
+					</div>
+					<div class="row">
+						<div class="row-label">咨询电话：</div>
+						<input class="ipt" type="text">
+					</div>
+					<div class="row">
+						<div class="row-label">适用性别：</div>
+						<label class="radio-wrap"><input type="radio" class="ipt-radio">不限</label>
+						<label class="radio-wrap"><input type="radio" class="ipt-radio">男</label>
+						<label class="radio-wrap"><input type="radio" class="ipt-radio">女</label>
+					</div>
+					<div class="row">
+						<div class="row-label">商品封面：</div>
+						<div class="row-item">
+							<button class="btn-hol btn-hol-primary"><i class="iconfont icon-upload"></i>上传封面</button>
+							<p class="pt-10">
+								<img src="../../img/code.png" width="100" height="100s">
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="row-label">商品图片：</div>
+						<button class="btn-hol btn-hol-primary"><i class="iconfont icon-upload"></i>上传图片</button>
+					</div>
+					<div class="row">
+						<div class="row-label">简介：</div>
+						<textarea class="txtarea"></textarea>
+					</div>
+					<div class="row">
+						<div class="row-label">商品详情：</div>
+						<textarea class="txtarea" rows="6"></textarea>
+					</div>
+					<div class="row">
+						<div class="row-label">其它介绍：</div>
+						<textarea class="txtarea"></textarea>
+					</div>
+					<div class="row ol-100">
+						<button class="btn btn-primary step" data-step="2">下一步</button>
+					</div>
+				</div>
+				<div class="nav-content add-package-wrap">
+					<div class="row">
+						<div class="row-label">下单须知：</div>
+						<textarea class="txtarea" rows="6"></textarea>
+					</div>
+					<div class="justify-wrap">
+						<button class="btn btn-primary step" data-step="1">上一步</button>
+						<button class="btn btn-primary step" data-step="3">下一步</button>
+					</div>
+				</div>
+				<div class="nav-content add-package-wrap">
+					<div class="row">
+						<div class="row-label">承诺项操作：</div>
+						<textarea class="txtarea" rows="6"></textarea>
+					</div>
+					<div class="row">
+						<div class="row-label">承诺项：</div>
+						<div class="row-item">
+							<label class="radio-wrap"><input type="checkbox" class="ipt-radio">WIFI</label>
+							<label class="radio-wrap"><input type="checkbox" class="ipt-radio">停车位</label>
+						</div>
+					</div>
+					<div class="justify-wrap">
+						<button class="btn btn-primary step" data-step="2">上一步</button>
+						<button class="btn btn-primary step" data-step="4">下一步</button>
+					</div>
+				</div>
+				<div class="nav-content">
+					<div class="toolbar">
+						<label><i class="iconfont icon-list"></i>项目列表</label>
+						<button id="addBtn" class="btn-hol btn-hol-primary fl-r"><i class="iconfont icon-addition"></i>添加项目</button>
+					</div>
+					<table id="xmTab" class="table">
+						<thead>
+							<tr>
+								<th>类别名称</th>
+								<th>项目名称</th>
+								<th>价格（元）</th>
+								<th>检查目的和意义</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>类别名称</td>
+								<td>项目名称</td>
+								<td>价格（元）</td>
+								<td>检查目的和意义</td>
+								<td>
+									<a href="javascript:;" class="cl-red">
+										<i class="iconfont icon-trash"></i>删除
+									</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="cl-red">总价：50.00元</div>
+					<div class="row">
+						<button class="btn btn-primary step" data-step="3">上一步</button>
+					</div>
+				</div>
+			</div>
+
+			<!--添加项目弹出html-->
+			<div id="xmContent" class="alg-content pt-10">
+				<div class="p-left">
+					<div class="form-title">
+						<lable><i class="iconfont icon-list"></i>选择添加项目</lable>
+					</div>
+					<div class="row">
+						<div class="row-item">
+							<div class="row-label">项目类别：</div>
+							<select class="slt"></select>
+						</div>
+						<div class="row-item">
+							<div class="row-label">项目名称：</div>
+							<input class="ipt" type="text">
+						</div>
+						<button id="searchBtn" class="btn btn-primary ml-10">查询</button>
+					</div>
+					<table id="allTab" class="table">
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>项目名称</th>
+								<th>价格（元） </th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>名称</td>
+								<td>25</td>
+								<td>
+									<a href="javascript:;" class="cl-green add">
+										<i class="iconfont icon-addition add"></i>添加
+									</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="p-right">
+					<div class="form-title">
+						<lable><i class="iconfont icon-list"></i>已添加项目</lable>
+						<button id="sureBtn" class="btn-hol btn-hol-primary fl-r"><i class="iconfont icon-success"></i>确认操作</button>
+					</div>
+					<table id="yxTab" class="table" style="margin-top: 60px;">
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>项目名称</th>
+								<th>价格（元） </th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+					<div class="p-bottom">
+						<span>总共<var id="itemCountTotal" class="cl-primary">0</var>个项目</span>
+						<em>价格：<var id="itemPriceTotal" class="cl-red">0</var>元</em>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			/*tab切换*/
+			$('.ul-nav li').on('click', function() {
+				$('.ul-nav li').removeClass('active');
+				$(this).addClass('active');
+				$('.nav-wrap .nav-content').hide();
+				$('.nav-wrap .nav-content').eq($(this).index()).show();
+			})
+
+			/*下一步上一步*/
+			$('.step').on('click', function() {
+				var i = $(this).data('step') - 1;
+				$('.ul-nav li').removeClass('active');
+				$('.ul-nav li').eq(i).addClass('active');
+				$('.nav-wrap .nav-content').hide();
+				$('.nav-wrap .nav-content').eq(i).show();
+			})
+
+			/*添加项目*/
+			$('#addBtn').on('click', function() {
+				var index = layer.open({
+					type: 1,
+					title: '添加项目',
+					content: $('#xmContent'),
+					area: '800px',
+					yes: function(index) {
+						layer.close(index)
+					}
+				})
+				layer.full(index);
+			})
+
+			/*table初始化*/
+			var allTab = $('#allTab').DataTable({
+				dom: 'rt<"bottom"iflp><"clear">',
+				searching: false, //禁止搜索
+				lengthChange: true, //条数显示选择
+				ordering: false //允许点击表头排序
+			});
+
+			/* 添加按钮绑定 */
+			$("#allTab tbody").on("click", ".add", function() {
+				var $this = $(this);
+				var $tr = $this.closest("tr");
+				var data = allTab.row($tr).data();
+				console.log(data);
+				var yxTab = $("#yxTab tbody");
+				//判断是否已经存在了这个项目，存在则不添加
+				var hasChoosed = $("tr[itemid='" + data.id + "']", yxTab).length > 0;
+				if(hasChoosed) {
+					layer.msg("项目已选择", {
+						icon: 0,
+						time: 800
+					});
+					return;
+				}
+				//已选table的操作列
+				var optHtml = '<a href="javascript:;" class="cl-red del"><i class="iconfont icon-trash del"></i>删除</a>';
+				//找到当前选中的行，复制后替换序号和操作列
+				var trCopy = $tr.clone();
+				trCopy.attr("itemid", data.id);
+				$("td:first", trCopy).html($("tr", yxTab).length + 1);
+				$("td:last", trCopy).html(optHtml);
+				//当前行添加到已选table
+				yxTab.append(trCopy);
+
+				//计算已选项目个数及总价
+				colculateItemsPriceAndCount();
+			});
+
+			/** 删除选中的行 */
+			$("#yxTab").on("click", ".del", function() {
+				$(this).closest("tr").remove();
+				reSeqChoosedItem();
+				colculateItemsPriceAndCount();
+			});
+
+			/** 已选中table重新编序号 */
+			function reSeqChoosedItem() {
+				$("#yxTab>tbody>tr").each(function(i) {
+					var $this = $(this);
+					$("td:first", $this).html(i + 1);
+				});
+			}
+			/** 计算已选项目总价格 */
+			function colculateItemsPriceAndCount() {
+				var choosedItemsTr = $("#yxTab>tbody>tr");
+				//设置已选个数
+				$("#itemCountTotal").html(choosedItemsTr.length);
+				//设置总价格
+				var totalPrice = 0;
+				choosedItemsTr.each(function() {
+					var $this = $(this);
+					totalPrice += parseFloat($("td:eq(2)", $this).html());
+				});
+				$("#itemPriceTotal").html(totalPrice.toFixed(2));
+			}
+
+			/** 获取排除的ID */
+			function getChoosedItemIds() {
+				var choosedItemsTr = $("#yxTab>tbody>tr");
+				var ids = "";
+				choosedItemsTr.each(function() {
+					ids += ",'" + $(this).attr("itemid") + "'";
+				});
+				if(ids != "") {
+					ids = ids.substring(1);
+				}
+				return ids;
+			}
+
+			//关闭自身iframe
+			var yxArry;
+			$('#sureBtn').on('click', function() {
+				yxArry = getChoosedItemIds();
+				layer.closeAll();
+			});
+		</script>

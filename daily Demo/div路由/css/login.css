@@ -1,0 +1,177 @@
+@charset "UTF-8";
+.top {
+	height: 36px;
+	line-height: 36px;
+	border-bottom: #ececec;
+	background: #f9f9f9;
+	border-bottom: 1px #ececec solid;
+}
+.top-content {
+	width: 1280px;
+	margin: 0 auto;
+	color: #6e6e6f;
+	background: #fff;
+}
+.top-content-left {
+	float: left;
+}
+.top-content-right {
+	float: right;
+}
+.top-content-right img {
+	vertical-align: 0;
+}
+.top-content-right em {
+	margin: 0 3px;
+}
+.header {
+	height: 88px;
+	background: #fff;
+	border-bottom: 1px #ececec solid;
+}
+.header-content {
+	width: 1280px;
+	margin: 0 auto;
+}
+.header-content img {
+	float: left;
+	margin-top: 21px;
+}
+.header-content div {
+	float: right;
+	margin-right: 40px;
+	line-height: 88px;
+	color: #6e6e6f;
+}
+.telephone {
+	font-size: 18px;
+	padding-left: 35px;
+	background: url(../img/login/tel.png) 0 center no-repeat
+}
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	padding: 15px 0;
+	line-height: 30px;
+	text-align: center;
+	color: #6e6e6f;
+	background: #fff;
+	border-top: 1px #ececec solid;
+}
+.main {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 88px;
+	bottom: 90px;
+	background-color: #f8fcfd;
+	background-image: url(../img/login/bg.png);
+	background-repeat: no-repeat;
+	background-size: 40%;
+	background-position: 30% center;
+	overflow: hidden;
+}
+.login-wrap {
+	position: absolute;
+	top: 50%;
+	right: 12%;
+	height: 340px;
+	width: 350px;
+	padding: 30px 30px 0;
+	margin-top: -170px;
+	background: #fff;
+	border-radius: 3px;
+	box-shadow: 3px 3px 10px #d9d9d9;
+}
+.login-wrap h3 {
+	text-align: center;
+	font-size: 18px;
+	font-weight: normal;
+}
+.row {
+	/*height: 40px;*/
+	line-height: 40px;
+	margin: 20px 0;
+}
+.row input {
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	padding: 0 10px;
+	border-radius: 3px;
+	border: 1px #c7c7c7 solid;
+}
+.row button {
+	line-height: 40px;
+	width: 100%;
+	color: #fff;
+	font-size: 16px;
+	background: #1cb231;
+	border: none;
+	outline: none;
+	border-radius: 3px;
+}
+.row button:hover {
+	opacity: .9;
+	cursor: pointer;
+}
+.remenber {
+	width: 290px;
+	overflow: hidden;
+}
+.remenber label {
+	margin-right: 2em;
+}
+.remenber input {
+	margin-right: 3px;
+	vertical-align: -2px;
+}
+.remenber a{
+	color: #498ad2;
+}
+.reg-main {
+	position: absolute;
+	width: 1280px;
+	left: 50%; 
+	margin-left: -640px;
+	top: 139px;
+	bottom: 105px;
+	background: #fff;
+	overflow-y: auto;
+}
+.reg-wrap {
+	padding: 50px 0 0 300px;
+	color: #666;
+}
+.reg-wrap h3 {
+	margin-left: 100px;
+	width: 300px;
+	text-align: center;
+    font-size: 18px;
+    font-weight: normal;
+}
+.reg-wrap .row {
+	/*height: 36px;*/
+	line-height: 36px;
+	margin: 15px 0;
+}
+.reg-wrap .row input {
+	width: 300px;
+	height: 36px;
+}
+.reg-wrap .remenber {
+	margin-left: 100px;
+}
+.reg-wrap button {
+	margin-left: 100px;
+	width: 300px;
+	/*background: #498ad2;*/
+}
+.get-pw {
+	color: #498ad2;
+}
+.go-reg {
+	margin-top: -10px;
+	text-align: right;
+}

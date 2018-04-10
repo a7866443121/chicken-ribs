@@ -1,0 +1,252 @@
+
+		<div class="gray-wrap">
+			<div class="filter-box mb-10" id="filterBox">
+				<div class="filter-item">
+					<label>添加时间：</label>
+					<div class="clearfix" style="margin-left: 70px;">
+						<span class="active">当天</span>
+						<span>近七天</span>
+						<span>近一个月</span>
+						<span>近三个月</span>
+						<span class="custom">自定义</span>
+						<div class="fl-l custom-box hide">
+							<input class="Wdate ipt ml-10" type="text" id="d15" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'d16\')||\'%y-%M-%d\'}',skin:'blue'})" />
+							<div class="fl-l mlr-10">-</div>
+							<input class="Wdate ipt" type="text" id="d16" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'d15\')}',maxDate:'%y-%M-%d',skin:'blue'})" />
+							<button class="btn btn-primary ml-10">确定</button>
+						</div>	
+					</div>
+				</div>
+				<div class="filter-item">
+					<label>体检类型：</label>
+					<div class="clearfix" style="margin-left: 70px;">
+						<span class="active">全部</span>
+						<span>职业健康体检</span>
+						<span>健康体检</span>
+					</div>
+				</div>
+				<div class="filter-item">
+					<label>检索内容：</label>
+					<div class="search-wrap ml-10 fl-l">
+						<input type="search" class="ipt search" placeholder="报告名称" />
+						<a href="javascript:;" class="search-btn"><i class="iconfont"></i></a>
+					</div>
+
+				</div>
+			</div>
+			
+			<div class="white-wrap pt-10">
+				<div class="table-title">
+					<label>业务员列表</label>
+					<div class="fl-r">
+						<button id="addBtn" class="btn-hol btn-hol-primary"><i class="iconfont icon-upload"></i>上传团体报告</button>
+					</div>
+				</div>
+				<table id="reportTab" class="table">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>企业名称</th>
+							<th>联系人</th>
+							<th>联系电话</th>
+							<th>体检类型</th>
+							<th>报告名称</th>
+							<th>报告时间</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>王大锤</td>
+							<td>151147525</td>
+							<td>脑科</td>
+							<td>2017-02-01</td>
+							<td>三一重工</td>
+							<td>2017-02-01 08:20</td>
+							<td>
+								<a href="javascript:;" class="cl-primary down">
+									<i class="iconfont icon-out"></i>下载
+								</a>
+								<a href="javascript:;" class="cl-primary upload">
+									<i class="iconfont icon-upload"></i>重新上传
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<!--团体报告上传-->
+			<div id="addContent" class="alg-content pt-10">
+				<form id="form">
+					<div class="row">
+						<div class="row-label">企业名称：</div>
+						<div id="companyWrap" class="selector">
+							<p></p>
+							<input class="selector-enter" type="text">
+							<input class="selector-data" type="hidden">
+						</div>
+					</div>
+					<div class="row">
+						<div class="row-label">选择文件：</div>
+						<div id ="file_upload" class="row-item" style="width: 212px;"></div>
+					</div>
+					<div class="row">
+						<div class="row-label">报告名称：</div>
+						<input class="ipt" type="text" datatype="*">
+					</div>
+					<div class="row">
+						<div class="row-label">报告时间：</div>
+						<input class="ipt Wdate" type="text" datatype="*" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'d16\')||\'%y-%M-%d\'}',skin:'blue'})">
+					</div>
+					<div class="row">
+						<div class="row-label">体检类型：</div>
+						<select class="slt" datatype="*"></select>
+					</div>
+					<div class="row">
+						<div class="row-label">备注：</div>
+						<textarea class="txtarea"></textarea>
+					</div>
+				</form>
+			</div>
+			
+		</div>
+		<script>
+			//筛选条件
+			$("#filterBox .filter-item").on("click", "span", function() {
+				$(this).parent().find("span.active").removeClass("active");
+				$(this).addClass("active");
+				if($(this).hasClass("custom")){
+					$(this).next(".custom-box").show();
+				} else {
+					$(this).nextAll(".custom-box").hide();
+				}
+			})
+			
+			/*table初始化*/
+			var reportTab = $('#reportTab').DataTable({
+				searching: false, //禁止搜索
+				lengthChange: true, //条数显示选择
+				ordering: false, //允许点击表头排序
+				paging: false,
+				info: false,
+				scrollY: $("#windows", window.parent.document).val() - 338
+			});
+			
+			
+			/*团体报告上传*/
+			$('#addBtn,.upload').on('click', function() {
+				layer.open({
+					type: 1,
+					title: '团体报告上传',
+					content: $('#addContent'),
+					btn: ['确定','取消'],
+					area: '380px',
+					yes: function(index) {
+						form.submitForm();
+					}
+				})
+			})
+			
+			/*上传文件*/
+			$("#file_upload").Huploadify({
+		        auto: true,
+		        multi: false,
+		        method: "POST",
+		        buttonText: "上传文件",
+		        fileObjName: "file",
+		        uploader: "",
+		        'fileTypeExts': '*.xls;*.xlsx;',
+		        fileTypeDesc: "上传文件",
+		        fileSizeLimit: 1024000000,
+		        onUploadStart: function () {
+		            layer.msg('数据上传中...', {icon: 4, time: 500});
+		        },
+		        onUploadSuccess: function (file, data, response) {
+		            if (data.indexOf("error") == -1) {
+		                layer.closeAll();
+		            } else {
+		                layer.alert("上传文件失败", {
+		                    icon: 0
+		                });
+		            }
+		        }
+		    });
+		    
+		    /*单位选择*/
+		    var sourceData = {
+				"code": 1,
+				"data": {
+					"total": 14,
+					"rows": [
+						{ "id": 1, "jgbm": 430105047, "dm": "ABc", "mc": "长沙市微康信息科技有限公司", "dwjc": "微康", "zzjgbm": "", "frdb": "", "hydm": "0004", "qygmdm": "3", "jjlxdm": "1001", "qydm": "0132", "lxr": "", "lxdh": "88480029", "lxrdzyx": "", "zcdz": "", "dwdz": "", "yzbm": "", "dwjj": "", "bz": "", "pym": "csswkxxkjyxgs,zsswkxxkjyxgs,csswksxkjyxgs,zsswksxkjyxgs", "wbm": "tiytywttrdbwn", "wldm": null, "wlmc": null, "pxxh": 1, "jlzt": 1, "cjr": 111, "cjrxm": "管理员", "cjsj": "2016-12-27 14:25:51", "xgr": 111, "xgrxm": "管理员", "xgsj": "2016-12-27 18:41:18" },
+						{ "id": 2, "jgbm": 430105047, "dm": "TJ_DW_0007", "mc": "蓝思科技", "dwjc": "", "zzjgbm": "", "frdb": "", "hydm": "0004", "qygmdm": "1", "jjlxdm": "1001", "qydm": "0132", "lxr": "", "lxdh": "58697841", "lxrdzyx": "", "zcdz": "", "dwdz": "", "yzbm": "", "dwjj": "", "bz": "", "pym": "lskj", "wbm": "altr", "wldm": null, "wlmc": null, "pxxh": 2, "jlzt": 1, "cjr": 111, "cjrxm": "管理员", "cjsj": "2016-12-28 09:22:20", "xgr": 111, "xgrxm": "管理员", "xgsj": "2016-12-28 09:22:40" },
+						{ "id": 3, "jgbm": 430105047, "dm": "TJ_DW_0008", "mc": "生产", "dwjc": "", "zzjgbm": "", "frdb": "", "hydm": "", "qygmdm": "1", "jjlxdm": "1001", "qydm": "0133", "lxr": "", "lxdh": "13200120120", "lxrdzyx": "", "zcdz": "", "dwdz": "", "yzbm": "", "dwjj": "", "bz": "", "pym": "sc", "wbm": "tu", "wldm": null, "wlmc": null, "pxxh": 3, "jlzt": 1, "cjr": 111, "cjrxm": "管理员", "cjsj": "2016-12-30 15:21:38", "xgr": 111, "xgrxm": "管理员", "xgsj": "2016-12-30 15:21:38" },
+						{ "id": 4, "jgbm": 430105047, "dm": "TJ_DW_0009", "mc": "屋里", "dwjc": "", "zzjgbm": "", "frdb": "", "hydm": "", "qygmdm": "2", "jjlxdm": "1001", "qydm": "0135", "lxr": "", "lxdh": "13212321232", "lxrdzyx": "", "zcdz": "", "dwdz": "", "yzbm": "", "dwjj": "", "bz": "", "pym": "wl", "wbm": "nj", "wldm": null, "wlmc": null, "pxxh": 4, "jlzt": 1, "cjr": 111, "cjrxm": "管理员", "cjsj": "2016-12-30 15:25:08", "xgr": 111, "xgrxm": "管理员", "xgsj": "2017-02-23 15:59:15" },
+						{ "id": 5, "jgbm": 430105047, "dm": "TJ_DW_0010", "mc": "哈哈", "dwjc": "", "zzjgbm": "", "frdb": "", "hydm": "", "qygmdm": "0", "jjlxdm": "1001", "qydm": "0133", "lxr": "", "lxdh": "13212321232", "lxrdzyx": "", "zcdz": "", "dwdz": "", "yzbm": "", "dwjj": "", "bz": "", "pym": "hk,hh,kk,kh", "wbm": "kk", "wldm": null, "wlmc": null, "pxxh": 5, "jlzt": 1, "cjr": 111, "cjrxm": "管理员", "cjsj": "2016-12-30 15:26:44", "xgr": 111, "xgrxm": "管理员", "xgsj": "2016-12-30 15:26:44" },
+						{ "id": 6, "jgbm": 430105047, "dm": "TJ_DW_0011", "mc": "我们来测试啦", "dwjc": "", "zzjgbm": "", "frdb": "", "hydm": "", "qygmdm": "1", "jjlxdm": "1001", "qydm": "0135", "lxr": "高雅婷", "lxdh": "13212632523", "lxrdzyx": "", "zcdz": "", "dwdz": "", "yzbm": "", "dwjj": "", "bz": "", "pym": "wmlcsl", "wbm": "qwgiyk", "wldm": null, "wlmc": null, "pxxh": 6, "jlzt": 1, "cjr": 111, "cjrxm": "管理员", "cjsj": "2016-12-30 15:27:32", "xgr": 111, "xgrxm": "管理员", "xgsj": "2017-03-02 16:07:26" },
+						{ "id": 7, "jgbm": 430105047, "dm": "TJ_DW_0012", "mc": "湖南省", "dwjc": "", "zzjgbm": "", "frdb": "", "hydm": "", "qygmdm": "0", "jjlxdm": "1001", "qydm": "0133", "lxr": "", "lxdh": "13200120120", "lxrdzyx": "", "zcdz": "", "dwdz": "", "yzbm": "", "dwjj": "", "bz": "", "pym": "hnx,hns", "wbm": "ifi", "wldm": null, "wlmc": null, "pxxh": 7, "jlzt": 1, "cjr": 111, "cjrxm": "管理员", "cjsj": "2016-12-30 15:56:16", "xgr": 111, "xgrxm": "管理员", "xgsj": "2016-12-30 15:56:16" },
+						{ "id": 8, "jgbm": 430105047, "dm": "TJ_DW_0013", "mc": "成功企业", "dwjc": "", "zzjgbm": "", "frdb": "", "hydm": "", "qygmdm": "0", "jjlxdm": "1001", "qydm": "0132", "lxr": "", "lxdh": "13200120120", "lxrdzyx": "", "zcdz": "", "dwdz": "", "yzbm": "", "dwjj": "", "bz": "", "pym": "cgqy", "wbm": "dawo", "wldm": null, "wlmc": null, "pxxh": 8, "jlzt": 1, "cjr": 111, "cjrxm": "管理员", "cjsj": "2016-12-30 16:04:59", "xgr": 111, "xgrxm": "管理员", "xgsj": "2016-12-30 16:04:59" },
+						{ "id": 9, "jgbm": 430105047, "dm": "TJ_DW_0014", "mc": "成功啦", "dwjc": "", "zzjgbm": "", "frdb": "", "hydm": "", "qygmdm": "0", "jjlxdm": "1001", "qydm": "0132", "lxr": "", "lxdh": "13200120120", "lxrdzyx": "", "zcdz": "", "dwdz": "", "yzbm": "", "dwjj": "", "bz": "", "pym": "cgl", "wbm": "dak", "wldm": null, "wlmc": null, "pxxh": 9, "jlzt": 1, "cjr": 111, "cjrxm": "管理员", "cjsj": "2016-12-30 16:09:50", "xgr": 111, "xgrxm": "管理员", "xgsj": "2016-12-30 16:09:50" },
+						{ "id": 10, "jgbm": 430105047, "dm": "TJ_DW_0015", "mc": "冰红茶", "dwjc": "", "zzjgbm": "", "frdb": "", "hydm": "", "qygmdm": "0", "jjlxdm": "1001", "qydm": "0132", "lxr": "", "lxdh": "13200120120", "lxrdzyx": "", "zcdz": "", "dwdz": "", "yzbm": "", "dwjj": "", "bz": "", "pym": "bgc,bhc", "wbm": "uxa", "wldm": null, "wlmc": null, "pxxh": 10, "jlzt": 1, "cjr": 111, "cjrxm": "管理员", "cjsj": "2016-12-30 16:10:54", "xgr": 111, "xgrxm": "管理员", "xgsj": "2016-12-30 16:10:54" },
+						{ "id": 11, "jgbm": 430105047, "dm": "TJ_DW_0016", "mc": "茉莉花茶", "dwjc": "", "zzjgbm": "", "frdb": "", "hydm": "", "qygmdm": "3", "jjlxdm": "1001", "qydm": "0135", "lxr": "", "lxdh": "13200120120", "lxrdzyx": "", "zcdz": "", "dwdz": "", "yzbm": "", "dwjj": "", "bz": "", "pym": "mlhc", "wbm": "aaaa", "wldm": null, "wlmc": null, "pxxh": 11, "jlzt": 1, "cjr": 111, "cjrxm": "管理员", "cjsj": "2016-12-30 16:13:34", "xgr": 111, "xgrxm": "管理员", "xgsj": "2017-02-20 14:16:09" },
+						{ "id": 15, "jgbm": 430105047, "dm": "TJ_DW_0020", "mc": "中联重科", "dwjc": "", "zzjgbm": "", "frdb": "", "hydm": "", "qygmdm": "2", "jjlxdm": "1016", "qydm": "0135", "lxr": "", "lxdh": "86974266", "lxrdzyx": "", "zcdz": "", "dwdz": "", "yzbm": "", "dwjj": "", "bz": "", "pym": "zlck,zlzk", "wbm": "kbtt", "wldm": null, "wlmc": null, "pxxh": 12, "jlzt": 1, "cjr": 1000003101, "cjrxm": "CS管理员", "cjsj": "2017-02-16 14:21:26", "xgr": 1000003101, "xgrxm": "CS管理员", "xgsj": "2017-02-20 14:17:22" },
+						{ "id": 12, "jgbm": 430105047, "dm": "TJ_DW_0017", "mc": "发生的发生", "dwjc": "发送到", "zzjgbm": " ", "frdb": "", "hydm": "", "qygmdm": "1", "jjlxdm": "1010", "qydm": "0135", "lxr": "", "lxdh": "84569877", "lxrdzyx": "", "zcdz": "", "dwdz": "", "yzbm": "", "dwjj": "", "bz": "", "pym": "fsdfs", "wbm": "ntrnt", "wldm": null, "wlmc": null, "pxxh": 13, "jlzt": 1, "cjr": 1000003101, "cjrxm": "CS管理员", "cjsj": "2017-02-16 11:54:41", "xgr": 1000003101, "xgrxm": "CS管理员", "xgsj": "2017-02-20 14:14:52" },
+						{ "id": 16, "jgbm": 430105047, "dm": "TJ_DW_0021", "mc": "测试001", "dwjc": "11", "zzjgbm": "11", "frdb": "", "hydm": "", "qygmdm": "1", "jjlxdm": "1010", "qydm": "0135", "lxr": "", "lxdh": "18677777777", "lxrdzyx": "", "zcdz": "", "dwdz": "", "yzbm": "", "dwjj": "", "bz": "", "pym": "cs001", "wbm": "iy001", "wldm": null, "wlmc": null, "pxxh": 14, "jlzt": 1, "cjr": 1000003101, "cjrxm": "CS管理员", "cjsj": "2017-02-23 16:25:07", "xgr": 1000003101, "xgrxm": "CS管理员", "xgsj": "2017-02-23 16:25:07" }
+					]
+				},
+				"msg": null
+			};
+			
+			var slt = $('#companyWrap').Selector({
+				data: sourceData.data.rows, //数据源
+				filterArray: ['mc', 'pym'], //搜索匹配的字段
+				name: 'mc', //显示的字段
+				key: 'dm',
+				multi: false, //是否多选
+			})
+			
+			/* 表单校验*/
+			var form = $("#form").Validform({
+				postonce: true,
+				beforeSubmit: function(form) {
+					submitFormData();
+					return false;
+				},
+				tiptype: function(msg, o) {
+					if(msg) {
+						layer.tips(msg, o.obj[0], {
+							tips: 3
+						})
+					}
+				},
+			});
+
+			/*表单提交*/
+			function submitFormData() {
+				$.ajax({
+					url: '',
+					type: 'post',
+					data: $('#form').serialize(),
+					dataType: 'json',
+					success: function(obj) {
+						if(obj.code == 1) {
+							layer.closeAll();
+							layer.msg(obj.msg, {
+								icon: 1
+							});
+							return;
+						}
+						layer.msg(obj.msg, {
+							icon: 0
+						});
+					},
+					error: function(obj) {
+						layer.msg(obj.msg, {
+							icon: 2
+						})
+					}
+				})
+			}
+		</script>

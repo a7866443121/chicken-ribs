@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>企业健康管家</title>
+		<link rel="stylesheet" href="../css/common.css">
+		<link rel="stylesheet" href="../css/index.css">
+		<link rel="stylesheet" href="../css/style.css">
+		<link rel="stylesheet" href="../font/iconfont.css" />
+		<link rel="stylesheet" href="../js/lib/zTree/metroStyle/style.css" />
+		<link rel="stylesheet" href="../js/lib/uploadify/uploadify.css">
+	</head>
+
+	<body>
+		<header class="header" id="header">
+			<div class="content clearfix">
+				<div class="logo">
+					<a href="">
+						<img src="../img/logo.png" />
+					</a>
+				</div>
+				<div class="login">
+					<ul>
+						<li>
+							长沙医学院<i class="iconfont icon-xiala"></i>
+							<dl class="dropdown">
+								<dd>
+									<a href="">分院一</a>
+								</dd>
+								<dd>
+									<a href="">分院二</a>
+								</dd>
+								<dd>
+									<a href="">分院三</a>
+								</dd>
+							</dl>
+						</li>
+						<li class="drop-out">
+							<a href="#"><i class="iconfont icon-tuichu"></i>退出</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		<section class="index-line"></section>
+		<section class="main">
+			<aside class="left-menu" id="leftMenu">
+				<dl class="active">
+					<dt><a href="javascript:;"><i class="iconfont icon-jichuguanli"></i>基础管理</a></dt>
+					<dd style="display: block;"><a _ data-src="../process/html/listform.html" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>预约流程</a></dd>
+					<dd style="display: block;"><a _href="project/list.html" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>项目管理</a></dd>
+					<dd style="display: block;"><a _href="package/list.html" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>固定套餐管理</a></dd>
+					<dd style="display: block;"><a _href="javascript:;" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>1+X基础套餐管理</a></dd>
+					<dd style="display: block;"><a _href="javascript:;" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>1+X专病套餐管理</a></dd>
+					<dd style="display: block;"><a _href="hazardFactors/list.html" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>危害因素匹配</a></dd>
+					<dd style="display: block;"><a _href="physicalsProject/list.html" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>体检项目匹配</a></dd>
+				</dl>
+				<dl>
+					<dt><a _href="javascript:;"><i class="iconfont icon-tijian"></i>体检管理</a></dt>
+					<dd><a _href="company/list.html" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>客户单位管理</a></dd>
+					<dd><a _href="salesman/list.html" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>业务员管理</a></dd>
+					<dd><a _href="javascript:;" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>订单管理</a></dd>
+					<dd><a _href="pay/list.html" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>支付记录管理</a></dd>
+					<dd><a _href="groupReservation/list.html" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>团体预约管理</a></dd>
+					<dd><a _href="programmeManage/list.html" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>团检方案管理</a></dd>
+					<dd><a _href="groupManage/list.html" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>团检分组管理</a></dd>
+					<dd><a _href="groupReport/list.html" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>团体报告上传</a></dd>
+				</dl>
+				<dl>
+					<dt><a _href="javascript:;"><i class="iconfont icon-yewuguanli"></i>业务管理</a></dt>
+					<dd><a _href="company/list.html" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>客户单位管理</a></dd>
+					<dd><a _href="salesman/list.html" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>业务员管理</a></dd>
+					<dd><a _href="javascript:;" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>订单管理</a></dd>
+					<dd><a _href="pay/list.html" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>支付记录管理</a></dd>
+					<dd><a _href="groupReservation/list.html" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>团体预约管理</a></dd>
+					<dd><a _href="programmeManage/list.html" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>团检方案管理</a></dd>
+					<dd><a _href="groupManage/list.html" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>团检分组管理</a></dd>
+					<dd><a _href="groupReport/list.html" href="javascript:;" class="href-btn"><i class="iconfont icon-yousanjiao"></i>团体报告上传</a></dd>
+				</dl>
+			</aside>
+			<div class="module-box " id="mainContent">
+			</div>
+			<div class="iframe-box hide" id="iframe_box">
+				<iframe class="iframe-body" src="../process/html/listform.html"></iframe>
+			</div>
+		</section>
+		<script src="../js/lib/jquery/jquery-1.91.min.js"></script>
+		<script src="../js/lib/jqueryAutocomplete/jquery.autocomplete.min.js"></script>
+		<script src="../js/lib/datatables/jquery.dataTables.min.js"></script>
+		<script src="../js/lib/zTree/jquery.ztree.all.min.js"></script>
+		<script src="../js/lib/My97DatePicker/WdatePicker.js"></script>
+		<script src="../js/lib/Validform/Validform.min.js"></script>
+		<script src="../js/module/reportTable.js"></script>
+		<script src="../js/lib/layer/layer.js"></script>
+		<script src="../js/module/selector.js"></script>
+		<script src="../js/common/common.js"></script>
+		<script src="../js/module/index.js"></script>
+		
+	</body>
+
+</html>

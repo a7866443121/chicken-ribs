@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>表格合并</title>
+		<link rel="stylesheet" href="../css/common.css">
+		<link rel="stylesheet" href="../css/style.css">
+	</head>
+	<body>
+		<div style="width: 800px;margin: 100px auto;">
+			<table class="table" id="case">
+				<tbody>
+					<tr>
+						<td>张三</td>
+						<td>admin</td>
+						<td>18845123256</td>
+					</tr>
+					<tr>
+						<td data-id="22">李四</td>
+						<td>admin</td>
+						<td>18845123256</td>
+					</tr>
+					<tr>
+						<td data-id="22">李四</td>
+						<td>admin</td>
+						<td>18845123256</td>
+					</tr>
+					<tr>
+						<td data-id="22">李四</td>
+						<td>admin</td>
+						<td>18845123256</td>
+					</tr>
+					<tr>
+						<td data-id="33">王五</td>
+						<td>admin</td>
+						<td>18845123256</td>
+					</tr>
+					<tr>
+						<td data-id="33">王五</td>
+						<td>admin</td>
+						<td>18845123256</td>
+					</tr>
+					<tr>
+						<td data-id="33">王五</td>
+						<td>admin</td>
+						<td>18845123256</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<script src="../js/lib/jquery/jquery-1.91.min.js"></script>
+		<script>
+			$(function(){
+				MergeCells('case', 0, 0, 0);
+			})
+			/**
+			 * tableId 需要合并的表格的ID
+			 * startRow 需要合并的起始行
+			 * endRow 需要合并的终止行
+			 * col 需要合并的列
+			 * **/
+			function MergeCells(tableId, startRow, endRow, col) {
+				var tb = document.getElementById(tableId);
+				if(col >= tb.rows[0].cells.length) {
+					return;
+				}
+				if(endRow == 0) {
+					endRow = tb.rows.length - 1;
+				}
+				if(!tb.rows[startRow].cells[col].getAttribute("data-id")){
+					startRow++
+				}
+				for(var i = startRow; i < endRow; i++) {
+					if(tb.rows[i+1].cells[col].getAttribute("data-id")){
+						if(tb.rows[startRow].cells[col].getAttribute("data-id") == tb.rows[i + 1].cells[col].getAttribute("data-id")) {
+							tb.rows[i + 1].removeChild(tb.rows[i + 1].cells[col]);
+							tb.rows[startRow].cells[col].rowSpan = (tb.rows[startRow].cells[col].rowSpan | 0) + 1;
+							if(i == endRow - 1 && startRow != endRow) {
+								MergeCells(tableId, startRow, endRow, col + 1);
+							}
+						} else {
+							MergeCells(tableId, startRow, i + 0, col + 1);
+							startRow = i + 1;
+						}
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

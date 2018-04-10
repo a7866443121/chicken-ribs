@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>输入框异步匹配搜索</title>
+		<link rel="stylesheet" href="../css/common.css" />
+	</head>
+	<body>
+		<div style="width:800px;margin: 100px auto;">
+			<input id="input" class="ipt" placeholder="请输入内容" />
+			
+		</div>
+		<script src="../js/lib/jquery/jquery-1.91.min.js"></script>
+		<script>
+			$(function(){
+				mateIpt("#input");
+			})
+			function mateIpt(obj){
+				var $obj = $(obj),
+					$ul = $('<ul class="option-list" style="max-height:242px;"><ul>'),
+					num = -1;	//数据搜索结果选项序号
+				//文本框值发生变化时，异步请求匹配
+				$obj.on("input",function(){
+					var iptTxt = $obj.val();
+					if(iptTxt.length<=2){
+						return false;
+					}
+					//$.ajax()
+					var data = [
+							{ "name":"前端开发" ,"id":"1"}, 
+							{ "name":"工具" ,"id":"1"}, 
+							{ "name":"插件" ,"id":"11"},
+							{ "name":"教程" ,"id":"12"},
+							{ "name":"图标" ,"id":"13"},
+							{ "name":"字体" ,"id":"14"},
+							{ "name":"色彩" ,"id":"15"},
+							{ "name":"灵感" ,"id":"16"},
+							{ "name":"图库" ,"id":"17"},
+							{ "name":"设计大赏" ,"id":"18"},
+							{ "name":"设计圈子" ,"id":"19"},
+							{ "name":"综合素材" ,"id":"10"},
+							{ "name":"其他" ,"id":"11"}
+						];
+					slideContent(data);	
+				})
+		        //文本框获得焦点时
+				$obj.on("focus",function(){
+					if($obj.val() && $obj.val()!=""){
+						$ul.show();
+					}
+				})
+				//隐藏下拉框
+				$(document).on('click', function(e) {
+	                if(e.target.id==$obj.attr("id")){
+	                	return;
+	                }else{
+	                	$ul.hide();
+	                }
+	            })
+				/*下拉列表点击*/
+	            $ul.on('click', 'li', function() {
+	            	var index =$(this).index();
+	            	//选中
+	                $(this).addClass("active-li").siblings().removeClass("active-li");
+	                //数据回显
+	                $obj.val($(this).text());
+	                //重置num序号
+	                num = index;
+	            })
+	            //窗口发生变化时，重新设置下拉框位置
+	            $(window).resize(function() {
+					setPosition();	
+				});
+				/*下拉内容初始化*/
+		        function slideContent(data) {
+		            $ul.empty();
+		            for(var i=0;i<data.length;i++){
+		            	$ul.append('<li data-id ="' + data[i].id + '">' + data[i].name + '</li>');
+		            }
+		            
+		            $("body").append($ul);
+		            setPosition();
+		            $ul.show();
+		        }
+		        function setPosition(){
+			        var	top =$obj.offset().top + $obj.height()+2,
+						left =$obj.offset().left;
+		        	//设置下拉框位置
+		            $ul.css({
+		            	"top": top + "px",
+		            	"left": left + "px"
+		            })
+		        }
+		        /*回车事件*/
+	            $obj.on('keydown', function(e) {
+	                var keyCode = e.keyCode || e.which;
+	                var list = $ul.children('li');
+	                var n = $ul.scrollTop(),liH = list.height();
+	                //回车
+	                if(e.keyCode == 13 && $('.active-li').length > 0) {
+		                //数据回显
+		                $obj.val($ul.find(".active-li").text());
+		                $ul.hide();
+	                }
+	                //方向键向下
+	                if(e.keyCode == 40) {
+	                    num++;
+	                    if(num > list.length - 1) {
+	                        num = 0;
+	                        $ul.scrollTop(0);
+	                    }
+	                    if(num>9){
+	                    	$ul.scrollTop(n+liH);
+	                    }
+	                    $ul.children('li').removeClass('active-li');
+	                    $ul.children('li').eq(num).addClass('active-li');
+	                }
+	                //方向键向上
+	                if(e.keyCode == 38) {
+	                    num--;
+	                    if(num < 0) {
+	                        num = list.length - 1;
+	                        $ul.scrollTop(list.length*liH);
+	                    }
+	                    if(list.length-num>10){
+	                    	$ul.scrollTop(n-liH);
+	                    }
+	                    $ul.children('li').removeClass('active-li');
+	                    $ul.children('li').eq(num).addClass('active-li');
+	                }
+	            })
+			}
+		</script>
+	</body>
+</html>

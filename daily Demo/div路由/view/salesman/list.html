@@ -1,0 +1,247 @@
+
+		<div class="gray-wrap">
+			<div class="filter-box mb-10" id="filterBox">
+				<div class="filter-item">
+					<label>添加时间：</label>
+					<div class="clearfix" style="margin-left: 70px;">
+						<span class="active">当天</span>
+						<span>近七天</span>
+						<span>近一个月</span>
+						<span>近三个月</span>
+						<span class="custom">自定义</span>
+						<div class="fl-l custom-box hide">
+							<input class="Wdate ipt ml-10" type="text" id="d15" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'d16\')||\'%y-%M-%d\'}',skin:'blue'})" />
+							<div class="fl-l mlr-10">-</div>
+							<input class="Wdate ipt" type="text" id="d16" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'d15\')}',maxDate:'%y-%M-%d',skin:'blue'})" />
+							<button class="btn btn-primary ml-10">确定</button>
+						</div>	
+					</div>
+				</div>
+				<div class="filter-item">
+					<label>状态：</label>
+					<div class="clearfix" style="margin-left: 70px;">
+						<span class="active">全部</span>
+						<span>启用</span>
+						<span>停用</span>
+					</div>
+				</div>
+				<div class="filter-item">
+					<label>检索内容：</label>
+					<div class="search-wrap ml-10 fl-l">
+						<input type="search" class="ipt search" placeholder="报告名称" />
+						<a href="javascript:;" class="search-btn"><i class="iconfont"></i></a>
+					</div>
+
+				</div>
+			</div>
+			
+			<div class="white-wrap pt-10">
+				<div class="table-title">
+					<label>业务员列表</label>
+					<div class="fl-r">
+						<button id="addBtn" class="btn-hol btn-hol-primary"><i class="iconfont icon-addition"></i>添加业务员</button>
+						<button class="btn-hol btn-hol-primary"><i class="iconfont icon-out"></i>导出</button>
+					</div>
+				</div>
+				<table id="salesTab" class="table">
+					<thead>
+						<tr>
+							<th>
+								<input id="che0" class="for-label" type="checkbox">
+								<label for="che0" class="for-checkbox"></label>
+							</th>
+							<th>序号</th>
+							<th>姓名</th>
+							<th>手机号</th>
+							<th>科室</th>
+							<th>添加时间</th>
+							<th>状态</th>
+							<th>最新登录时间</th>
+							<th>二维码</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<input id="che1" class="for-label" type="checkbox">
+								<label for="che1" class="for-checkbox"></label>
+							</td>
+							<td>1</td>
+							<td>王大锤</td>
+							<td>151147525</td>
+							<td>脑科</td>
+							<td>2017-02-01</td>
+							<td>
+								<span class="cl-green">启用</span>
+							</td>
+							<td>2017-02-01 08:20</td>
+							<td><img src="../../img/code.png" width="28" height="28"></td>
+							<td>
+								<a href="javascript:;" class="cl-green">
+									<i class="iconfont icon-success"></i>启用
+								</a>
+								<a href="javascript:;" class="cl-red stop">
+									<i class="iconfont icon-offline"></i>停用
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input id="che2" class="for-label" type="checkbox">
+								<label for="che2" class="for-checkbox"></label>
+							</td>
+							<td>1</td>
+							<td>王大锤</td>
+							<td>151147525</td>
+							<td>脑科</td>
+							<td>2017-02-01</td>
+							<td>
+								<span class="cl-green">启用</span>
+							</td>
+							<td>2017-02-01 08:20</td>
+							<td><img src="../../img/code.png" width="28" height="28"></td>
+							<td>
+								<a href="javascript:;" class="cl-green">
+									<i class="iconfont icon-success"></i>启用
+								</a>
+								<a href="javascript:;" class="cl-red stop">
+									<i class="iconfont icon-offline"></i>停用
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<!--添加业务员弹出框-->
+			<div id="addContent" class="alg-content pt-10">
+				<form id="form">
+					<div class="row">
+						<div class="row-label">真实姓名：</div>
+						<input class="ipt" type="text" datatype="*">
+					</div>
+					<div class="row">
+						<div class="row-label">所属机构：</div>
+						<input class="ipt" type="text" datatype="*">
+					</div>
+					<div class="row">
+						<div class="row-label">联系方式：</div>
+						<input class="ipt" type="text" datatype="*">
+					</div>
+					<div class="row">
+						<div class="row-label">顾问类型：</div>
+						<select class="slt" datatype="*"></select>
+					</div>
+				</form>
+			</div>
+			
+		</div>
+		
+		<script>
+			//筛选条件
+			$("#filterBox .filter-item").on("click", "span", function() {
+				$(this).parent().find("span.active").removeClass("active");
+				$(this).addClass("active");
+				if($(this).hasClass("custom")){
+					$(this).next(".custom-box").show();
+				} else {
+					$(this).nextAll(".custom-box").hide();
+				}
+			})
+			//全选
+			$("#che0").on("click",function(){
+				if($(this).is(':checked')) {
+					$("#salesTab").find('.for-label').prop("checked", true);
+				}else{
+					$("#salesTab").find('.for-label').removeAttr("checked");
+				}
+			})
+			
+			/*table初始化*/
+			var orderTab = $('#salesTab').DataTable({
+				searching: false, //禁止搜索
+				lengthChange: true, //条数显示选择
+				ordering: false, //允许点击表头排序
+				paging: false,
+				info: false,
+				scrollY: $("#windows", window.parent.document).val() - 338
+			});
+			
+			
+			/*添加业务员*/
+			$('#addBtn').on('click', function() {
+				layer.open({
+					type: 1,
+					title: '添加业务员',
+					content: $('#addContent'),
+					btn: ['确定','取消'],
+					area: '380px',
+					yes: function(index) {
+						form.submitForm();
+					}
+				})
+			})
+			
+			/* 表单校验*/
+			var form = $("#form").Validform({
+				postonce: true,
+				beforeSubmit: function(form) {
+					submitFormData();
+					return false;
+				},
+				tiptype: function(msg, o) {
+					if(msg) {
+						layer.tips(msg, o.obj[0], {
+							tips: 3
+						})
+					}
+				},
+			});
+
+			/*表单提交*/
+			function submitFormData() {
+				$.ajax({
+					url: '',
+					type: 'post',
+					data: $('#form').serialize(),
+					dataType: 'json',
+					success: function(obj) {
+						if(obj.code == 1) {
+							layer.closeAll();
+							layer.msg(obj.msg, {
+								icon: 1
+							});
+							return;
+						}
+						layer.msg(obj.msg, {
+							icon: 0
+						});
+					},
+					error: function(obj) {
+						layer.msg(obj.msg, {
+							icon: 2
+						})
+					}
+				})
+			}
+			
+			/*业务员停用*/
+			$('#salesTab tbody').on('click','.stop',function(){
+				layer.open({
+					type: 1,
+					title: '停用业务员',
+					content: '<p style="padding:10px 15px;">该业务顾问服务的单位有<span class="cl-primary">3</span>家，是否更换为其他业务顾问？</p>',
+					btn: ['停用并更还','直接停用'],
+					area: '400px',
+					yes: function(index) {
+						location.href = "../company/list.html";
+						window.parent.navChange(3);
+					},
+					btn2: function(index){
+						layer.msg('操作成功',{icon:1});
+						layer.close(index);
+					}
+				})
+			})
+		</script>
