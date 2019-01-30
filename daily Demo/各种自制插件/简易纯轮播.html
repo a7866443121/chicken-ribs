@@ -90,5 +90,15 @@
 	})
 	carousel.run();//启动
 })()
+var stv = {};
+function animeta(){
+	stv = setInterval(setint(),2000);
+	ul.onmouseover = function(){
+		clearInterval(stv);
+	} 
+	ul.onmouseout = function(){
+		stv = setInterval(setint(),2000);
+	}
+}
 </script>
 </html>

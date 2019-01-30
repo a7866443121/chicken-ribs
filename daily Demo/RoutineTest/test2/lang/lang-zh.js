@@ -1,0 +1,1 @@
+;(function(){var zh = {"aa":{},"home":{"menu":"姓名","menu_student":"学员","menu_charge":"收费","adw222222":"adwada"},"studentManage":{"studentManage_charge":"新学员报名","Include_student":"包含跨校区学员","name":"姓名","asda":"1"}}})();

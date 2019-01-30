@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		ul{list-style: none;}
+		.slide{width: 100%;}
+		.slide .slide-list{
+			position: relative;
+			width: 100%;
+			height: 100%;
+			white-space: nowrap;
+			overflow: hidden;			
+		}
+		.slide .slide-list .slide-itme{
+			position: absolute;
+			left: 99999px;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			z-index: -999;
+			transition: all 0.3s;
+			-moz-transition: all 0.3s;	/* Firefox 4 */
+			-webkit-transition: all 0.3s;	/* Safari 和 Chrome */
+		}
+		.slide .slide-list .slide-itme.active, .slide .slide-list .slide-itme.left, .slide .slide-list .slide-itme.right{z-index: 9;}
+		.slide .slide-list .slide-itme.active{left: 0;top: 0;}
+		.slide .slide-list .slide-itme.left{left: -100%;}
+		.slide .slide-list .slide-itme.right{left: 100%;}
+		.slide .slide-list .slide-itme.up{top: -100%;}
+		.slide .slide-list .slide-itme.down{top: 100%;}
+		.slide .slide-list .seize{width: 100%;opacity: 0;pointer-events: none;}
+		.slide .slide-list .slide-itme img{width: 100%;}
+		.slide .slide-list .seize img{width: 100%;}
+	</style>
+	<body>
+		<div class="slide-box">
+			<div class="slide" id="slide">
+			    <ul class="slide-list">
+			    	<li class="slide-itme">0快讯:快讯,用快播看</li>
+			    	<li class="slide-itme">1快讯:vue全球star数量超react,你怎么看</li>
+			    	<li class="slide-itme">2快讯:vue全球star数量超react,用快播看</li>
+			    	<li class="slide-itme">3快讯:vue全球star数量超react,你怎么看</li>
+			    	<li class="slide-itme">4快讯:快讯,用快播看</li>
+			    	<li class="slide-itme">5快讯:vue全球star数量超react,你怎么看</li>
+			    	<li class="slide-itme">6快讯:快讯,用快播看</li>
+			    	<li class="slide-itme">7快讯:vue全球star数量超react,你怎么看</li>
+			    </ul>
+			</div>			
+		</div>
+		
+<script type="text/javascript">
+	(function(){
+		function carousel(j){
+			var i = j.num||0;
+			//内部变量
+			var variable = {
+				//计数器
+				num: 0,
+				//轮播频率
+				times:j.times||3000,
+				//轮播方向
+				direction:j.direction||'right-left',
+				//定时器
+				stv:{},
+				//上一张
+				previousClass:'',
+				//下一张
+				nextClass:'',
+				//每次轮播的回调
+				onSlide:j.onSlide||function(){},
+			}
+			//内部常量
+			var constant = {
+				slide : document.getElementById('slide'),
+				slideList : document.querySelector('#slide .slide-list'),
+				liArr : document.querySelectorAll('#slide .slide-itme'),
+			}
+			
+			//slideinit方法不暴露
+			function slideinit(){
+				//设置轮播方向
+				switch (variable.direction){
+					case 'right-left':
+						setDirectionClass('left','right');
+						break;
+					case 'left-right':
+						setDirectionClass('right','left');
+						break;
+					case 'up-down':
+						setDirectionClass('up','down');
+						break;
+					case 'down-up':
+						setDirectionClass('down','up');
+						break;
+					default:
+						setDirectionClass('left','right');
+						break;
+				}
+				function setDirectionClass(previousClass,nextClass){
+					variable.previousClass = previousClass;
+					variable.nextClass = nextClass;
+				}
+				//定时轮播
+				variable.stv = setInterval(run,variable.times);	
+				//设置占位内容,把盒子撑开,
+				var seize = document.createElement(constant.liArr[0].nodeName); 
+				seize.className = 'seize';
+				seize.innerHTML = constant.liArr[0].innerHTML;
+				constant.slideList.appendChild(seize);
+				//初始化运行一遍
+				run();
+			}
+
+			//定时轮播
+			function run(){
+				variable.num = i >= constant.liArr.length ? i = 0 : i;
+				i++;	
+			}
+			//监测index的变化,并驱动轮播运行
+			watch(variable,'num',function(s){
+				//每次变化调用onSlide并把值传出去
+				variable.onSlide(s);
+				//清除所有active previousClass = left||up,nextClass = right||down
+				for(var i = 0;i < constant.liArr.length; i++){
+					var reg = /active|left|right|up|down/ig;
+					constant.liArr[i].className = constant.liArr[i].className.replace(reg,'');
+				}
+				//当前页
+				constant.liArr[s].classList.add('active');
+				//下一页
+				constant.liArr[s].nextElementSibling.classList.contains('slide-itme') ? 
+					constant.liArr[s].nextElementSibling.classList.add(variable.nextClass) : 
+					constant.liArr[0].classList.add(variable.nextClass);
+				//上一页
+				constant.liArr[s].previousElementSibling ? 
+					constant.liArr[s].previousElementSibling.classList.add(variable.previousClass) : 
+					constant.liArr[constant.liArr.length - 1].classList.add(variable.previousClass);
+			});		
+			//监听对象值的变化
+			function watch(obj,key,fc){
+				Object.defineProperty( obj, key, {
+				  	set : function(newVal){
+				  		fc(newVal);
+				  	},
+				});
+			}
+			//触屏逻辑
+			function swipe(){
+				var startX,startY,endX,endY; 
+				 //获取滑动开始时的坐标位置
+			 	slide.addEventListener("touchstart",function(e){  
+		            startX = e.targetTouches[0].pageX;  
+		            startY = e.targetTouches[0].pageY;
+		            //阻止默认事件和事件冒泡
+	    			e.stopPropagation();
+		        });
+		        //阻止滑动中的事件冒泡
+			 	slide.addEventListener("touchmove",function(e){    
+		    		e.stopPropagation();
+			 	});
+			 	//获取滑动结束时候的坐标
+			 	slide.addEventListener("touchend",function(e){    
+		            endX= e.changedTouches[0].pageX;
+		            endY= e.changedTouches[0].pageY;
+		            //取X轴与Y轴的绝对值,哪个值大就是在哪个轴移动
+		            if(Math.abs(endX-startX) > Math.abs(endY-startY) ){
+		    			//结束的值大于开始的值(右移动),并且绝对值大于30,     
+			        	if (endX - startX > 0 && Math.abs(endX - startX) > 50) {
+			        		console.log('满足右翻页');
+			            } 
+			            //结束的值小于开始的值(左移动),并且绝对值大于30,
+			            if(endX - startX < 0 && Math.abs(endX - startX) > 50){
+			            	console.log('满足左翻页');
+			            } 	      
+		            }else{
+			            if(endY - startY > 0 && Math.abs(endY - startY) > 50){
+							console.log('满足下翻页');
+			            }
+			            if(endY - startY < 0 && Math.abs(endY - startY) > 50){
+		      				console.log('满足上翻页');
+			            }            	
+		            }
+		
+		        });     
+			}
+			//初始化轮播
+			slideinit();
+			//对外暴露的两个方法
+			return {
+				run:function(){
+					//先清除
+					clearInterval(variable.stv);
+					//再运行
+					variable.stv = setInterval(run,variable.times);
+				},
+				stop:function(){
+					//清除定时器
+					clearInterval(variable.stv);
+				},
+			};
+		}
+		
+		/**
+		 *  num = 1可以指定跳到哪一张
+		 *  times = 轮播间隔
+		 * 	direction 轮播方向right-left || left-right || up-down || down-up
+		 *  onSlide 每次轮播都会调用这个方法,并传入当前的轮播页数
+		 *	obj.stop();可以清除轮播
+		 *	obj.run();可以重新运行轮播
+		**/
+		var obj = new carousel({
+			num:5,
+			times:3000,
+			direction:'right-left',
+			onSlide:function(num){
+				console.log(num);
+			}
+		});
+		obj.stop();
+		obj.run();
+	})()
+	
+</script>
+	</body>	
+</html>

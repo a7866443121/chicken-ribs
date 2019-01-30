@@ -142,8 +142,6 @@ module.exports = {
 		xhr.open('POST', url, 'true');
 		contentType && (xhr.setRequestHeader("Content-Type", contentType));
 		xhr.send(data);
-		console.log('接口需求参数:');
-		console.log(data);
 		xhr.onreadystatechange = function() {
 			if(xhr.readyState == 4) {
 				if(xhr.status == 200) {

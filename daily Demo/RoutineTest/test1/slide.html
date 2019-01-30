@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>更好的轮播图</title>
+		<style type="text/css">
+		*{margin: 0;padding: 0;}
+		ul{list-style: none;}
+		.slide-box{position: relative;}
+		.slide{width: 100%;position: relative;}
+		.slide .slide-list{
+			position: relative;
+			width: 100%;
+			height: 100%;
+			white-space: nowrap;
+			overflow: hidden;			
+			font-size: 0;
+		}
+		.slide .slide-list .slide-itme{
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			z-index: -999;
+			transition:all 0.3s;
+			-moz-transition:all 0.3s;
+			-webkit-transition:all 0.3s;
+			display: none;
+		}
+		.slide.touch .slide-list .slide-itme{
+			transition:all 0s;
+			-moz-transition:all 0s;
+			-webkit-transition:all 0s;
+			font-size: initial;
+		}
+		.slide .slide-list .slide-itme.active, .slide .slide-list .slide-itme.left, .slide .slide-list .slide-itme.right{z-index: 9;display: inline-block;}
+		.slide .slide-list .slide-itme.active{left: 0;top: 0;}
+		.slide .slide-list .slide-itme.left{left: -100%;}
+		.slide .slide-list .slide-itme.right{left: 100%;}
+		.slide .slide-list .slide-itme.up, .slide .slide-list .slide-itme.down{z-index: 9;display: inline-block;}
+		.slide .slide-list .slide-itme.up{top: -100%;}
+		.slide .slide-list .slide-itme.down{top: 100%;}
+		.slide .slide-list .seize{width: 100%;opacity: 0;pointer-events: none;}
+		.slide .slide-list .slide-itme img{width: 100%;}
+		.slide .slide-list .seize img{width: 100%;}
+		/*计数点*/
+		.slide-spot{
+			position: absolute;
+			bottom: 10%;
+			width: 100%;
+			font-size: 0;
+			z-index: 10;
+			text-align: center;
+			pointer-events: none;
+		}
+		.silde-spot-box{display: inline-block;}
+		.slide-spot .slide-spot-itme{
+			display: inline-block;
+			margin-left: 10px;
+			border-radius: 50%;
+			padding: 4px;
+			background-color: rgba(255,255,255,0.5);
+			vertical-align: middle;
+		}
+		.slide-spot .slide-spot-itme.active{
+			padding: 5px;
+			background-color: rgba(255,255,255,0.9);
+		}
+	</style>
+	</head>
+	<body>
+		<div class="slide-box">
+			<div class="slide" id="slide">
+			    <ul class="slide-list">
+			    	<li class="slide-itme"><img src="img/binner1.jpg"/></li>
+			    	<li class="slide-itme"><img src="img/binner2.jpg"/></li>
+			    	<li class="slide-itme"><img src="img/binner3.jpg"/></li>
+			    	<li class="slide-itme"><img src="img/binner4.jpg"/></li>
+			    </ul>
+			    <ul class="slide-spot">
+			    	<div class="silde-spot-box" id="slide_sopt"></div>
+			    </ul>
+			</div>			
+		</div>
+		<script src="js/betterSlide.js"></script>
+		<script>
+			(function(){
+				/**
+				 *  num = 1可以指定跳到哪一张
+				 *  times = 轮播间隔
+				 * 	direction 轮播方向right-left || left-right || up-down || down-up
+				 *  onSlide 每次轮播都会调用这个方法,并传入当前的轮播页数
+				 *	obj.stop();可以清除轮播
+				 *	obj.run();可以重新运行轮播
+				**/
+				var obj = new carousel({
+					num : 5,
+					times : 3000,
+					direction : 'down-up',
+					onSlide : function(num){
+						console.log(num);
+					}
+				});
+			})()
+		</script>
+	</body>
+</html>
